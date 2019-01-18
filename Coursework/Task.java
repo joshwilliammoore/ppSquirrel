@@ -1,5 +1,5 @@
-class ListElement
+class Task
 {
-
+    private boolean status;
     
 }

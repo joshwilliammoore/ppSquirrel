@@ -1,4 +1,4 @@
-class List 
+class TaskList 
 {
     public function addListElement(){}
 
