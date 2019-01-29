@@ -1,3 +1,4 @@
+package view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -8,6 +9,8 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import javax.swing.ImageIcon;
+import java.awt.Image;
 
 
 public class RightBar extends JPanel{
@@ -19,7 +22,8 @@ public class RightBar extends JPanel{
 		
 		Color bgColour = new Color(redChannel, greenChannel, blueChannel);
 		this.setBackground(bgColour);
-		
+                
+                
 	
 		Dimension preferredSize = new Dimension(800, 600);
 		this.setPreferredSize(preferredSize);
