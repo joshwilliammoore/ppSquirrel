@@ -3,6 +3,8 @@
     private String task;
     private boolean complete;
     private String[] tasks;
+    private String dueDate;
+    private int priority;
 
     //Setters and getters for task attribute.
     public void setTask(String task) {
@@ -49,5 +51,21 @@
             taskList.remove(i);
         }
         this.tasks = taskList.toArray(new String[taskList.size()]);
+    }
+
+    public void setDueDate(String d) {
+        this.dueDate = d;
+    }
+
+    public String getDueDate() {
+        return dueDate;
+    }
+
+    public void setPriority(int p) {
+        this.priority = p;
+    }
+
+    public int getPriority() {
+        return priority;
     }
 }
