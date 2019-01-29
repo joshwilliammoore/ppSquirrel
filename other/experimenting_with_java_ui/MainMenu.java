@@ -1,3 +1,4 @@
+package view;
 import javax.swing.JFrame;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -19,7 +20,7 @@ public class MainMenu extends JFrame{
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 	
-	MenuEntry[] menuEntries = {new MenuEntry("Home"), new MenuEntry("TaskLists"), new MenuEntry("About")};
+	MenuEntry[] menuEntries = {new MenuEntry("Home"), new MenuEntry("TaskLists"), new MenuEntry("About"), new MenuEntry("Login"), new MenuEntry("Add task"), new MenuEntry("Exit")};
 	
 	LeftBar lb = new LeftBar(menuEntries);
 	
@@ -27,7 +28,7 @@ public class MainMenu extends JFrame{
 	GridBagConstraints c= new GridBagConstraints();
 	
 	c.gridx=0;
-	c.gridwidth=1;
+	c.gridwidth=2;
 	
 	this.add(lb, c);
 	
@@ -35,8 +36,8 @@ public class MainMenu extends JFrame{
 	
 	
 	
-	c.gridx=1;
-	c.gridwidth=4;
+	c.gridx=2;
+	c.gridwidth=3;
 	
 	RightBar rb = new RightBar();
 	
