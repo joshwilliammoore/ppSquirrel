@@ -1,26 +1,30 @@
-import java.util.LinkedList;
-public class Task
+package model;
+import java.util.ArrayList;
+import java.util.Date;
+public class Task extends SubTask
 {
-    private int status;
-    private String title;
-    private String content;
-    private String dueDate;
-    private int priority;
-    private LinkedList<Task> subTasks;
+    private ArrayList<Task> subTasks;
 
-    public void setTitle(String t){}
-    public String getTitle(String t){}
-    public void setContent(String t){}
-    public String getContent(String t){}
-    public void setDueDate(String t){}
-    public String getDueDate(String t){}
-    public int setPriority(int t){}
-    public int getPriority(int t){}
+    public Task(Date dueDate, int priority, String title, String description)
+    {
+        super(dueDate, priority, title, description);
+        this.subTasks = new ArrayList<>();
+    
+    }
 
-    public void addSubTask(Task st){}
-    public LinkedList<Task> getTasks(){}
-    public Task getTask(int id){}
+ 
+    public void addSubTask(Task st){
+        this.subTasks.add(st);
+    }
+    
+    public Task getSubtask(int Position){
+        return this.subTasks.get(Position);
+    }
+    
+    public ArrayList<Task> getSubtasks(){
+        return this.subTasks;
+    }
+    
 
-    public void setStatus(){}
-    public int getStatus(){}
+   
 }
