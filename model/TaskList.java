@@ -10,6 +10,7 @@ public class TaskList
     private boolean completed;
     private User creator;
     private User taskManager;
+    private ArrayList<User> staff;
     private Date dateCreated;
     private Date dateDue;
     private Date dateModified;
@@ -17,12 +18,43 @@ public class TaskList
     private boolean complete;
     private ArrayList<Task> tasks;
     private int priority;
-
     
     public TaskList()
     {
-        this.tasks = new ArrayList<Task>();
+     this.tasks = new ArrayList<Task>();
+
     }
+    
+    public void setStaff (ArrayList<User> staff)
+    {
+        this.staff = staff;
+    }
+    
+    public User getStaff (int position)
+    {
+        return this.staff.get(position);
+    }
+    
+    public void addStaff(User newStaff)
+    {
+       if(this.staff.indexOf(newStaff)==-1) {
+           this.staff.add(newStaff);
+       } else {
+           //error handling...
+       }
+    }
+    
+    public void removeStaff(int position)
+    {
+        this.staff.remove(position);
+    }
+    
+    public void removeStaff(User oldStaff)
+    {
+        this.staff.remove(oldStaff);
+    }
+    
+    
     public boolean isCompleted()
     {
         //this function should return true if all the subtasks are completed or if there are no subtasks, then the main task is completed
