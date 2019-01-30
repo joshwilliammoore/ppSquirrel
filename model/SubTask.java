@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class SubTask
 {
+
     private int id;
     private String title;
     private String description;
@@ -13,7 +14,21 @@ public class SubTask
     private Date modifiedDate;
     private int priority;
     private boolean completed;
-
+    
+    public SubTask(Date dueDate, int priority, String title, String description)
+    {
+        Date currentDate = new Date();
+        this.setId(++SquirrelConstants.taskID);
+        this.setCreatedDate(currentDate);
+        this.setModifiedDate(currentDate);
+        this.setDueDate(dueDate);
+        this.setPriority(priority);
+        this.setTitle(title);
+        this.setDescription(description);
+        this.setCompleted(false);
+    
+    }
+    
     public int getId() {
         return id;
     }
@@ -43,7 +58,16 @@ public class SubTask
     }
 
     public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
+        
+        Date currentDate = new Date();
+        if(currentDate.before(dueDate)){
+                this.dueDate = dueDate;
+
+        } else {
+            
+            //error handling should come here!!!
+            System.out.println("Error!!!!");
+        }
     }
 
     public Date getCreatedDate() {
