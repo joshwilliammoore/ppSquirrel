@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Date;
 public class Task extends SubTask
 {
-    private ArrayList<Task> subTasks;
+    private ArrayList<SubTask> subTasks;
 
     public Task(Date dueDate, int priority, String title, String description)
     {
@@ -13,15 +13,15 @@ public class Task extends SubTask
     }
 
  
-    public void addSubTask(Task st){
+    public void addSubTask(SubTask st){
         this.subTasks.add(st);
     }
     
-    public Task getSubtask(int Position){
+    public SubTask getSubtask(int Position){
         return this.subTasks.get(Position);
     }
     
-    public ArrayList<Task> getSubtasks(){
+    public ArrayList<SubTask> getSubtasks(){
         return this.subTasks;
     }
     
