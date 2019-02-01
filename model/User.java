@@ -13,7 +13,7 @@ public class User {
     private String givenName;
     private String surname;
     private Role role;
-    private String username;
+    private String userName;
     private String email;
     private String password;
     private ArrayList<String> createdTasks = new ArrayList<String>();
@@ -40,12 +40,12 @@ public class User {
         return givenName + " " + surname;
     }
     
-    public void setUsername(String u){
-        this.username = u;
+    public void setUserName(String u){
+        this.userName = u;
     }
     
-    public String getUsername(){
-        return username;
+    public String getUserName(){
+        return userName;
     }
     
     public void setEmail(String e){
