@@ -16,6 +16,11 @@ public class Role {
     private String name;
     private ArrayList<Rights> rights;
     
+    public Role(String name, ArrayList<Rights> r)
+    {
+        this.name = name;
+        this.rights = r;
+    }
     private ArrayList<Rights> returnCEORights()
     {
         ArrayList<Rights> adminRights = new ArrayList<>();
