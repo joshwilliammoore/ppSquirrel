@@ -14,6 +14,9 @@ public class SubTask
     private Date modifiedDate;
     private int priority;
     private boolean completed;
+
+   
+    private User creator;
     
     public SubTask(Date dueDate, int priority, String title, String description)
     {
@@ -99,8 +102,14 @@ public class SubTask
     }
 
     public void setCompleted(boolean completed) {
-        this.completed = completed;
+        this.completed = completed; 
+   }
+   
+    public User getCreator() {
+        return creator;
     }
-   
-   
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
 }
