@@ -26,6 +26,8 @@ import javax.swing.border.MatteBorder;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
 
 
 
@@ -114,7 +116,7 @@ public class Experiment {
     JPanel middleSide = new JPanel();
    
     middleSide.addMouseMotionListener(
-        new MouseMotionListener ()
+       new MouseMotionListener ()
         {
             @Override
             public void mouseDragged(MouseEvent e)
@@ -202,6 +204,11 @@ public class Experiment {
                        email.setBorder(formBorders);
                        email.setForeground(middleColour);
             JButton submit = new JButton("Go");
+            submit.addActionListener((ActionEvent e) -> 
+            {
+                JOptionPane.showMessageDialog(null, "This was created using a lambda expression");
+            }
+            );
             submit.setBackground(middleColour);
             submit.setForeground(Color.WHITE);
             
