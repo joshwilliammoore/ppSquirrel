@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package other.experimenting_with_java_ui;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
@@ -23,6 +23,9 @@ import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseEvent;
 
 
 
@@ -36,7 +39,7 @@ public class Experiment {
     
     public Experiment()
     {
-    JLayeredPane jp = new JLayeredPane();
+    //JLayeredPane jp = new JLayeredPane();
     //jp.setLayout(new GridBoxLayout());
         
     Color middleColour = Color.decode("#1a33d5");
@@ -107,7 +110,26 @@ public class Experiment {
     
 
        //middle section
+       
     JPanel middleSide = new JPanel();
+   
+    middleSide.addMouseMotionListener(
+        new MouseMotionListener ()
+        {
+            @Override
+            public void mouseDragged(MouseEvent e)
+            {
+            mainWindow.setLocation(e.getLocationOnScreen());
+            }
+             public void mouseMoved(MouseEvent e)
+            {
+           // mainWindow.setLocation(e.getLocationOnScreen());
+            }
+        
+        } 
+    
+    
+    );
     Dimension middleSize = new Dimension(300,500);
     
     
@@ -129,6 +151,8 @@ public class Experiment {
                   logoContainer.setVerticalTextPosition(JLabel.BOTTOM);
                   logoContainer.setForeground(Color.WHITE);
                   logoContainer.setFont(new Font("Arial", Font.PLAIN, 22));
+            myExiter exLis = new myExiter();
+            logoContainer.addMouseListener(exLis);
             middleSide.add(logoContainer);      
     
     gbc.gridx = 2;
@@ -240,6 +264,31 @@ public class Experiment {
     
     
     }
+    class myExiter implements MouseListener
+            {
+                public void mousePressed(MouseEvent e)
+                {
+                    System.exit(0);
+                }
+                
+                public void mouseReleased(MouseEvent e)
+                {
+                }
+                
+                public void mouseEntered(MouseEvent e)
+                {
+                }
+                
+                public void mouseExited(MouseEvent e)
+                {
+                }
+                
+                public void mouseClicked(MouseEvent e)
+                {
+                }
+                
+                
+            } 
     
     
     

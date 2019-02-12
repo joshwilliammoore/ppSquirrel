@@ -1,4 +1,4 @@
-package view;
+package other.experimenting_with_java_ui;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
