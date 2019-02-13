@@ -5,6 +5,7 @@
  */
 package model;
 import java.awt.Color;
+import java.awt.Font;
 /**
  *
  * @author Gregory
@@ -15,13 +16,14 @@ public class SquirrelConstants {
     private static final int H1SIZE = 31;
     private static int taskID = 0;
     //currently, these values have to be divisible by 100 without remainder
+    //Main panel configuration
     private static final int mainContainerWidth = 1000;
     private static final int mainContainerHeight=600;
     private static final int leftSideWidth = 300;
     private static final int rightSideWidth = 700;
     private static final int innerPaneHeight = 600;
     private static final boolean removeDefaultMenuBar = false;
-
+    
 
     private static final Color mainBg = Color.decode("#ffffff");
     private static final Color rightSideBg = Color.decode("#ffffff");
@@ -31,6 +33,25 @@ public class SquirrelConstants {
     private static final Color rightSideFore = Color.decode("#1a33d5");
     private static final Color leftSideFore = Color.decode("#ffffff");
     
+   
+    //Logo configuration
+   
+    private static final String appName = "Squirrel Tasker";
+    private static final Color logoForeground = Color.WHITE;
+    private static final Font logoFont = new Font("Arial", Font.PLAIN, 22);
+   
+    public static String getAppName() {
+        return appName;
+    }
+
+    public static Color getLogoForeground() {
+        return logoForeground;
+    }
+     public static Font getLogoFont() {
+        return logoFont;
+    }
+     
+     
     public static boolean isRemoveDefaultMenuBar() {
         return removeDefaultMenuBar;
     }
