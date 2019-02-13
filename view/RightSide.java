@@ -4,28 +4,29 @@
  * and open the template in the editor.
  */
 package view;
-import javax.swing.JPanel;
 import model.SquirrelConstants;
 /**
  *
  * @author Regory Gregory
  */
-public class RightSide extends JPanel{
-    private static RightSide instance;
-    private RightSide()
+public class RightSide extends GeneralPanel{
+    private static RightSide instance = null;
+    public RightSide()
     {
-        super();
-        int width =SquirrelConstants.getLeftSideWidth();
-        int height =SquirrelConstants.getInnerPaneHeight();
+        super(SquirrelConstants.getRightSideWidth(), SquirrelConstants.getInnerPaneHeight());
+      
+        this.setBackground(SquirrelConstants.getRightSideBg());
     }
-    
-    //making it a singleton class
     public static  RightSide getInstance()
     {
     if(instance==null)
     {
         instance = new RightSide();
     }
-    return instance;
+//    return instance;
+//        instance = new RightSide();
+        return instance;
     }
+    //making it a singleton class
+   
 }
