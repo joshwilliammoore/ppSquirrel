@@ -18,7 +18,7 @@ public class Menu extends JPanel{
     super();
     this.setLayout(new GridLayout(0,1));
     String[] menuEntries = SquirrelConstants.getMenuEntries();
-    
+    this.setBackground(SquirrelConstants.getMenuEntryBg());
     for(String m : menuEntries)
     {
         MenuEntry temp = new MenuEntry(m);
