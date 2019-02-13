@@ -18,18 +18,18 @@ public class SquirrelConstants {
     private static final int mainContainerWidth = 1000;
     private static final int mainContainerHeight=600;
     private static final int leftSideWidth = 300;
-    private static final int rightSideWith = 700;
+    private static final int rightSideWidth = 700;
     private static final int innerPaneHeight = 600;
     private static final boolean removeDefaultMenuBar = false;
 
 
     private static final Color mainBg = Color.decode("#ffffff");
-    private static final Color rightSideBg = Color.decode("#1a33d5");
-    private static final Color leftSideBg = Color.decode("#ffffff");
+    private static final Color rightSideBg = Color.decode("#ffffff");
+    private static final Color leftSideBg = Color.decode("#1a33d5");
     
     private static final Color mainFore = Color.decode("#1a33d5");
-    private static final Color rightSideFore = Color.decode("#ffffff");
-    private static final Color leftSideFore = Color.decode("#1a33d5");
+    private static final Color rightSideFore = Color.decode("#1a33d5");
+    private static final Color leftSideFore = Color.decode("#ffffff");
     
     public static boolean isRemoveDefaultMenuBar() {
         return removeDefaultMenuBar;
@@ -56,8 +56,8 @@ public class SquirrelConstants {
         return leftSideWidth;
     }
 
-    public static int getRightSideWith() {
-        return rightSideWith;
+    public static int getRightSideWidth() {
+        return rightSideWidth;
     }
 
     //reference from outside the class SquirrelConstants.H1SIZE !!!
