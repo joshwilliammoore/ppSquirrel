@@ -14,11 +14,12 @@ public class SquirrelConstants {
     
     private static final int H1SIZE = 31;
     private static int taskID = 0;
+    //currently, these values have to be divisible by 100 without remainder
     private static final int mainContainerWidth = 1000;
     private static final int mainContainerHeight=1000;
     private static final int leftSideWidth = 300;
     private static final int rightSideWith = 700;
-    private static final int innerPaneHeight = 1000;
+    private static final int innerPaneHeight = 800;
     
     
     public static int getTaskID() {
