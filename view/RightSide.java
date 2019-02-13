@@ -5,6 +5,7 @@
  */
 package view;
 import javax.swing.JPanel;
+import model.SquirrelConstants;
 /**
  *
  * @author Regory Gregory
@@ -14,6 +15,8 @@ public class RightSide extends JPanel{
     private RightSide()
     {
         super();
+        int width =SquirrelConstants.getLeftSideWidth();
+        int height =SquirrelConstants.getInnerPaneHeight();
     }
     
     //making it a singleton class
