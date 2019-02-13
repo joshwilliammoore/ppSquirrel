@@ -20,6 +20,11 @@ public class LeftSide extends GeneralPanel{
 
 //     super(SquirrelConstants.getLeftSideWidth(), SquirrelConstants.getInnerPaneHeight());
      this.setBackground(SquirrelConstants.getLeftSideBg());
+        this.gbc.gridx = 0;
+        this.gbc.gridy = 0;
+        this.gbc.gridwidth = 1;
+        this.gbc.gridheight = 1;
+        this.add(Logo.getInstance(), this.gbc);
     }
     
     
