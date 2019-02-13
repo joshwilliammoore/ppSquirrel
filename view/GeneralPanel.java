@@ -27,6 +27,8 @@ public class GeneralPanel extends JPanel{
         super();
         this.setLayout(new GridBagLayout());
         this.setGbc(new GridBagConstraints());
+        this.gbc.fill=GridBagConstraints.BOTH;
+
         setWidth(width);
         setHeight(height);
         Dimension d = new Dimension(getWidth(), getHeight()); 
