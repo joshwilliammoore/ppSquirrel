@@ -20,7 +20,7 @@ public class GeneralPanel extends JPanel{
     private  int width;
     private  int height;
     private Dimension dim;
-    private GridBagConstraints gbc;
+    protected GridBagConstraints gbc;
    
     public GeneralPanel(int width, int height)
     {
