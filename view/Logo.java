@@ -12,12 +12,13 @@ import model.SquirrelConstants;
  * @author Regory Gregory
  */
 public class Logo extends JLabel{
-
+    
+    private static Logo instance=null;
     private Logo()
     {
            super();
           
-                  ImageIcon ia= new ImageIcon(getClass().getResource("../resources/logo_png_100.png"));
+                  ImageIcon ia= new ImageIcon(getClass().getResource("logo_png_100.png"));
                   this.setIcon(ia); 
                   this.setText(SquirrelConstants.getAppName());
                   this.setHorizontalTextPosition(JLabel.CENTER);
@@ -26,5 +27,12 @@ public class Logo extends JLabel{
                   this.setFont(SquirrelConstants.getLogoFont());
 
 
+    }
+    public static Logo getInstance()
+    {
+        if(instance==null){
+            instance = new Logo();
+        }
+        return instance;
     }
 }
