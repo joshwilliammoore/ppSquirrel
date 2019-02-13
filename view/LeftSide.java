@@ -11,23 +11,29 @@ import model.SquirrelConstants;
  *
  * @author Regory Gregory
  */
-public class LeftSide extends JPanel{
+public class LeftSide extends GeneralPanel{
     
-    private static LeftSide instance;
-    private LeftSide()
+    private static LeftSide instance = null;
+    public LeftSide()
     {
-        super();
-        int width =SquirrelConstants.getLeftSideWidth();
-        int height =SquirrelConstants.getInnerPaneHeight();
+      super(SquirrelConstants.getLeftSideWidth(), SquirrelConstants.getInnerPaneHeight());
+
+//     super(SquirrelConstants.getLeftSideWidth(), SquirrelConstants.getInnerPaneHeight());
+     this.setBackground(SquirrelConstants.getLeftSideBg());
     }
     
-    //making it a singleton class
-    public static LeftSide getInstance()
+    
+    
+    
+     public static  LeftSide getInstance()
     {
     if(instance==null)
     {
         instance = new LeftSide();
     }
     return instance;
+      
     }
+    //making it a singleton class
+ 
 }
