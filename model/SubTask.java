@@ -24,7 +24,9 @@ public class SubTask
     public SubTask(Date dueDate, int priority, String title, String description)
     {
         Date currentDate = new Date();
-        this.setId(++SquirrelConstants.taskID);
+        this.setId(SquirrelConstants.getTaskID());
+        //incrementing the constant's value so that upon next creating it will have a new and incremented id.
+        SquirrelConstants.setTaskID(SquirrelConstants.getTaskID()+1);
         this.setCreatedDate(currentDate);
         this.setModifiedDate(currentDate);
         this.setDueDate(dueDate);
