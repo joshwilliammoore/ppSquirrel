@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package view;
+import java.awt.GridBagConstraints;
 import javax.swing.JPanel;
 import model.SquirrelConstants;
 
@@ -24,7 +25,15 @@ public class LeftSide extends GeneralPanel{
         this.gbc.gridy = 0;
         this.gbc.gridwidth = 1;
         this.gbc.gridheight = 1;
-        this.add(Logo.getInstance(), this.gbc);
+        Logo inst = Logo.getInstance();
+      
+        this.add(inst, this.gbc);
+        
+        this.gbc.gridx=0;
+        this.gbc.gridy = 1;
+        this.gbc.gridheight = SquirrelConstants.getMenuEntries().length;
+        Menu mainMenu = Menu.getInstance();
+        this.add(mainMenu, this.gbc);
     }
     
     
