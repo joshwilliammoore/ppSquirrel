@@ -7,6 +7,7 @@ package view;
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.FlowLayout;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import model.SquirrelConstants;
@@ -32,49 +33,17 @@ public class MainContainer extends JFrame{
         
         super();
         Dimension size = new Dimension (this.width, this.height);
-        //Setting default layout
-        
-        // it is the margin:0px auto equivalent :))) ->center aligning the main window.
-        
-        //disables resizability
+        this.setSize(size);
         this.setResizable(false);
         //removes ugly title bar
         this.setUndecorated(SquirrelConstants.isRemoveDefaultMenuBar());
-        
-        
-        this.setLayout(new GridBagLayout());
-        this.setSize(size);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-         this.setLocationRelativeTo(null);
-        //setting the grid for component elements -right and left side
-        
-        //set elements width and height
-        //set background colour
-        GridBagConstraints  gbc = new GridBagConstraints();
-        
-        LeftSide leftSide = LeftSide.getInstance();
 
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        //this should be made constant later on so the ui will be totally configurable by editing one file
-        gbc.gridwidth=3;
-        gbc.gridheight =6;
-        
-        gbc.fill = GridBagConstraints.BOTH;
-        //adding left panel
-        this.add(leftSide, gbc);
-        
-        //configuring right panel
-        RightSide rightSide = RightSide.getInstance();
-        //This doesn't work. WHYYYY?
-        gbc.gridx =1;
-        gbc.gridy = 0;
-        gbc.gridwidth=7;
-        gbc.gridheight =6;
-       
-        this.add(rightSide, gbc);
-        JOptionPane.showMessageDialog(null, rightSide.getWidth());
-        
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+        MainContainerPane mainPane = MainContainerPane.getInstance();
+        this.add(mainPane);
+        this.setLayout(new FlowLayout());
+        this.pack();
         
        
     }
