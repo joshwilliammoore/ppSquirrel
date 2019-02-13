@@ -32,7 +32,7 @@ public class MenuEntry extends JLabel{
     }
      private void setDefaults()
      {
-         this.setBackground(SquirrelConstants.getMenuEntryBg());
+        
          this.setForeground(SquirrelConstants.getMenuEntryForeground());
          this.setFont(SquirrelConstants.getMenuEntryFont());
      }
