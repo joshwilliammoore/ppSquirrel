@@ -17,6 +17,9 @@ public class SubTask
 
    
     private User creator;
+
+    
+    private User assignee;
     
     public SubTask(Date dueDate, int priority, String title, String description)
     {
@@ -31,6 +34,8 @@ public class SubTask
         this.setCompleted(false);
     
     }
+    
+    
     
     public int getId() {
         return id;
@@ -111,5 +116,13 @@ public class SubTask
 
     public void setCreator(User creator) {
         this.creator = creator;
+    }
+    
+    public User getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(User assignee) {
+        this.assignee = assignee;
     }
 }
