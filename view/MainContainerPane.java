@@ -34,19 +34,12 @@ public class  MainContainerPane extends JPanel{
         
         super();
         Dimension size = new Dimension (this.width, this.height);
-        //Setting default layout
+     
         
-        // it is the margin:0px auto equivalent :))) ->center aligning the main window.
-        
-        //disables resizability
-        
-         super.setLayout(new GridBagLayout());
+         this.setLayout(new GridBagLayout());
 
-         super.setSize(size);
-        //setting the grid for component elements -right and left side
-        
-        //set elements width and height
-        //set background colour
+         this.setSize(size);
+   
         GridBagConstraints  gbc = new GridBagConstraints();
         
         LeftSide leftSide = LeftSide.getInstance();
@@ -59,7 +52,7 @@ public class  MainContainerPane extends JPanel{
         
         gbc.fill = GridBagConstraints.BOTH;
         //adding left panel
-        super.add(leftSide, gbc);
+        this.add(leftSide, gbc);
         
         //configuring right panel
         RightSide rightSide = RightSide.getInstance();
@@ -69,8 +62,8 @@ public class  MainContainerPane extends JPanel{
         gbc.gridwidth=1;
         gbc.gridheight =1;
        
-        super.add(rightSide, gbc);
-        JOptionPane.showMessageDialog(null, rightSide.getWidth());
+        this.add(rightSide, gbc);
+        //JOptionPane.showMessageDialog(null, rightSide.getWidth());
         
         
        
