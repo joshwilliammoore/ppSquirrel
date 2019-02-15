@@ -4,11 +4,13 @@
  * and open the template in the editor.
  */
 package view;
-
+import javax.swing.JPanel;
 /**
  *
  * @author Regory Gregory
  */
-public class ActionArea {
+public class ActionArea{
+   
     
+            
 }

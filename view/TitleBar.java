@@ -5,24 +5,23 @@
  */
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import model.SquirrelConstants;
-import java.awt.Color;
+
 /**
  *
  * @author Regory Gregory
  */
-public class WorkingArea extends HorizontalBar{
+public class TitleBar extends HorizontalBar{
+    private int height = SquirrelConstants.getTitleBarHeight();
+    private String hexaColor = SquirrelConstants.getTitleBarBackground();
     
-    private int height = SquirrelConstants.getWorkingAreaHeight();
-    private String hexaColor = SquirrelConstants.getWorkingAreaBackground();
-    
-    
-    public WorkingArea()
+    public TitleBar()
     {
-        super();
-        this.setDim(new Dimension(this.getWidth(), this.getHeight()));
-        this.setBackground(Color.decode(this.getHexaColor()));
+    super();
+    this.setDim(new Dimension(this.getWidth(), this.getHeight()));
+    this.setBackground(Color.decode(this.getHexaColor()));
     }
 
     public int getHeight() {
@@ -40,6 +39,6 @@ public class WorkingArea extends HorizontalBar{
     public void setHexaColor(String hexaColor) {
         this.hexaColor = hexaColor;
     }
-    
+
     
 }

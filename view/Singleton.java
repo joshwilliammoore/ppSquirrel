@@ -4,18 +4,16 @@
  * and open the template in the editor.
  */
 package view;
-import javax.swing.JButton;
+
 /**
  *
  * @author Regory Gregory
  */
-public class SquirrelStandardButton extends JButton{
-    
-    public SquirrelStandardButton(String text)
-    {
-    super();
-        this.setText(text);
-    }
-    
+public interface Singleton {
+     static Singleton instance = null;
+   
+    public static Singleton getInstance(){
+    return instance;
+    };
     
 }
