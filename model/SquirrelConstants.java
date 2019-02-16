@@ -71,7 +71,7 @@ public class SquirrelConstants {
     //horizontal panel options
         //middle panel with buttons
      private static final int actionBarHeight = 140;
-     private static final String actionBarBackground = "#f442dc";
+     private static final String actionBarBackground = "#000000";
      
      //working area
      private static final int workingAreaHeight =380;
