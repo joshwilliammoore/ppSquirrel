@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import model.SquirrelConstants;
 import java.awt.Dimension;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Regory Gregory
@@ -20,7 +21,7 @@ public class ActionBar extends HorizontalBar{
     {
         super();
         this.setDim(new Dimension(this.getWidth(), this.getHeight()));
-        
+        JOptionPane.showMessageDialog(null, "hello world");
         
         this.getGbc().gridx=0;
         this.getGbc().gridy=0;

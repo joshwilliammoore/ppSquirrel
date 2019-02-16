@@ -19,7 +19,6 @@ public class HorizontalBar extends JPanel{
     private int height;
     private Dimension dim;
     private GridBagConstraints gbc; 
-    private static HorizontalBar instance=null;
     protected HorizontalBar()
     {
         super();
@@ -59,15 +58,7 @@ public class HorizontalBar extends JPanel{
     public void setGbc(GridBagConstraints gbc) {
         this.gbc = gbc;
     }
-    public static HorizontalBar getInstance()
-    {
-        if(instance == null)
-        {
-            instance = new HorizontalBar();
-        }
-        return instance;
-    
-    }
+  
     
     
     
