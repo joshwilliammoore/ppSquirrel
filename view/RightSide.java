@@ -8,6 +8,7 @@ import model.SquirrelConstants;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
 import javax.swing.JOptionPane;
 /**
  *
@@ -22,37 +23,46 @@ public class RightSide extends GeneralPanel{
     {
         super(SquirrelConstants.getRightSideWidth(), SquirrelConstants.getInnerPaneHeight());
       
-        this.setBackground(SquirrelConstants.getRightSideBg());
         
+        this.setBackground(Color.YELLOW);
+        //this.setBackground(SquirrelConstants.getRightSideBg());
+       
         
-        int size = SquirrelConstants.getHorizontalPaneHeight().length;
-        int[] hHeights = SquirrelConstants.getHorizontalPaneHeight();
-        String[] hColors = SquirrelConstants.getHorizontalPaneColor();
+        this.getGbc().fill = GridBagConstraints.HORIZONTAL;
+        this.getGbc().gridx=0;
+        this.getGbc().gridy=0;
+        this.getGbc().gridwidth=1;
+        this.getGbc().gridheight = 8;
         
+        this.add (TitleBar.getInstance(), this.getGbc());
         
-        this.bars[0] = TitleBar.getInstance();
+        this.getGbc().gridx=0;
+        this.getGbc().gridy=8;
+        this.getGbc().gridheight = 14;
+                
+
+        this.add (ActionBar.getInstance(), this.getGbc());
         
-        this.bars[1] = ActionBar.getInstance();
-        
-        this.bars[2] = WorkingArea.getInstance();
-        
-        int offset=0;
-        
-        
-        for(int i =0; i<this.bars.length; i++ )
-        {
-        HorizontalBar temp = this.bars[i];
-        this.gbc.gridx=0;
-        
-        this.gbc.gridy= offset;
-        
-        this.gbc.gridheight=temp.getHeight()/10;
-        
-        
-        this.add(temp, this.gbc);
-        
-        offset+=temp.getHeight()/10;
-        }
+        this.getGbc().gridx=0;
+        this.getGbc().gridy=22;
+        this.getGbc().gridheight =38;
+        JOptionPane.showMessageDialog(null, this.getGbc().gridheight);
+        this.add (ActionArea.getInstance(), this.getGbc());
+       // ActionArea.getInstance().add(AddTaskForm.getInstance());
+//        for(int i =0; i<this.bars.length; i++ )
+//        {
+//        HorizontalBar temp = this.bars[i];
+//        this.gbc.gridx=0;
+//        
+//        this.gbc.gridy= offset;
+//        
+//        this.gbc.gridheight=temp.getpHeight()/10;
+//        
+//        
+//        this.add(temp, this.gbc);
+//        
+//        offset+=temp.getpHeight()/10;
+//        }
        
         
      

@@ -22,7 +22,7 @@ public class ActionBar extends HorizontalBar{
     public ActionBar()
     {
         super();
-        this.setDim(new Dimension(this.getpWidth(), this.getpHeight()));
+        this.setDim(new Dimension(700, 140));
         this.setSize(this.getDim());
         this.setPreferredSize(this.getDim());
         this.setBackground(Color.RED);
@@ -32,8 +32,18 @@ public class ActionBar extends HorizontalBar{
         this.getGbc().gridy=0;
         this.getGbc().gridwidth=2;
         this.getGbc().gridheight=1;
-        
+        //this is just testing it. This whole section is basically hardcoded, so it will have to be rewritten.
         JButton jb = new JButton("Add new");
+        
+        jb.addActionListener(e->
+        {
+            JOptionPane.showMessageDialog(null, "I have been clicked");
+            ActionArea.getInstance().add(AddTaskForm.getInstance());
+            this.revalidate();
+            this.repaint();
+        }
+                );
+        
         this.add(jb, this.getGbc());
         
         JButton jb2 = new JButton("Search");

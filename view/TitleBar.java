@@ -21,11 +21,11 @@ public class TitleBar extends HorizontalBar{
     public TitleBar()
     {
     super();
-    this.setDim(new Dimension(this.getpWidth(), this.getpHeight()));
+    this.setDim(new Dimension(700, 80));
     this.setSize(this.getDim());
     this.setPreferredSize(this.getDim());
     
-    this.setBackground(Color.decode(this.getHexaColor()));
+    this.setBackground(Color.BLUE);
     }
 
     public int getpHeight() {

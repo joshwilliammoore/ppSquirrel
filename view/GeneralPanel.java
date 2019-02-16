@@ -17,21 +17,21 @@ public class GeneralPanel extends JPanel{
    
    
 
-    private  int width;
-    private  int height;
+    private  int pWidth;
+    private  int pHeight;
     private Dimension dim;
     protected GridBagConstraints gbc;
    
-    public GeneralPanel(int width, int height)
+    public GeneralPanel(int pwidth, int pheight)
     {
         super();
         this.setLayout(new GridBagLayout());
         this.setGbc(new GridBagConstraints());
         this.gbc.fill=GridBagConstraints.BOTH;
 
-        setWidth(width);
-        setHeight(height);
-        Dimension d = new Dimension(getWidth(), getHeight()); 
+        setpWidth(pwidth);
+        setpHeight(pheight);
+        Dimension d = new Dimension(getpWidth(), getpHeight()); 
         this.setDim(d);
         this.setSize(this.getDim());
         this.setPreferredSize(this.getDim());
@@ -49,20 +49,20 @@ public class GeneralPanel extends JPanel{
     }
   
      
-    public int getWidth() {
-        return width;
+    public int getpWidth() {
+        return pWidth;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
+    public void setpWidth(int width) {
+        this.pWidth = width;
     }
 
-    public int getHeight() {
-        return height;
+    public int getpHeight() {
+        return pHeight;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
+    public void setpHeight(int height) {
+        this.pHeight = height;
     }
 
     public GridBagConstraints getGbc() {
