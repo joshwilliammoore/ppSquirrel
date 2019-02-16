@@ -14,22 +14,26 @@ import model.SquirrelConstants;
  * @author Regory Gregory
  */
 public class TitleBar extends HorizontalBar{
-    private int height = SquirrelConstants.getTitleBarHeight();
+    private int pHeight = SquirrelConstants.getTitleBarHeight();
     private String hexaColor = SquirrelConstants.getTitleBarBackground();
+    private static TitleBar instance = null;
     
     public TitleBar()
     {
     super();
-    this.setDim(new Dimension(this.getWidth(), this.getHeight()));
+    this.setDim(new Dimension(this.getpWidth(), this.getpHeight()));
+    this.setSize(this.getDim());
+    this.setPreferredSize(this.getDim());
+    
     this.setBackground(Color.decode(this.getHexaColor()));
     }
 
-    public int getHeight() {
-        return height;
+    public int getpHeight() {
+        return pHeight;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
+    public void setpHeight(int height) {
+        this.pHeight = height;
     }
 
     public String getHexaColor() {
@@ -38,6 +42,12 @@ public class TitleBar extends HorizontalBar{
 
     public void setHexaColor(String hexaColor) {
         this.hexaColor = hexaColor;
+    }
+    public static TitleBar getInstance()
+    {
+    if(instance == null) instance = new TitleBar();
+    return instance;
+    
     }
 
     

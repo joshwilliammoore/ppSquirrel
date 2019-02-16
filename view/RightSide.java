@@ -8,6 +8,7 @@ import model.SquirrelConstants;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Dimension;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Regory Gregory
@@ -49,6 +50,7 @@ public class RightSide extends GeneralPanel{
         
         
         this.add(temp, this.gbc);
+        
         offset+=temp.getHeight()/10;
         }
        

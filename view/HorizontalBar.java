@@ -15,10 +15,11 @@ import java.awt.GridBagConstraints;
  * @author Regory Gregory
  */
 public class HorizontalBar extends JPanel{
-    private int width = SquirrelConstants.getRightSideWidth();
-    private int height;
+    private int pWidth = SquirrelConstants.getRightSideWidth();
+    private int pHeight;
     private Dimension dim;
     private GridBagConstraints gbc; 
+    private static HorizontalBar instance = null;
     protected HorizontalBar()
     {
         super();
@@ -27,22 +28,24 @@ public class HorizontalBar extends JPanel{
         this.gbc = new GridBagConstraints();
     }
 
-    public int getWidth() {
-        return width;
+    public int getpWidth() {
+        return pWidth;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
+    public void setpWidth(int pWidth) {
+        this.pWidth = pWidth;
     }
 
-    public int getHeight() {
-        return height;
+    public int getpHeight() {
+        return pHeight;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
+    public void setpHeight(int pHeight) {
+        this.pHeight = pHeight;
     }
 
+    
+    
     public Dimension getDim() {
         return dim;
     }
@@ -57,6 +60,11 @@ public class HorizontalBar extends JPanel{
 
     public void setGbc(GridBagConstraints gbc) {
         this.gbc = gbc;
+    }
+    public static HorizontalBar getInstance()
+    {
+    if(instance == null) instance = new HorizontalBar();    
+    return instance;
     }
   
     
