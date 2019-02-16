@@ -6,6 +6,8 @@
 package model;
 import java.awt.Color;
 import java.awt.Font;
+
+import java.util.ArrayList;
 /**
  *
  * @author Gregory
@@ -40,6 +42,99 @@ public class SquirrelConstants {
     private static final Color logoForeground = Color.WHITE;
     private static final Font logoFont = new Font("Arial", Font.PLAIN, 22);
    
+    //Menu entry configuration
+    
+   
+    private static final Color menuEntryForeground = Color.WHITE;
+    private static final Color menuEntryBg = leftSideBg;
+    private static final Font menuEntryFont = new Font("Arial", Font.PLAIN, 30);
+    private static  final String[] menuEntries= {"Home", "Tasklists", "Settings" ,"Exit"};
+    
+    
+    
+    //horizontal pane settings
+    
+    private static final int[] horizontalPaneHeight =
+    {
+    80 ,140,380
+    };
+     private static final String[] horizontalPaneColor =
+    {
+    "#ffffff","#f442dc","#ffffff"
+    };
+    
+     
+     //TitleBar
+     private static final int titleBarHeight = 80;
+     private static final String titleBarBackground = "#ffffff";
+     
+    //horizontal panel options
+        //middle panel with buttons
+     private static final int actionBarHeight = 140;
+     private static final String actionBarBackground = "#f442dc";
+     
+     //working area
+     private static final int workingAreaHeight =380;
+     private static final String workingAreaBackground = "#ffffff";
+
+    public static int getTitleBarHeight() {
+        return titleBarHeight;
+    }
+
+    public static String getTitleBarBackground() {
+        return titleBarBackground;
+    }
+
+    public static int getWorkingAreaHeight() {
+        return workingAreaHeight;
+    }
+
+    public static String getWorkingAreaBackground() {
+        return workingAreaBackground;
+    }
+     
+     
+     
+    public static int getActionBarHeight() {
+        return actionBarHeight;
+    }
+
+    public static String getActionBarBackground() {
+        return actionBarBackground;
+    }
+     
+     
+    public static int[] getHorizontalPaneHeight() {
+        return horizontalPaneHeight;
+    }
+
+    public static String[] getHorizontalPaneColor() {
+        return horizontalPaneColor;
+    }
+     
+     
+    
+    public static Color getMenuEntryForeground() {
+        return menuEntryForeground;
+    }
+
+    public static Color getMenuEntryBg() {
+        return menuEntryBg;
+    }
+
+    public static Font getMenuEntryFont() {
+        return menuEntryFont;
+    }
+
+    public static String[] getMenuEntries() {
+        return menuEntries;
+    }
+   
+    
+    
+    
+    
+    
     public static String getAppName() {
         return appName;
     }
