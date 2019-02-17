@@ -13,9 +13,13 @@ import java.lang.reflect.Field;
 
 import view.RightSideElements.WorkingArea;
 import view.UIElements.GetUIContent;
-import model.TaskList;
+
 import java.util.Date;
 import java.text.SimpleDateFormat;
+
+import model.TaskList;
+import model.SquirrelConstants;
+
 /**
  *
  * @author Regory Gregory
@@ -67,6 +71,7 @@ public class ActionButtonController implements ActionListener{
                                         {
                                             ex.printStackTrace();
                                         }
+                                        tl.setID(SquirrelConstants.getTasklistCounter());
                                         tl.setComplete(false);
                                         tl.setDateCreated(new Date());
                                         tl.setDateModified(new Date());
