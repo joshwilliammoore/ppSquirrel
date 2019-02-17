@@ -1,6 +1,7 @@
 package model;
 import java.util.ArrayList;
 import java.util.Date;
+
 public class Task extends SubTask
 {
     private ArrayList<SubTask> children;

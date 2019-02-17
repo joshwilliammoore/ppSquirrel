@@ -2,8 +2,10 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.io.Serializable;
 
-public class SubTask
+
+public class SubTask implements Serializable
 {
 
     private int ID;

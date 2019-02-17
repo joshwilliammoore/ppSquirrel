@@ -3,22 +3,24 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 import model.User;
-public class TaskList
+import java.io.Serializable;
+
+public class TaskList implements Serializable
 {
-    private int ID;
-    private String title;
-    private String description;
-    private boolean completed;
-    private User creator;
-    private User taskManager;
-    private User staff;
-    private Date dateCreated;
-    private Date dateDue;
+    public int ID;
+    public String title;
+    public String description;
+    public boolean completed;
+    public User creator;
+    public User taskManager;
+    public User staff;
+    public Date dateCreated;
+    public Date dateDue;
     private Date dateModified;
     
-    private boolean complete;
-    private ArrayList<Task> tasks;
-    private int priority;
+    public boolean complete;
+    public ArrayList<Task> tasks;
+    public int priority;
     
     public TaskList()
     {
