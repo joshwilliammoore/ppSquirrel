@@ -17,7 +17,7 @@ public class DataHandler {
      return loaded;
     }
     
-    public static boolean saveTaskList()
+    public static boolean saveTaskList(TaskList tl)
     {
         
         return false;
