@@ -6,7 +6,9 @@ import java.util.Date;
 public class SubTask
 {
 
-    private int id;
+    private int ID;
+    private String parentID;
+
     private String title;
     private String description;
     private Date dueDate;
@@ -24,7 +26,7 @@ public class SubTask
     public SubTask(Date dueDate, int priority, String title, String description)
     {
         Date currentDate = new Date();
-        this.setId(SquirrelConstants.getTaskID());
+        this.setID(SquirrelConstants.getTaskID());
         //incrementing the constant's value so that upon next creating it will have a new and incremented id.
         SquirrelConstants.setTaskID(SquirrelConstants.getTaskID()+1);
         this.setCreatedDate(currentDate);
@@ -39,12 +41,12 @@ public class SubTask
     
     
     
-    public int getId() {
-        return id;
+    public int getID() {
+        return ID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setID(int id) {
+        this.ID = id;
     }
 
     public String getTitle() {
