@@ -77,8 +77,9 @@ public class ActionButtonController implements ActionListener{
                                         tl.setDateModified(new Date());
                                         
                                         
-                                        DataHandler.saveTaskList(tl);    
-                                    
+                                        DataHandler.saveTaskList(tl);   
+                                        ContentLoader.loadContent("TASKLISTS", null);
+                                        
                                     }
                                 }
                                 break;
