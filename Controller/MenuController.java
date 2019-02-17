@@ -6,7 +6,6 @@
 package Controller;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JOptionPane;
 
 import javax.swing.JLabel;
 import view.UIElements.MenuEntry;
@@ -22,7 +21,6 @@ public class MenuController implements MouseListener{
     public void mousePressed(MouseEvent e){
      MenuEntry parent = (MenuEntry) e.getSource();
     String text = parent.getText().toUpperCase();
-    JOptionPane.showMessageDialog(null, text);
     
     ContentLoader.loadContent(text, null);
     }
