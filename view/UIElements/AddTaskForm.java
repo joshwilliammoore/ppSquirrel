@@ -23,7 +23,9 @@ import javax.swing.JTextArea;
  */
 public class AddTaskForm extends HorizontalBar{
     private String tag = "task";
+    
     private static AddTaskForm instance;
+    
     protected AddTaskForm()
     {
         super();
@@ -34,47 +36,60 @@ public class AddTaskForm extends HorizontalBar{
         this.setPreferredSize(this.getDim());
         this.setBackground(Color.GREEN);
         
+        
+        //Title
         JLabel labelTitle = new JLabel("Title of the "+tag);
         
         this.add(labelTitle);
         
-        JTextField titleInput = new JTextField();
+        FormField titleInput = new FormField();
+        
+        titleInput.setLabel("title");
         
         this.add(titleInput);
         
+       //Description
+
         JLabel labelDescription = new JLabel("Description of the "+tag);
         
         this.add(labelDescription);
         
-        JTextArea descriptionInput = new JTextArea();
-        
+        FormArea descriptionInput = new FormArea();
+        descriptionInput.setLabel("description");
         this.add(descriptionInput);
+        
+        //Priority
+
         
         JLabel labelPriority = new JLabel("Priority of the "+tag);
         
         this.add(labelPriority);
         
         Integer[] priority = {1,2,3,4,5};
-        JComboBox priorityDropdown = new JComboBox(priority);
-        
+        FormCombo priorityDropdown = new FormCombo(priority);
+                  priorityDropdown.setLabel("priority");  
         this.add(priorityDropdown);
         
+        
+        //Assignee
+
         JLabel labelAssignee = new JLabel("Assignee for the "+tag);
         
         this.add(labelAssignee);
 
         
         String[] assignees = {"John", "Fred", "Sally", "Paul", "Josh"};
-        JComboBox assigneeDropdown = new JComboBox(assignees);
-        
+        FormCombo assigneeDropdown = new FormCombo(assignees);
+                    assigneeDropdown.setLabel("staff");
          this.add(assigneeDropdown);
          
+         //Due date 
          JLabel labelDueDate = new JLabel("DueDate of "+tag);
         
         this.add(labelDueDate);
         
-        JTextField dueDateInput = new JTextField();
-        
+        FormField dueDateInput = new FormField();
+                  dueDateInput.setLabel("dateDue");  
         this.add(dueDateInput);
         
         

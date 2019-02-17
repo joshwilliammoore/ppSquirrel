@@ -28,7 +28,8 @@ public class AddTaskListForm extends AddTaskForm{
         
         
         String[] manager = {"John", "Fred", "Sally", "Paul", "Josh"};
-        JComboBox managerDropdown = new JComboBox(manager);
+        FormCombo managerDropdown = new FormCombo(manager);
+        managerDropdown.setLabel("taskManager");
         this.add(managerDropdown);
     }
     
