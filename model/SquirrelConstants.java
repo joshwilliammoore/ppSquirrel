@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class SquirrelConstants {
 
-    
+    private static final String saveDir = "save";
     private static final int H1SIZE = 31;
     private static int taskID = 0;
     //currently, these values have to be divisible by 100 without remainder
@@ -79,6 +79,10 @@ public class SquirrelConstants {
      private static final int workingAreaHeight =380;
      private static final String workingAreaBackground = "#ffffff";
 
+    public static String getSaveDir() {
+        return saveDir;
+    }
+     
     public static int getTitleBarHeight() {
         return titleBarHeight;
     }
