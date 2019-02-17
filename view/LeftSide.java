@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package view;
+import view.UIElements.Menu;
 import java.awt.GridBagConstraints;
 import javax.swing.JPanel;
 import model.SquirrelConstants;
