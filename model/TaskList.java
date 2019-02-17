@@ -6,11 +6,11 @@ import model.User;
 public class TaskList
 {
     private String title;
-    private String Description;
+    private String description;
     private boolean completed;
     private User creator;
     private User taskManager;
-    private ArrayList<User> staff;
+    private User staff;
     private Date dateCreated;
     private Date dateDue;
     private Date dateModified;
@@ -25,35 +25,11 @@ public class TaskList
 
     }
     
-    public void setStaff (ArrayList<User> staff)
+    public void setStaff (User staff)
     {
         this.staff = staff;
     }
-    
-    public User getStaff (int position)
-    {
-        return this.staff.get(position);
-    }
-    
-    public void addStaff(User newStaff)
-    {
-       if(this.staff.indexOf(newStaff)==-1) {
-           this.staff.add(newStaff);
-       } else {
-           //error handling...
-       }
-    }
-    
-    public void removeStaff(int position)
-    {
-        this.staff.remove(position);
-    }
-    
-    public void removeStaff(User oldStaff)
-    {
-        this.staff.remove(oldStaff);
-    }
-    
+        
     
     public boolean isCompleted()
     {
@@ -126,11 +102,11 @@ public class TaskList
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    public void setDescription(String Description) {
-        this.Description = Description;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public User getCreator() {
