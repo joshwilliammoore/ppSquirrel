@@ -5,6 +5,7 @@ import java.util.Date;
 import model.User;
 public class TaskList
 {
+    private int ID;
     private String title;
     private String description;
     private boolean completed;
@@ -24,6 +25,24 @@ public class TaskList
      this.tasks = new ArrayList<Task>();
 
     }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public Date getDateDue() {
+        return dateDue;
+    }
+
+    public void setDateDue(Date dateDue) {
+        this.dateDue = dateDue;
+    }
+    
+    
     
     public void setStaff (User staff)
     {
