@@ -31,6 +31,7 @@ public class ActionArea extends HorizontalBar{
     }
     public static void reFresh(Component c)
     {
+    instance.removeAll();
     instance.add(c);    
     instance.revalidate();
     instance.repaint();

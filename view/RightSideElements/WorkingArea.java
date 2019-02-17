@@ -19,7 +19,7 @@ public class WorkingArea extends HorizontalBar{
     private String hexaColor = SquirrelConstants.getWorkingAreaBackground();
     private static WorkingArea instance=null;
     
-    public WorkingArea()
+    private WorkingArea()
     {
         super();
         this.setDim(new Dimension(700, 380));

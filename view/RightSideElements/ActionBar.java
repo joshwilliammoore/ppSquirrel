@@ -93,12 +93,12 @@ public class ActionBar extends HorizontalBar{
         //this is just testing it. This whole section is basically hardcoded, so it will have to be rewritten.
         ActionBarButton jSave = new ActionBarButton("Save "+type);
                   
-                        jSave.setActionCommand("SAVE:"+type+":ID");
+        jSave.setActionCommand("SAVE:"+type+":ID");
         jSave.addActionListener(new ActionButtonController());
            
         ActionBarButton jCancel = new ActionBarButton("Cancel");
         jCancel.addActionListener(new ActionButtonController());
-        jSave.setActionCommand("CANCEL:"+type+":ID");
+        jCancel.setActionCommand("CANCEL:"+type);
 
         instance.add(jSave, instance.getGbc());
         

@@ -6,11 +6,16 @@
 package view.RightSideElements;
 import model.SquirrelConstants;
 import javax.swing.JPanel;
+import javax.swing.JComponent;
+
+
 import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Component;
+
+
 /**
  *
  * @author Regory Gregory
@@ -21,6 +26,7 @@ public class HorizontalBar extends JPanel{
     private Dimension dim;
     private GridBagConstraints gbc; 
     private static HorizontalBar instance = null;
+
     protected HorizontalBar()
     {
         super();
