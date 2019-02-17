@@ -28,6 +28,7 @@ public class ContentLoader {
                 //here, you should load tasklists or if there is no available, 
                 //then it should say "There are no added tasks yet. Click "add" to create your first TaskList
                 ActionBar.TaskListBar();
+                //here you will have to refresh the WorkingArea so that it views tasks!
                 break;
             case "TASK" :
                 break;    

@@ -13,6 +13,8 @@ import java.lang.reflect.Field;
 
 import view.RightSideElements.WorkingArea;
 import view.UIElements.GetUIContent;
+import view.UIElements.AddTaskListForm;
+
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -37,31 +39,45 @@ public class ActionButtonController implements ActionListener{
                    ContentLoader.loadContent(command, null);
                 break;
             case "SAVE":
+
                         switch(subCommands[1])
                         {
                             case "TASKLIST":
-                                Component[] elements = WorkingArea.getInstance().getComponents();
+
+                                AddTaskListForm element = AddTaskListForm.getInstance();
+                                
+                                Component[] elements = element.getComponents();
+                                JOptionPane.showMessageDialog(null, elements.length);
+
                                 TaskList tl = new TaskList();
                                 Class tlClass = tl.getClass();
+                                JOptionPane.showMessageDialog(null, tlClass.getName());
+
                                 for(Component c : elements){
+
+
                                     if(c instanceof GetUIContent)
                                     {
-                                        
                                         GetUIContent content = (GetUIContent) c;
                                         String label = content.getLabel();
                                         String value = content.getContent();
                                       
                                         try
                                         {
-                                              if(label.equals("dateDue"))
+                                          Field f = tlClass.getField(label);
+
+                                       if(label.equals("dateDue"))
                                         {
-                                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                                        Date dueDate = dateFormat.parse(value);
-                                        Field f = tlClass.getField(label);
-                                        f.set(tl, dueDate);
-                                        } else {
-                                        Field f = tlClass.getField(label);
-                                        f.set(tl, value);
+                                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                                            Date dueDate = dateFormat.parse(value);
+                                            f.set(tl, dueDate);
+                                        } else if(label.equals("priority"))
+                                        {
+                                            f.set(tl, Integer.parseInt(value));
+
+                                        }
+                                        else {
+                                            f.set(tl, value);
                                               
                                               }
                                             
@@ -99,6 +115,7 @@ public class ActionButtonController implements ActionListener{
             case "VIEW":
                 break;
             case "CANCEL":
+
                 break;
         
         
