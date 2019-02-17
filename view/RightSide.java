@@ -4,6 +4,12 @@
  * and open the template in the editor.
  */
 package view;
+import view.RightSideElements.HorizontalBar;
+import view.RightSideElements.ActionArea;
+import view.RightSideElements.TitleBar;
+import view.RightSideElements.ActionBar;
+import view.RightSideElements.MessageBar;
+
 import model.SquirrelConstants;
 import javax.swing.JPanel;
 import java.awt.Color;
@@ -32,21 +38,28 @@ public class RightSide extends GeneralPanel{
         this.getGbc().gridx=0;
         this.getGbc().gridy=0;
         this.getGbc().gridwidth=1;
-        this.getGbc().gridheight = 8;
+        this.getGbc().gridheight = 5;
         
         this.add (TitleBar.getInstance(), this.getGbc());
         
         this.getGbc().gridx=0;
-        this.getGbc().gridy=8;
-        this.getGbc().gridheight = 14;
+        this.getGbc().gridy=5;
+        this.getGbc().gridheight = 15;
                 
 
-        this.add (ActionBar.getInstance(), this.getGbc());
+        this.add (MessageBar.getInstance(), this.getGbc());
         
         this.getGbc().gridx=0;
-        this.getGbc().gridy=22;
-        this.getGbc().gridheight =38;
-        JOptionPane.showMessageDialog(null, this.getGbc().gridheight);
+        this.getGbc().gridy=20;
+        this.getGbc().gridheight =10;
+        //JOptionPane.showMessageDialog(null, this.getGbc().gridheight);
+        this.add (ActionBar.getInstance(), this.getGbc());
+        
+        
+        this.getGbc().gridx=0;
+        this.getGbc().gridy=30;
+        this.getGbc().gridheight =30;
+        //JOptionPane.showMessageDialog(null, this.getGbc().gridheight);
         this.add (ActionArea.getInstance(), this.getGbc());
        // ActionArea.getInstance().add(AddTaskForm.getInstance());
 //        for(int i =0; i<this.bars.length; i++ )
