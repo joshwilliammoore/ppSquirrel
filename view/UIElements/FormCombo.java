@@ -20,6 +20,13 @@ public class FormCombo extends JComboBox implements GetUIContent{
     
     public String getContent()
     {
+       if(this.getSelectedItem() instanceof Integer){
+           Integer dirty = (Integer) this.getSelectedItem();
+           String clean = Integer.toString(dirty);
+           return clean;
+       }
+
+           
     return (String) this.getSelectedItem();
     
     }
