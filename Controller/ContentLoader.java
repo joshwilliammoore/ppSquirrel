@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Controller;
-import javax.swing.JOptionPane;
 import model.TaskList;
 import view.RightSideElements.ActionArea;
 import view.RightSideElements.ActionBar;
