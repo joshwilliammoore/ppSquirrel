@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 package view;
-
+import java.awt.Component;
 /**
  *
  * @author Regory Gregory
  */
-public class TaskLists {
-    
+public interface ReFreshable {
+    public abstract void reFresh(Component c);
 }

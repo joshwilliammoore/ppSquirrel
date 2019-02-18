@@ -7,7 +7,7 @@ package view;
 import javax.swing.JFrame;
 import java.awt.FlowLayout;
 import java.awt.Dimension;
-import view.ActionBar;
+import view.RightSideElements.ActionBar;
 /**
  *
  * @author Regory Gregory
