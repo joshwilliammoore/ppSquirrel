@@ -7,33 +7,37 @@ import java.io.Serializable;
 
 public class TaskList implements Serializable
 {
-    public int ID;
-    public String title;
-    public String description;
-    public boolean completed;
-    public User creator;
-    public User taskManager;
-    public User staff;
-    public Date dateCreated;
-    public Date dateDue;
+    private int ID;
+
+    private String title;
+    private String description;
+    private User creator;
+    private User taskManager;
+    private User staff;
+    private int priority;
+
+    private Date dateCreated;
+    private Date dateDue;
     private Date dateModified;
-    
-    public boolean complete;
-    public ArrayList<Task> tasks;
-    public int priority;
+    private boolean completed;
+
+    private ArrayList<Task> tasks;
     
     public TaskList()
     {
      this.tasks = new ArrayList<Task>();
-
+     this.setID();
+     this.setDateCreated();
+     this.setDateModified();
+     this.setCompleted(false);
     }
 
     public int getID() {
         return ID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setID() {
+        this.ID = SquirrelConstants.getTasklistCounter();
     }
 
     public Date getDateDue() {
@@ -52,12 +56,7 @@ public class TaskList implements Serializable
     }
         
     
-    public boolean isCompleted()
-    {
-        //this function should return true if all the subtasks are completed or if there are no subtasks, then the main task is completed
-        return true;
-    
-    }
+   
     //Setters and getters for task attribute.
     public void addTask(Task task) {
         this.tasks.add(task);
@@ -76,13 +75,13 @@ public class TaskList implements Serializable
    
 
     //Boolean logic to state whether task is complete or not.
-    public boolean isComplete(){
-        return this.complete;
+    public boolean isCompleted(){
+        return this.completed;
     }
     
-    public void setComplete(boolean complete)
+    public void setCompleted(boolean complete)
     {
-        this.complete = complete;
+        this.completed = complete;
     }
 
  
@@ -150,8 +149,8 @@ public class TaskList implements Serializable
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
+    public void setDateCreated() {
+        this.dateCreated = new Date();
     }
 
     public Date getDateModified() {
@@ -160,5 +159,8 @@ public class TaskList implements Serializable
 
     public void setDateModified(Date dateModified) {
         this.dateModified = dateModified;
+    }
+    public void setDateModified() {
+        this.dateModified = this.getDateCreated();
     }
 }

@@ -5,11 +5,12 @@
  */
 package model;
 import java.util.ArrayList;
+import java.io.Serializable;
 /**
  *
  * @author joshw
  */
-public class User {
+public class User implements Serializable{
     private String givenName;
     private String surname;
     private Role role;
