@@ -4,9 +4,14 @@
  * and open the template in the editor.
  */
 package view.UIElements;
-
+import javax.swing.JButton;
 /**
  *
  * @author Regory Gregory
  */
-
+public class ActionAreaButton extends JButton{
+    public ActionAreaButton(String text)
+    {
+        super(text);
+    }
+}
