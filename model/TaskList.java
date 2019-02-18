@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import model.User;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 
 public class TaskList implements Serializable
 {
@@ -162,5 +163,24 @@ public class TaskList implements Serializable
     }
     public void setDateModified() {
         this.dateModified = this.getDateCreated();
+    }
+    public String getStringDate(String which)
+    {
+       String stringDate = null;
+       SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+        if(which.equals("dateCreated"))
+        {
+            stringDate = f.format(this.getDateCreated());
+        } else if(which.equals("dateModified"))
+        {
+            stringDate = f.format(this.getDateModified());
+
+        } else
+        {
+             stringDate = f.format(this.getDateDue());
+        }
+    
+    
+        return stringDate;
     }
 }
