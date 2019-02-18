@@ -12,7 +12,7 @@ import java.awt.Dimension;
  *
  * @author Regory Gregory
  */
-public class ActionArea extends HorizontalBar{
+public class ActionArea extends HorizontalBar {
     private static ActionArea instance = null;
     private ActionArea()
     {

@@ -15,7 +15,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Component;
 
-
+import view.ReFreshable;
 /**
  *
  * @author Regory Gregory
@@ -76,6 +76,7 @@ public class HorizontalBar extends JPanel{
   
     public static void reFresh(Component c)
     {
+    instance.removeAll();
     instance.add(c);    
     instance.revalidate();
     instance.repaint();
