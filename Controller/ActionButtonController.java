@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 
 import model.TaskList;
 import model.SquirrelConstants;
+import model.User;
 
 /**
  *
@@ -47,12 +48,10 @@ public class ActionButtonController implements ActionListener{
                                 AddTaskListForm element = AddTaskListForm.getInstance();
                                 
                                 Component[] elements = element.getComponents();
-                                JOptionPane.showMessageDialog(null, elements.length);
 
                                 TaskList tl = new TaskList();
                                 Class tlClass = tl.getClass();
-                                JOptionPane.showMessageDialog(null, tlClass.getName());
-
+                                TaskList newList = new TaskList();    
                                 for(Component c : elements){
 
 
@@ -60,44 +59,51 @@ public class ActionButtonController implements ActionListener{
                                     {
                                         GetUIContent content = (GetUIContent) c;
                                         String label = content.getLabel();
+                                     
                                         String value = content.getContent();
-                                      
-                                        try
-                                        {
-                                          Field f = tlClass.getField(label);
-
-                                       if(label.equals("dateDue"))
-                                        {
-                                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                                            Date dueDate = dateFormat.parse(value);
-                                            f.set(tl, dueDate);
-                                        } else if(label.equals("priority"))
-                                        {
-                                            f.set(tl, Integer.parseInt(value));
-
-                                        }
-                                        else {
-                                            f.set(tl, value);
-                                              
-                                              }
-                                            
-                                            
-                                       
-                                        }catch(Exception ex)
-                                        {
-                                            ex.printStackTrace();
-                                        }
-                                        tl.setID(SquirrelConstants.getTasklistCounter());
-                                        tl.setComplete(false);
-                                        tl.setDateCreated(new Date());
-                                        tl.setDateModified(new Date());
                                         
                                         
-                                        DataHandler.saveTaskList(tl);   
-                                        ContentLoader.loadContent("TASKLISTS", null);
+                                        
+                                        switch(label){
+                                            case "title":
+                                                newList.setTitle(value);
+                                                break;
+                                            case "description":
+                                                newList.setDescription(value);
+                                                break;
+                                            case "creator":
+                                                newList.setCreator(new User());
+                                                break;
+                                            case "taskManager":
+                                                  newList.setTaskManager(new User());
+
+                                                break;
+                                            case "staff":
+                                                   newList.setStaff(new User());
+
+                                                break;
+                                            case "priority":
+                                                newList.setPriority(Integer.parseInt(value));
+                                                break;
+                                            case "dateDue":
+                                                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                                                
+                                                try{
+                                                newList.setDateDue(format.parse(value));
+                                                }catch(Exception ex)
+                                                {
+                                                    ex.printStackTrace();
+                                                }
+                                                break;
+                                        }
+
+                                        
                                         
                                     }
                                 }
+                                //saving content and refreshing ui
+                                DataHandler.saveTaskList(newList);   
+                                ContentLoader.loadContent("TASKLISTS", null);
                                 break;
                             case "TASK":
                                 break;

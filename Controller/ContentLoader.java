@@ -28,6 +28,8 @@ public class ContentLoader {
                 //here, you should load tasklists or if there is no available, 
                 //then it should say "There are no added tasks yet. Click "add" to create your first TaskList
                 ActionBar.TaskListBar();
+                //temporary solution to clear the content!!!
+                ActionArea.getInstance().removeAll();
                 //here you will have to refresh the WorkingArea so that it views tasks!
                 break;
             case "TASK" :
