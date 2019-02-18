@@ -4,10 +4,14 @@
  * and open the template in the editor.
  */
 package Controller;
+
+import java.util.ArrayList;
+
 import model.TaskList;
 import view.RightSideElements.ActionArea;
 import view.RightSideElements.ActionBar;
 import view.UIElements.AddTaskListForm;
+import view.UIElements.TaskListView;
 /**
  *
  * @author Regory Gregory
@@ -24,12 +28,16 @@ public class ContentLoader {
             case "HOME":
                 break;
             case "TASKLISTS" :
-                TaskList[] taskLists = DataHandler.loadTasklists();
                 //here, you should load tasklists or if there is no available, 
                 //then it should say "There are no added tasks yet. Click "add" to create your first TaskList
                 ActionBar.TaskListBar();
                 //temporary solution to clear the content!!!
-                ActionArea.getInstance().removeAll();
+               ArrayList<TaskList> ar = DataHandler.loadTaskLists();
+               
+                TaskList[] taskLists = new TaskList[ar.size()];
+                taskLists= ar.toArray(taskLists);
+                TaskListView.getInstance().reFresh(taskLists);
+                ActionArea.getInstance().reFresh(TaskListView.getInstance());
                 //here you will have to refresh the WorkingArea so that it views tasks!
                 break;
             case "TASK" :
