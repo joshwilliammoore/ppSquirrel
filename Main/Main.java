@@ -18,8 +18,8 @@ import view.MainContainer;
 
 import javax.swing.JFrame;
 import view.TestFrame;
-import view.ActionBar;
-import view.HorizontalBar;
+import view.RightSideElements.ActionBar;
+import view.RightSideElements.HorizontalBar;
 import view.*;
 
 /**
