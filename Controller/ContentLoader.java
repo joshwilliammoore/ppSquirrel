@@ -36,8 +36,8 @@ public class ContentLoader {
                
                 TaskList[] taskLists = new TaskList[ar.size()];
                 taskLists= ar.toArray(taskLists);
-                TaskListView.getInstance().reFresh(taskLists);
-                ActionArea.getInstance().reFresh(TaskListView.getInstance());
+                TaskListView.reFresh(taskLists);
+                ActionArea.reFresh(TaskListView.getInstance());
                 //here you will have to refresh the WorkingArea so that it views tasks!
                 break;
             case "TASK" :
