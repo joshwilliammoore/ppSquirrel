@@ -8,7 +8,9 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
-
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneLayout ;
+import javax.swing.JPanel;
 import view.ReFreshable;
 import model.TaskList;
 
@@ -17,34 +19,46 @@ import view.RightSideElements.HorizontalBar;
  *
  * @author Regory Gregory
  */
-public class TaskListView extends HorizontalBar{
+public class TaskListView extends JPanel{
         
-    private static TaskListView instance = null;
+    private static JScrollPane instance = null;
     private TaskListView()
     {
-    super();
-    this.setLayout(new GridLayout(0, 1));
-//    this.setSize(new Dimension(700, 400));
-//    this.setPreferredSize(new Dimension(700, 400));
+    //    this.setSize(new Dimension(700, 400));
+    //    this.setPreferredSize(new Dimension(700, 400));
     }
-    public static TaskListView getInstance()
+    public static JScrollPane getInstance()
     {
-    if(instance == null)instance = new TaskListView();
+    if(instance == null){
+        instance = new JScrollPane();
+        instance.setLayout(new ScrollPaneLayout());
+        instance.setSize(new Dimension(700,380));
+        instance.setPreferredSize(new Dimension(700,380));
+        instance.setMinimumSize(new Dimension(700,380));
+    }
+    
     return instance;
     }
-    public void reFresh(TaskList[] taskLists)
+    public static void reFresh(TaskList[] taskLists)
     {
-    instance.removeAll();
+    getInstance();
+    //instance.removeAll();
+    JPanel viewport = new JPanel();
+           viewport.setLayout(new GridLayout(0,1)); 
+//           viewport.setSize(new Dimension(700,1000));
+//         viewport.setPreferredSize(new Dimension(700,1000));
+//             viewport.setMinimumSize(new Dimension(700,1000));
     for(TaskList t : taskLists)
     {
     TaskListEntry temp = new TaskListEntry(t);
-    this.add(temp);
+    viewport.add(temp);
     }
+    instance.setViewportView(viewport);
     
     
     
-//    instance.revalidate();
-//    instance.repaint();
+    instance.revalidate();
+    instance.repaint();
     }
   
 
