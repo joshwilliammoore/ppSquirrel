@@ -34,10 +34,11 @@ public class TaskListEntry extends HorizontalBar{
     JLabel date = new JLabel(tal.getStringDate("dueDate"));
     
     ActionAreaButton view = new ActionAreaButton("view");
-
+                     view.setActionCommand("VIEW:TASKLIST:"+tal.getID());
     ActionAreaButton edit = new ActionAreaButton("edit");
-    
+                      view.setActionCommand("EDIT:TASKLIST:"+tal.getID());
     ActionAreaButton delete = new ActionAreaButton("delete");
+                     delete.setActionCommand("DELETE:TASKLIST:"+tal.getID());   
     this.getGbc().fill=GridBagConstraints.HORIZONTAL;
     this.getGbc().gridx=0;
     this.getGbc().gridy=0;

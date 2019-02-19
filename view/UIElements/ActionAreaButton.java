@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package view.UIElements;
+import Controller.ActionButtonController;
 import javax.swing.JButton;
 /**
  *
@@ -13,5 +14,6 @@ public class ActionAreaButton extends JButton{
     public ActionAreaButton(String text)
     {
         super(text);
+        this.addActionListener(new ActionButtonController());
     }
 }
