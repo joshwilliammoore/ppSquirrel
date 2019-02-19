@@ -14,7 +14,7 @@ import java.lang.reflect.Field;
 import view.RightSideElements.WorkingArea;
 import view.UIElements.GetUIContent;
 import view.UIElements.AddTaskListForm;
-
+import javax.swing.JOptionPane;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -115,12 +115,74 @@ public class ActionButtonController implements ActionListener{
                         }
                 break;
             case "EDIT":
+                    switch(subCommands[1])
+                      {
+                        case "TASKLIST":
+                             ContentLoader.loadContent("TASKLISTS", null);
+                            break;
+                       case "TASK":
+                            break;
+
+                       case "SUBTASK":
+                            break; 
+                       default:
+                           JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+subCommands[1]);
+
+                         }
                 break;
             case "SEARCH":
                 break;
             case "VIEW":
+                 switch(subCommands[1])
+                      {
+                        case "TASKLIST":
+                             ContentLoader.loadContent("TASKLISTS", null);
+                            break;
+                       case "TASK":
+                            break;
+
+                       case "SUBTASK":
+                            break; 
+                       default:
+                           JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+subCommands[1]);
+
+                         }
                 break;
+            case "DELETE":
+
+                 switch(subCommands[1])
+                      {
+                        case "TASKLIST":
+
+                             if(!DataHandler.deleteTaskList(subCommands[2]))JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+command);
+
+                             ContentLoader.loadContent("TASKLISTS", null);
+                            break;
+                       case "TASK":
+                            break;
+
+                       case "SUBTASK":
+                            break; 
+                       default:
+                           JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+subCommands[1]);
+
+                         }
+                break;    
             case "CANCEL":
+                 switch(subCommands[1])
+                {
+                     case "TASKLIST":
+                          ContentLoader.loadContent("TASKLISTS", null);
+                         break;
+                    case "TASK":
+                         break;
+                         
+                    case "SUBTASK":
+                         break; 
+                    default:
+                        JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+subCommands[1]);
+
+                }
 
                 break;
         

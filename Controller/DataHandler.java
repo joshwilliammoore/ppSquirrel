@@ -12,6 +12,7 @@ import java.io.ObjectOutputStream;
 import model.TaskList;
 import model.SquirrelConstants;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Regory Gregory
@@ -29,8 +30,7 @@ public class DataHandler {
     
     public static boolean saveTaskList(TaskList taskList)
     {
-        
-        
+
         String filePath = dirPath+s+"taskList_id-"+taskList.getID();
         File newDir = new File(dirPath);
         File newFile = new File(filePath);
@@ -47,7 +47,8 @@ public class DataHandler {
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
             objectOut.writeObject(taskList);
             success = true;
-            
+            fileOut.close();
+            objectOut.close();
             
             
         }catch(Exception e)
@@ -64,12 +65,12 @@ public class DataHandler {
         String dirPath = "."+s+SquirrelConstants.getSaveDir();
         String filePath = dirPath+s+filename;
         File newFile = new File(filePath);
-        try
+        try (FileInputStream fileIn = new FileInputStream(newFile);
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);)
         {
             
             
-            FileInputStream fileIn = new FileInputStream(newFile);
-            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+            
            loaded = (TaskList) objectIn.readObject();
             
             
@@ -79,6 +80,20 @@ public class DataHandler {
             e.printStackTrace();
         }
         return loaded;
+     
+    }
+    
+      public static boolean deleteTaskList(String id)
+    {
+       
+        
+        String dirPath = "."+s+SquirrelConstants.getSaveDir();
+        String filePath = dirPath+s+"taskList_id-"+id;
+        
+        File newFile = new File(filePath);
+
+        return newFile.delete();
+      
      
     }
     
