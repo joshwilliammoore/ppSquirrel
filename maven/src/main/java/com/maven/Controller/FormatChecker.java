@@ -13,26 +13,27 @@ import java.text.ParseException;
  * @author Regory Gregory
  */
 public class FormatChecker {
-    public static boolean dateFormatChecker(String dateToCheck)
+    public static String dateFormatChecker(String dateToCheck)
     {
         SimpleDateFormat format= new SimpleDateFormat("dd/MM/yyyy");
         Date today = new Date();
-        long epochToday = today.getTime();
+        long epochToday = today.getTime()/1000/60/60/60/24;
         try{
             Date checkIt = format.parse(dateToCheck);
-            long checkItInt = checkIt.getTime();
+            long checkItInt = checkIt.getTime()/1000/60/60/24;
             if(checkItInt>epochToday)
             {
-                return true;
+                return "later";
             }
-         
+            return "notlater";
         } catch(ParseException pex)
         {
-         System.out.println(pex.getMessage());
+            System.out.println(pex.getMessage());
         }
-        return false;
+         return "badformat";
 
     }
+    
     public static boolean isFieldEmpty(String checkIt)
     {
         return checkIt.length()>0;

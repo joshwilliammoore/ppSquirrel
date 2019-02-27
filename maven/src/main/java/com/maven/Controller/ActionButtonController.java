@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import com.maven.model.TaskList;
 import com.maven.model.SquirrelConstants;
 import com.maven.model.User;
+import com.maven.Controller.FormatChecker;
 
 
 
@@ -53,9 +54,14 @@ public class ActionButtonController implements ActionListener{
 
                                 TaskList tl = new TaskList();
                                 Class tlClass = tl.getClass();
-                                TaskList newList = new TaskList();    
+                                TaskList newList = new TaskList(); 
+                                boolean formatError = false;
+                                
                                 for(Component c : elements){
-
+                                    if(formatError)
+                                    {
+                                    break;
+                                    }
 
                                     if(c instanceof GetUIContent)
                                     {
@@ -68,28 +74,57 @@ public class ActionButtonController implements ActionListener{
                                         
                                         switch(label){
                                             case "title":
+                                                if(!FormatChecker.isFieldEmpty(value)) {
+                                                JOptionPane.showMessageDialog(null, "The title field is empty. Please fill it!");
+                                                formatError = true;
+                                                continue;
+                                                };
                                                 newList.setTitle(value);
                                                 break;
                                             case "description":
+                                                if(!FormatChecker.isFieldEmpty(value)) {
+                                                JOptionPane.showMessageDialog(null, "The description field is empty. Please fill it!"); 
+                                                formatError = true;
+                                                continue;
+                                                };
                                                 newList.setDescription(value);
                                                 break;
                                             case "creator":
                                                 newList.setCreator(new User());
                                                 break;
-                                            case "taskManager":
-                                                  newList.setTaskManager(new User());
-
-                                                break;
-                                            case "staff":
-                                                   newList.setStaff(new User());
+                                            
+                                            case "assignee":
+                                                   newList.setAssignee(new User());
 
                                                 break;
                                             case "priority":
+                                                if(!FormatChecker.isFieldEmpty(value)) {
+                                                JOptionPane.showMessageDialog(null, "The priority field is empty. Please fill it!"); 
+                                                formatError = true;
+                                                continue;
+                                                };
                                                 newList.setPriority(Integer.parseInt(value));
                                                 break;
                                             case "dateDue":
                                                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-                                                
+                                                if(!FormatChecker.isFieldEmpty(value)) {
+                                                JOptionPane.showMessageDialog(null, "The due date field is empty. Please fill it!"); 
+                                                formatError = true;
+                                                continue;
+                                                };
+                                                 if(FormatChecker.dateFormatChecker(value).equals("badformat")) {
+                                                JOptionPane.showMessageDialog(null, "The due date field is not properly formatted. The proper format is dd/mm/yyyy."); 
+                                                formatError = true;
+                                                continue;
+                                                };
+                                                if (FormatChecker.dateFormatChecker(value).equals("notlater"))
+                                                 {
+                                                  //it will have to be improved to compare time!!!   
+                                                  JOptionPane.showMessageDialog(null, "The given due date is not later than the current date. Please make it a later date."); 
+                                                  formatError = true;
+                                                  continue;
+                                                  };
+                                                  
                                                 try{
                                                 newList.setDateDue(format.parse(value));
                                                 }catch(Exception ex)
@@ -104,8 +139,12 @@ public class ActionButtonController implements ActionListener{
                                     }
                                 }
                                 //saving content and refreshing ui
-                                DataHandler.saveTaskList(newList);   
-                                ContentLoader.loadContent("TASKLISTS", null);
+                                  if(!formatError)
+                                    {
+                                      DataHandler.saveTaskList(newList);   
+                                      ContentLoader.loadContent("TASKLISTS", null);    
+                                    }
+        
                                 break;
                             case "TASK":
                                 break;
