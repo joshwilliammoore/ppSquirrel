@@ -22,7 +22,7 @@ public class Search {
     {
         ArrayList<Task> results = new ArrayList<>();
         
-       for(Task t : tl.getTasks())
+       for(Task t : tl.getChildren())
        {
            if (t.getCreator().getUserName().equals( searchPhrase.getUserName())){
                results.add(t);
@@ -63,10 +63,10 @@ public class Search {
         SimpleDateFormat sdf1 = new SimpleDateFormat(searchFor);
        String searchString = sdf1.format(searchPhrase);
         
-       for(Task t : tl.getTasks())
+       for(Task t : tl.getChildren())
        {
         
-         String matchString = sdf1.format( t.getCreatedDate());
+         String matchString = sdf1.format( t.getDateCreated());
          if(searchString.equals(matchString)) results.add(t);
        }
       
@@ -79,7 +79,7 @@ public class Search {
     {
         ArrayList<Task> results = new ArrayList<>();
         
-       for(Task t : tl.getTasks())
+       for(Task t : tl.getChildren())
        {
          if(t.getPriority()==priority)
          {
