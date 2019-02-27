@@ -33,5 +33,8 @@ public class FormatChecker {
         return false;
 
     }
-    
+    public static boolean isFieldEmpty(String checkIt)
+    {
+        return checkIt.length()>0;
+    }
 }
