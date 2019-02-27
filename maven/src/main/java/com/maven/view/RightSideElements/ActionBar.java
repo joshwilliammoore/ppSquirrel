@@ -14,6 +14,7 @@ import java.awt.GridBagConstraints;
 import com.maven.view.UIElements.AddTaskForm;
 import com.maven.view.UIElements.ActionBarButton;
 import com.maven.Controller.ActionButtonController;
+import java.awt.event.ActionListener;
 /**
  *
  * @author Regory Gregory
@@ -39,7 +40,7 @@ public class ActionBar extends HorizontalBar{
     return instance;
     }
     
-    public static void TaskListBar()
+    public static <E extends ActionListener> void DefaultBar(String type, E listener)
     {
     instance.removeAll();
     instance.getGbc().fill = GridBagConstraints.HORIZONTAL;
@@ -52,15 +53,16 @@ public class ActionBar extends HorizontalBar{
         //this is just testing it. This whole section is basically hardcoded, so it will have to be rewritten.
         ActionBarButton jb = new ActionBarButton("Add new");
 
-                        jb.setActionCommand("NEW:TASKLIST");
-        jb.addActionListener(new ActionButtonController());
+                        jb.setActionCommand("NEW:"+type);
+                        
+        jb.addActionListener(listener);
               
         instance.add(jb, instance.getGbc());
         
         ActionBarButton jb2 = new ActionBarButton("Search");
    
-        jb2.setActionCommand("SEARCH:TASKLIST:TYPE:PHRASE");
-        jb2.addActionListener(new ActionButtonController());
+        jb2.setActionCommand("SEARCH:"+type+":TYPE:PHRASE");
+        jb2.addActionListener(listener);
                         
         instance.getGbc().gridx=2;
         instance.add(jb2, instance.getGbc());
@@ -80,7 +82,7 @@ public class ActionBar extends HorizontalBar{
     
     }
     
-    public static void addNewBar(String type)
+    public static <E extends ActionListener> void  addNewBar(String type, E listener)
     {
         //type = TASKLIST/TASK/SUBTASK
         instance.removeAll();
@@ -94,10 +96,10 @@ public class ActionBar extends HorizontalBar{
         ActionBarButton jSave = new ActionBarButton("Save "+type);
                   
         jSave.setActionCommand("SAVE:"+type+":ID");
-        jSave.addActionListener(new ActionButtonController());
+        jSave.addActionListener(listener);
            
         ActionBarButton jCancel = new ActionBarButton("Cancel");
-        jCancel.addActionListener(new ActionButtonController());
+        jCancel.addActionListener(listener);
         jCancel.setActionCommand("CANCEL:"+type);
 
         instance.add(jSave, instance.getGbc());
