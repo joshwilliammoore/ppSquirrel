@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.maven.view.UIElements;
+
+import com.maven.model.TaskList;
 import com.maven.view.RightSideElements.HorizontalBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -15,18 +18,26 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import javax.swing.JComponent;
+import java.util.ArrayList;
 
 
+
+import com.maven.model.SubTask;
 /**
  *
  * @author Regory Gregory
  */
-public class AddTaskForm extends HorizontalBar{
-    private String tag = "task";
-    
-    private static AddTaskForm instance;
-    
-    protected AddTaskForm()
+public class AddForm extends HorizontalBar{
+  
+   private static AddForm instance=null;
+    //This is something I haven't finished yet. Has to be parameterized!!!
+   public static AddForm getInstance()
+   {
+   if(instance==null)instance =  new AddForm();
+   return instance;
+   }
+    protected AddForm()
     {
         super();
         //will have to parameterize!!!
@@ -35,77 +46,86 @@ public class AddTaskForm extends HorizontalBar{
         this.setSize(this.getDim());
         this.setPreferredSize(this.getDim());
         this.setBackground(Color.GREEN);
-        
-        
+    }
+    public <T extends SubTask> void setSpecs(T typOfSubTask, boolean editable, String tag)
+    {
+     
+        //removing previous elements if there are!
+       instance.removeAll();    
         //Title
         JLabel labelTitle = new JLabel("Title of the "+tag);
-        
-        this.add(labelTitle);
+        instance.add(labelTitle);
         
         FormField titleInput = new FormField();
-        
+  
         titleInput.setLabel("title");
         
-        this.add(titleInput);
-        
+        instance.add(titleInput);
        //Description
 
         JLabel labelDescription = new JLabel("Description of the "+tag);
         
-        this.add(labelDescription);
+        instance.add(labelDescription);
         
         FormArea descriptionInput = new FormArea();
         descriptionInput.setLabel("description");
-        this.add(descriptionInput);
-        
+        instance.add(descriptionInput);
+
         //Priority
 
         
         JLabel labelPriority = new JLabel("Priority of the "+tag);
         
-        this.add(labelPriority);
+        instance.add(labelPriority);
         
         Integer[] priority = {1,2,3,4,5};
         FormCombo priorityDropdown = new FormCombo(priority);
                   priorityDropdown.setLabel("priority");  
-        this.add(priorityDropdown);
-        
+        instance.add(priorityDropdown);
+
         
         //Assignee
 
         JLabel labelAssignee = new JLabel("Assignee for the "+tag);
         
-        this.add(labelAssignee);
+        instance.add(labelAssignee);
 
         
         String[] assignees = {"John", "Fred", "Sally", "Paul", "Josh"};
         FormCombo assigneeDropdown = new FormCombo(assignees);
                     assigneeDropdown.setLabel("staff");
-         this.add(assigneeDropdown);
-         
-         //Due date 
-         JLabel labelDueDate = new JLabel("DueDate of "+tag);
+        instance.add(assigneeDropdown);
         
-        this.add(labelDueDate);
+
+         //Due date 
+         JLabel labelDueDate = new JLabel("DueDate of the "+tag);
+        
+        instance.add(labelDueDate);
         
         FormField dueDateInput = new FormField();
                   dueDateInput.setLabel("dateDue");  
-        this.add(dueDateInput);
+        instance.add(dueDateInput);
         
+
+         if(typOfSubTask!=null)
+        {
+            titleInput.setText(typOfSubTask.getTitle());
+            titleInput.setEditable(editable);
+            descriptionInput.setText(typOfSubTask.getDescription());
+            descriptionInput.setEditable(editable);
+            //priorityDropdown.setSelectedItem(typOfSubTask.getPriority());
+            //priorityDropdown.setEditable(editable);
+            //assigneeDropdown.setSelectedItem(typOfSubTask.getAssignee().getUserName());
+            //assigneeDropdown.setEditable(editable);
+            dueDateInput.setText(typOfSubTask.getDateDueString());
+            dueDateInput.setEditable(editable);
+            
+            
+            
+        }
+         instance.revalidate();
+         instance.repaint();
         
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
-    public static AddTaskForm getInstance()
-    {
-        if(instance == null ) instance = new AddTaskForm();
-        return instance;
     }
     
 }

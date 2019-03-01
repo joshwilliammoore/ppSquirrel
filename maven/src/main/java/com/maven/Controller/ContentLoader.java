@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import com.maven.model.TaskList;
 import com.maven.view.RightSideElements.ActionArea;
 import com.maven.view.RightSideElements.ActionBar;
-import com.maven.view.UIElements.AddTaskListForm;
 import com.maven.view.UIElements.TaskListView;
+import com.maven.view.UIElements.AddForm;
 /**
  *
  * @author Regory Gregory
@@ -30,9 +30,9 @@ public class ContentLoader {
             case "TASKLISTS" :
                 //here, you should load tasklists or if there is no available, 
                 //then it should say "There are no added tasks yet. Click "add" to create your first TaskList
-                ActionBar.TaskListBar();
+                ActionBar.DefaultBar("TASKLIST", new ActionButtonController());
                 //temporary solution to clear the content!!!
-               ArrayList<TaskList> ar = DataHandler.loadTaskLists();
+                ArrayList<TaskList> ar = DataHandler.loadTaskLists();
                
                 TaskList[] taskLists = new TaskList[ar.size()];
                 taskLists= ar.toArray(taskLists);
@@ -46,11 +46,28 @@ public class ContentLoader {
             break;
             case "NEW":
 
-                ActionBar.addNewBar(subCommands[1]);
-                ActionArea.getInstance().reFresh(AddTaskListForm.getInstance());
+                ActionBar.addNewBar(subCommands[1], new ActionButtonController());
+                AddForm.getInstance().setSpecs(null, true, subCommands[1]);
+                ActionArea.getInstance().reFresh(AddForm.getInstance());
+                break;
+                
+            case "VIEW":
+
+               ActionBar.addNewBar(subCommands[1], new ActionButtonController());
+               TaskList tlView = DataHandler.getTaskListByID(Integer.parseInt(subCommands[2]));
+               AddForm.getInstance().setSpecs(tlView, true, subCommands[1]);
+               ActionArea.getInstance().reFresh(AddForm.getInstance());         
+                
+                break;    
+            case "EDIT":
+                ///editing things...    
+                ActionBar.addNewBar(subCommands[1], new ActionButtonController());
+                TaskList tlEdit = DataHandler.getTaskListByID(Integer.parseInt(subCommands[2]));
+                AddForm.getInstance().setSpecs(tlEdit, true, subCommands[1]);
+                ActionArea.getInstance().reFresh(AddForm.getInstance());
                           
                 
-                break;
+                break;    
             case "EXIT": System.exit(0);
                 break;
             default: break;

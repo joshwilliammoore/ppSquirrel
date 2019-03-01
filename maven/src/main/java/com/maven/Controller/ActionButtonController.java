@@ -10,26 +10,19 @@ import javax.swing.JOptionPane;
 import java.awt.Component;
 import javax.swing.JComponent;
 import java.lang.reflect.Field;
-
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
 import com.maven.view.RightSideElements.WorkingArea;
 import com.maven.view.UIElements.GetUIContent;
-import com.maven.view.UIElements.AddTaskListForm;
-import javax.swing.JOptionPane;
+import com.maven.view.UIElements.AddForm;
 import com.maven.model.TaskList;
+import com.maven.model.SubTask;
 import com.maven.model.SquirrelConstants;
 import com.maven.model.User;
 import com.maven.Controller.FormatChecker;
 
 
-
-
-/**
- *
- * @author Regory Gregory
- */
 public class ActionButtonController implements ActionListener{
     public  void actionPerformed(ActionEvent e)
     {
@@ -42,18 +35,19 @@ public class ActionButtonController implements ActionListener{
 
                    ContentLoader.loadContent(command, null);
                 break;
+            case "UPDATE":
+                
+                break;
             case "SAVE":
 
                         switch(subCommands[1])
                         {
                             case "TASKLIST":
 
-                                AddTaskListForm element = AddTaskListForm.getInstance();
-                                
+                                AddForm element = AddForm.getInstance();
+                                        //element.setSpecs(null, true, "TaskList");    
                                 Component[] elements = element.getComponents();
 
-                                TaskList tl = new TaskList();
-                                Class tlClass = tl.getClass();
                                 TaskList newList = new TaskList(); 
                                 boolean formatError = false;
                                 
@@ -69,9 +63,7 @@ public class ActionButtonController implements ActionListener{
                                         String label = content.getLabel();
                                      
                                         String value = content.getContent();
-                                        
-                                        
-                                        
+  
                                         switch(label){
                                             case "title":
                                                 if(!FormatChecker.isFieldEmpty(value)) {
@@ -83,7 +75,7 @@ public class ActionButtonController implements ActionListener{
                                                 break;
                                             case "description":
                                                 if(!FormatChecker.isFieldEmpty(value)) {
-                                                JOptionPane.showMessageDialog(null, "The description field is empty. Please fill it!"); 
+                                                JOptionPane.showMessageDialog(null, "The description field is empty. Please fill it!"+value); 
                                                 formatError = true;
                                                 continue;
                                                 };
@@ -156,20 +148,13 @@ public class ActionButtonController implements ActionListener{
                         }
                 break;
             case "EDIT":
-                    switch(subCommands[1])
-                      {
-                        case "TASKLIST":
-                             ContentLoader.loadContent("TASKLISTS", null);
-                            break;
-                       case "TASK":
-                            break;
-
-                       case "SUBTASK":
-                            break; 
-                       default:
-                           JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+subCommands[1]);
-
-                         }
+                
+                
+                
+                
+                SubTask editable= new SubTask();    
+                ContentLoader.loadContent(command, editable);
+                         
                 break;
             case "SEARCH":
                 break;

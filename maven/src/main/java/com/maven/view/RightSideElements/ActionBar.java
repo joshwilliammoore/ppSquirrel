@@ -11,7 +11,6 @@ import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
-import com.maven.view.UIElements.AddTaskForm;
 import com.maven.view.UIElements.ActionBarButton;
 import com.maven.Controller.ActionButtonController;
 import java.awt.event.ActionListener;

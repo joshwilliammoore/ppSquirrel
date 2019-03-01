@@ -5,6 +5,7 @@
  */
 package com.maven.view.UIElements;
 import javax.swing.JTextField;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Regory Gregory
@@ -23,10 +24,14 @@ public class FormField extends JTextField implements GetUIContent{
     super(s);
     }
     public String getContent()
-            {
+    {
             return this.getText();
             
-            }
+    }
+    public String getText()
+    {
+        return super.getText();
+    }
 
     public String getLabel() {
         return label;

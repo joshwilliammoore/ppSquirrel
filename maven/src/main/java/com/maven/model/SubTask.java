@@ -70,7 +70,23 @@ public class SubTask implements Serializable
     public Date getDateDue() {
         return dateDue;
     }
-
+    
+     public String getDateDueString() {
+        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+        return f.format(dateDue);
+     }
+    
+     public boolean setDateDueString(String date) {
+        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+       try{
+        this.dateDue = f.parse(date);
+        return true;
+       } catch(Exception ex)
+       {
+         return false;   
+       }
+       
+     } 
     public void setDateDue(Date dateDue) {
         
     this.dateDue = dateDue;

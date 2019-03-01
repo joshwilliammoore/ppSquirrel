@@ -23,13 +23,8 @@ public class DataHandler {
     
     private static String s = System.getProperty("file.separator");
     private static String dirPath = "."+s+SquirrelConstants.getSaveDir();
-    public static TaskList[] loadTasklists()
-    {
-     TaskList[] loaded = new TaskList[0];
-     
-     return loaded;
-    }
-    
+    private static ArrayList<TaskList> taskLists = new ArrayList<TaskList>();
+
     public static boolean saveTaskList(TaskList taskList)
     {
 
@@ -67,6 +62,7 @@ public class DataHandler {
         String dirPath = "."+s+SquirrelConstants.getSaveDir();
         String filePath = dirPath+s+filename;
         File newFile = new File(filePath);
+        
         try (FileInputStream fileIn = new FileInputStream(newFile);
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);)
         {
@@ -91,7 +87,7 @@ public class DataHandler {
         
         String dirPath = "."+s+SquirrelConstants.getSaveDir();
         String filePath = dirPath+s+"taskList_id-"+id;
-        
+        DataHandler.getTaskLists().remove(DataHandler.getTaskListByID(Integer.parseInt(id)));
         File newFile = new File(filePath);
 
         return newFile.delete();
@@ -101,7 +97,6 @@ public class DataHandler {
     
     public static ArrayList<TaskList> loadTaskLists()
     {
-             ArrayList<TaskList> taskLists = new ArrayList<>();
 
             File saveDir = new File(dirPath);
             if(!saveDir.exists()){
@@ -112,7 +107,7 @@ public class DataHandler {
                  System.out.println(e.getMessage());
 
                 }
-                return taskLists;
+            
             }
             try{
             File[] fileList = saveDir.listFiles();
@@ -122,10 +117,27 @@ public class DataHandler {
 
             taskLists.add(loadTasklist(f.getName()));
             }
-        }catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
+            }catch (Exception e)
+            {
+                System.out.println(e.getMessage());
+            }
     return taskLists;
+    }
+    
+      public static TaskList getTaskListByID(int id)
+      {
+          for (TaskList tl : taskLists)
+          {
+          if(tl.getID()==id) return tl;
+          
+          }
+          return null;
+      }  
+      public static ArrayList<TaskList> getTaskLists() {
+        return taskLists;
+        }
+
+    public static void setTaskLists(ArrayList<TaskList> taskLists) {
+        DataHandler.taskLists = taskLists;
     }
 }
