@@ -15,8 +15,13 @@ public class TaskList implements Serializable
     private User creator;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     private User taskManager;
     private User staff;
+=======
+
+    private User assignee;
+>>>>>>> parent of 1599825... Refactoring the model. Tasklist is now the Children of the Subtask class.
 =======
 
     private User assignee;
@@ -63,9 +68,15 @@ public class TaskList implements Serializable
     
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     public void setStaff (User staff)
     {
         this.staff = staff;
+=======
+    public void setAssignee (User assignee)
+    {
+        this.assignee = assignee;
+>>>>>>> parent of 1599825... Refactoring the model. Tasklist is now the Children of the Subtask class.
 =======
     public void setAssignee (User assignee)
     {
@@ -162,6 +173,7 @@ public class TaskList implements Serializable
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     public User getTaskManager() {
         return taskManager;
     }
@@ -170,6 +182,9 @@ public class TaskList implements Serializable
         this.taskManager = taskManager;
     }
 
+=======
+ 
+>>>>>>> parent of 1599825... Refactoring the model. Tasklist is now the Children of the Subtask class.
 =======
  
 >>>>>>> parent of 1599825... Refactoring the model. Tasklist is now the Children of the Subtask class.
@@ -211,8 +226,13 @@ public class TaskList implements Serializable
         }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     
     
+=======
+    
+    
+>>>>>>> parent of 1599825... Refactoring the model. Tasklist is now the Children of the Subtask class.
 =======
     
     
