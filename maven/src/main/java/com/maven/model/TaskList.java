@@ -13,8 +13,8 @@ public class TaskList implements Serializable
     private String title;
     private String description;
     private User creator;
-
-    private User assignee;
+    private User taskManager;
+    private User staff;
     private int priority;
 
     private Date dateCreated;
@@ -51,9 +51,9 @@ public class TaskList implements Serializable
     
     
     
-    public void setAssignee (User assignee)
+    public void setStaff (User staff)
     {
-        this.assignee = assignee;
+        this.staff = staff;
     }
         
     
@@ -138,7 +138,14 @@ public class TaskList implements Serializable
         this.creator = creator;
     }
 
- 
+    public User getTaskManager() {
+        return taskManager;
+    }
+
+    public void setTaskManager(User taskManager) {
+        this.taskManager = taskManager;
+    }
+
     public Date getDateCreated() {
         return dateCreated;
     }
