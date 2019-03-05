@@ -72,6 +72,7 @@ public class SubTask implements Serializable
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     
      public String getDateDueString() {
         SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
@@ -90,6 +91,10 @@ public class SubTask implements Serializable
        
      } 
     public void setDateDue(Date dateDue) {
+=======
+
+    public void setDueDate(Date dueDate) {
+>>>>>>> parent of 1599825... Refactoring the model. Tasklist is now the Children of the Subtask class.
 =======
 
     public void setDueDate(Date dueDate) {
