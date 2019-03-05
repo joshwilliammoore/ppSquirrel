@@ -3,7 +3,6 @@ package com.maven.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 
 
 public class SubTask implements Serializable
@@ -14,26 +13,27 @@ public class SubTask implements Serializable
 
     private String title;
     private String description;
-    private Date dateDue;
-    private Date dateCreated;
-    private Date dateModified;
+    private Date dueDate;
+    private Date createdDate;
+    private Date modifiedDate;
     private int priority;
-    
     private boolean completed;
+
+   
     private User creator;
+
+    
     private User assignee;
-    public SubTask()
-            {
-            }
+    
     public SubTask(Date dueDate, int priority, String title, String description)
     {
         Date currentDate = new Date();
         this.setID(SquirrelConstants.getTaskID());
         //incrementing the constant's value so that upon next creating it will have a new and incremented id.
         SquirrelConstants.setTaskID(SquirrelConstants.getTaskID()+1);
-        this.setDateCreated();
-        this.setDateModified(currentDate);
-        this.setDateDue(dueDate);
+        this.setCreatedDate(currentDate);
+        this.setModifiedDate(currentDate);
+        this.setDueDate(dueDate);
         this.setPriority(priority);
         this.setTitle(title);
         this.setDescription(description);
@@ -67,9 +67,10 @@ public class SubTask implements Serializable
         this.description = description;
     }
 
-    public Date getDateDue() {
-        return dateDue;
+    public Date getDueDate() {
+        return dueDate;
     }
+<<<<<<< HEAD
     
      public String getDateDueString() {
         SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
@@ -88,25 +89,36 @@ public class SubTask implements Serializable
        
      } 
     public void setDateDue(Date dateDue) {
+=======
+
+    public void setDueDate(Date dueDate) {
+>>>>>>> parent of 1599825... Refactoring the model. Tasklist is now the Children of the Subtask class.
         
-    this.dateDue = dateDue;
+        Date currentDate = new Date();
+        if(currentDate.before(dueDate)){
+                this.dueDate = dueDate;
 
+        } else {
+            
+            //error handling should come here!!!
+            System.out.println("Error!!!!");
+        }
     }
 
-    public Date getDateCreated() {
-        return dateCreated;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setDateCreated() {
-        this.dateCreated = new Date();
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public Date getDateModified() {
-        return dateModified;
+    public Date getModifiedDate() {
+        return modifiedDate;
     }
 
-    public void setDateModified(Date dateModified) {
-        this.dateModified = dateModified;
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
     }
 
     public int getPriority() {
@@ -139,25 +151,5 @@ public class SubTask implements Serializable
 
     public void setAssignee(User assignee) {
         this.assignee = assignee;
-    }
-    
-    public String getStringDate(String which)
-    {
-       String stringDate = null;
-       SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
-        if(which.equals("dateCreated"))
-        {
-            stringDate = f.format(this.getDateCreated());
-        } else if(which.equals("dateModified"))
-        {
-            stringDate = f.format(this.getDateModified());
-
-        } else
-        {
-             stringDate = f.format(this.getDateDue());
-        }
-    
-    
-        return stringDate;
     }
 }

@@ -15,12 +15,13 @@ import com.maven.view.ReFreshable;
 import com.maven.model.TaskList;
 
 import com.maven.view.RightSideElements.HorizontalBar;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Regory Gregory
  */
 public class TaskListView extends JPanel{
-        
+    private static int viewPortSet;    
     private static JScrollPane instance = null;
     private TaskListView()
     {
@@ -35,24 +36,39 @@ public class TaskListView extends JPanel{
         instance.setSize(new Dimension(700,380));
         instance.setPreferredSize(new Dimension(700,380));
         instance.setMinimumSize(new Dimension(700,380));
+        viewPortSet = 0;
     }
     
     return instance;
     }
     public static void reFresh(TaskList[] taskLists)
     {
-    getInstance();
+    //getInstance();
     //instance.removeAll();
     JPanel viewport = new JPanel();
-              viewport.setLayout(new GridLayout(0,1)); 
-//          com.maven.viewport.setSize(new Dimension(700,1000));
-//        com.maven.viewport.setPreferredSize(new Dimension(700,1000));
-//            com.maven.viewport.setMinimumSize(new Dimension(700,1000));
+           viewport.setLayout(new GridLayout(0,1)); 
+//           viewport.setSize(new Dimension(700,1000));
+//           viewport.setPreferredSize(new Dimension(700,1000));
+//            viewport.setMinimumSize(new Dimension(700,1000));
+//    if(viewPortSet==0)
+//    {
+//      viewPortSet=1;
+//    } else {
+//         instance.getViewport().removeAll();
+//    }
+//    
+//    
     for(TaskList t : taskLists)
     {
     TaskListEntry temp = new TaskListEntry(t);
     viewport.add(temp);
     }
+   
+//    if(!=null)
+//    {
+//        instance.getViewport().removeAll();
+//
+//    }
     instance.setViewportView(viewport);
     
     

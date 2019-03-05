@@ -1,9 +1,8 @@
 package com.maven.model;
 import java.util.ArrayList;
 import java.util.Date;
-import java.io.Serializable;
 
-public class Task extends SubTask implements Serializable
+public class Task extends SubTask
 {
     private ArrayList<SubTask> children;
 
@@ -19,10 +18,6 @@ public class Task extends SubTask implements Serializable
         this.children.add(st);
     }
     
-      public void delSubtask(int index){
-        this.children.remove(index);
-    }
-    
     public SubTask getSubtask(int Position){
         return this.children.get(Position);
     }
@@ -30,7 +25,6 @@ public class Task extends SubTask implements Serializable
     public ArrayList<SubTask> getSubtasks(){
         return this.children;
     }
-  
     
 
    
