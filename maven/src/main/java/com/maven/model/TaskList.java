@@ -13,8 +13,13 @@ public class TaskList implements Serializable
     private String title;
     private String description;
     private User creator;
+<<<<<<< HEAD
     private User taskManager;
     private User staff;
+=======
+
+    private User assignee;
+>>>>>>> parent of 1599825... Refactoring the model. Tasklist is now the Children of the Subtask class.
     private int priority;
 
     private Date dateCreated;
@@ -51,9 +56,15 @@ public class TaskList implements Serializable
     
     
     
+<<<<<<< HEAD
     public void setStaff (User staff)
     {
         this.staff = staff;
+=======
+    public void setAssignee (User assignee)
+    {
+        this.assignee = assignee;
+>>>>>>> parent of 1599825... Refactoring the model. Tasklist is now the Children of the Subtask class.
     }
         
     
@@ -138,6 +149,7 @@ public class TaskList implements Serializable
         this.creator = creator;
     }
 
+<<<<<<< HEAD
     public User getTaskManager() {
         return taskManager;
     }
@@ -146,6 +158,9 @@ public class TaskList implements Serializable
         this.taskManager = taskManager;
     }
 
+=======
+ 
+>>>>>>> parent of 1599825... Refactoring the model. Tasklist is now the Children of the Subtask class.
     public Date getDateCreated() {
         return dateCreated;
     }
@@ -179,8 +194,13 @@ public class TaskList implements Serializable
         {
              stringDate = f.format(this.getDateDue());
         }
+<<<<<<< HEAD
     
     
+=======
+    
+    
+>>>>>>> parent of 1599825... Refactoring the model. Tasklist is now the Children of the Subtask class.
         return stringDate;
     }
 }
