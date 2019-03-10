@@ -55,15 +55,15 @@ public class ContentLoader {
 
                ActionBar.addNewBar(subCommands[1], new ActionButtonController());
                TaskList tlView = DataHandler.getTaskListByID(Integer.parseInt(subCommands[2]));
-               AddForm.getInstance().setSpecs(tlView, true, subCommands[1]);
-               ActionArea.getInstance().reFresh(AddForm.getInstance());         
+//               AddForm.getInstance().setSpecs(tlView, true, subCommands[1]);
+//               ActionArea.getInstance().reFresh(AddForm.getInstance());         
                 
                 break;    
             case "EDIT":
                 ///editing things...    
                 ActionBar.addNewBar(subCommands[1], new ActionButtonController());
                 TaskList tlEdit = DataHandler.getTaskListByID(Integer.parseInt(subCommands[2]));
-                AddForm.getInstance().setSpecs(tlEdit, true, subCommands[1]);
+//                AddForm.getInstance().setSpecs(tlEdit, true, subCommands[1]);
                 ActionArea.getInstance().reFresh(AddForm.getInstance());
                           
                 

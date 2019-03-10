@@ -3,6 +3,7 @@ package com.maven.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 
 
 public class SubTask implements Serializable
@@ -33,7 +34,7 @@ public class SubTask implements Serializable
         SquirrelConstants.setTaskID(SquirrelConstants.getTaskID()+1);
         this.setCreatedDate(currentDate);
         this.setModifiedDate(currentDate);
-        this.setDueDate(dueDate);
+        this.setDateDue(dueDate);
         this.setPriority(priority);
         this.setTitle(title);
         this.setDescription(description);
@@ -70,20 +71,17 @@ public class SubTask implements Serializable
     public Date getDueDate() {
         return dueDate;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     
      public String getDateDueString() {
         SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
-        return f.format(dateDue);
+        return f.format(this.dueDate);
      }
     
      public boolean setDateDueString(String date) {
         SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
        try{
-        this.dateDue = f.parse(date);
+        this.dueDate = f.parse(date);
         return true;
        } catch(Exception ex)
        {
@@ -92,23 +90,7 @@ public class SubTask implements Serializable
        
      } 
     public void setDateDue(Date dateDue) {
-=======
 
-    public void setDueDate(Date dueDate) {
->>>>>>> parent of 1599825... Refactoring the model. Tasklist is now the Children of the Subtask class.
-=======
-
-    public void setDueDate(Date dueDate) {
->>>>>>> parent of 1599825... Refactoring the model. Tasklist is now the Children of the Subtask class.
-=======
-
-    public void setDueDate(Date dueDate) {
->>>>>>> parent of 1599825... Refactoring the model. Tasklist is now the Children of the Subtask class.
-=======
-
-    public void setDueDate(Date dueDate) {
->>>>>>> parent of 1599825... Refactoring the model. Tasklist is now the Children of the Subtask class.
-        
         Date currentDate = new Date();
         if(currentDate.before(dueDate)){
                 this.dueDate = dueDate;

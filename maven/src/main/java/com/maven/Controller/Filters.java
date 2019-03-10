@@ -69,10 +69,10 @@ public class Filters implements Comparator<SubTask>
             verdict = o1.getPriority()-o2.getPriority();
             break;
         case "DUEDATE":
-            boolean after =o1.getDateDue().after(o2.getDateDue());
-            boolean before =o1.getDateDue().before(o2.getDateDue());
+//            boolean after =o1.getDateDue().after(o2.getDateDue());
+//            boolean before =o1.getDateDue().before(o2.getDateDue());
             
-           verdict = (after) ?  1 : (before) ? -1 :0;
+//           verdict = (after) ?  1 : (before) ? -1 :0;
             break;
         default:
             //maybe throw error message
