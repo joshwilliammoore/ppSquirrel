@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.maven.view.UIElements;
+import com.maven.model.SubTask;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -73,6 +74,25 @@ public class TaskListView{
     
     }    
 
+    }
+    
+    public static void SubTaskView(SubTask[] subTasks)
+    {
+        if(subTasks != null)
+        {
+            JPanel viewport = getViewport();
+            viewport.removeAll();
+        }
+        
+        for(SubTask t : subTasks)
+        {
+            SubTaskEntry temp = new SubTaskEntry(t);
+            viewport.add(temp);
+        }
+        instance.setViewportView(viewport);
+        
+        instance.revalidate();
+        instance.repaint();
     }
   
 
