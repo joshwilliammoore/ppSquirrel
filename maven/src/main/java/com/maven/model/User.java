@@ -17,9 +17,6 @@ public class User implements Serializable{
     private String userName;
     private String email;
     private String password;
-    private ArrayList<String> createdTasks = new ArrayList<String>();
-    private ArrayList<String> ownedTasks = new ArrayList<String>();
-    private ArrayList<String> assignedTasks = new ArrayList<String>();
    
     public void setGivenName(String g){
         this.givenName = g;
