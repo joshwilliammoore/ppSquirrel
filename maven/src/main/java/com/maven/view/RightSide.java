@@ -16,6 +16,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import javax.swing.JOptionPane;
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
 /**
  *
  * @author Regory Gregory
@@ -28,7 +30,7 @@ public class RightSide extends GeneralPanel{
     {
         super(SquirrelConstants.getRightSideWidth(), SquirrelConstants.getInnerPaneHeight());
       
-        
+        this.setLayout(new BorderLayout());
         this.setBackground(Color.YELLOW);
         this.setBackground(SquirrelConstants.getRightSideBg());
        
@@ -39,25 +41,16 @@ public class RightSide extends GeneralPanel{
         this.getGbc().gridwidth=1;
         this.getGbc().gridheight = 5;
         
-        this.add (TitleBar.getInstance(),this.getGbc());
+        this.add (TitleBar.getInstance(),BorderLayout.NORTH);
         
-        this.getGbc().gridx=0;
-        this.getGbc().gridy=5;
-        this.getGbc().gridheight = 15;
-                
+        this.add (MessageBar.getInstance(), BorderLayout.CENTER);
 
-        this.add (MessageBar.getInstance(), this.getGbc());
-        
-        this.getGbc().gridx=0;
-        this.getGbc().gridy=20;
-        this.getGbc().gridheight =10;
-        //JOptionPane.showMessageDialog(null, this.getGbc().gridheight);
-        this.add (ActionBar.getInstance(), this.getGbc());
-        this.getGbc().gridx=0;
-        this.getGbc().gridy=30;
-        this.getGbc().gridheight =30;
-//        //JOptionPane.showMessageDialog(null, this.getGbc().gridheight);
-        this.add (ActionArea.getInstance(), this.getGbc());
+        this.add (ActionBar.getInstance(), BorderLayout.SOUTH);
+//        this.getGbc().gridx=0;
+//        this.getGbc().gridy=30;
+//        this.getGbc().gridheight =30;
+////        //JOptionPane.showMessageDialog(null, this.getGbc().gridheight);
+//        this.add (ActionArea.getInstance(), BorderLayout.CENTER);
 //       // ActionArea.getInstance().add(AddTaskForm.getInstance());
 ////        for(int i =0; i<this.bars.length; i++ )
 ////        {
