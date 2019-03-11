@@ -12,7 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout ;
 import javax.swing.JPanel;
 import com.maven.view.ReFreshable;
-import com.maven.model.TaskList;
+import com.maven.model.SubTask;
 
 import com.maven.view.RightSideElements.HorizontalBar;
 import javax.swing.JOptionPane;
@@ -35,45 +35,32 @@ public class TaskListsView{
             instance = new JScrollPane();
             instance.setLayout(new ScrollPaneLayout());
 
-            instance.setMinimumSize(new Dimension(700,380));
         }
     
         return instance;
     }
-    
-      public static void resetInstance()
-    {
-      
-            instance = new JScrollPane();
-            instance.setLayout(new ScrollPaneLayout());
 
-            instance.setMinimumSize(new Dimension(700,380));
-  
-    }
-    
     public static JPanel getViewport()
     {
         if(viewport == null){
             viewport = new JPanel();
             viewport.setLayout(new GridLayout(0,1)); 
-            viewport.setMinimumSize(new Dimension(700,380));
-                        //viewport.setMinimumSize(new Dimension(700,1000));
-
+            viewport.setMinimumSize(new Dimension(680,380));
         }
         return viewport;
     }
     
-    public static void reFresh(TaskList[] taskLists)
+    public static void reFresh(SubTask[] taskLists)
     {
     getInstance();
-    resetInstance();
+   
     //instance.removeAll();
     if(taskLists !=null)
     {
         
         getViewport().removeAll();
         
-    for(TaskList t : taskLists)
+    for(SubTask t : taskLists)
     {
     TaskListEntry temp = new TaskListEntry(t);
     viewport.add(temp);
