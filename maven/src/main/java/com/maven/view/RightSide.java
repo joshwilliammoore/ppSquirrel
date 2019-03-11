@@ -35,40 +35,12 @@ public class RightSide extends GeneralPanel{
         this.setBackground(SquirrelConstants.getRightSideBg());
        
         
-        this.getGbc().fill = GridBagConstraints.HORIZONTAL;
-        this.getGbc().gridx=0;
-        this.getGbc().gridy=0;
-        this.getGbc().gridwidth=1;
-        this.getGbc().gridheight = 5;
         
-        this.add (TitleBar.getInstance(),BorderLayout.NORTH);
         
-        this.add (MessageBar.getInstance(), BorderLayout.CENTER);
-
+        this.add (MessageBar.getInstance(), BorderLayout.NORTH);
+        this.add(ActionArea.getInstance(), BorderLayout.CENTER);
         this.add (ActionBar.getInstance(), BorderLayout.SOUTH);
-//        this.getGbc().gridx=0;
-//        this.getGbc().gridy=30;
-//        this.getGbc().gridheight =30;
-////        //JOptionPane.showMessageDialog(null, this.getGbc().gridheight);
-//        this.add (ActionArea.getInstance(), BorderLayout.CENTER);
-//       // ActionArea.getInstance().add(AddTaskForm.getInstance());
-////        for(int i =0; i<this.bars.length; i++ )
-////        {
-////        HorizontalBar temp = this.bars[i];
-////        this.gbc.gridx=0;
-////        
-////        this.gbc.gridy= offset;
-////        
-////        this.gbc.gridheight=temp.getpHeight()/10;
-////        
-////        
-////        this.add(temp, this.gbc);
-////        
-////        offset+=temp.getpHeight()/10;
-////        }
-       
-        
-     
+ 
     }
     
         //making it a singleton class
