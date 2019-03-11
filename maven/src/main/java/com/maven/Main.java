@@ -30,6 +30,8 @@ import com.maven.view.*;
 public class Main {
     public static void main(String[] args) {
         Init.init();
+        
+        
         MainContainer mainWindow = MainContainer.getInstance();
         mainWindow.setVisible(true);
 //          JFrame testFrame = new TestFrame();
