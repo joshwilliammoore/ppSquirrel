@@ -89,10 +89,11 @@ public class SubTask implements Serializable
        
      } 
     public void setDateDue(Date dateDue) {
-
+        
         Date currentDate = new Date();
+        
         if(currentDate.before(dueDate)){
-                this.dueDate = dueDate;
+                this.dueDate = dateDue;
 
         } else {
             
