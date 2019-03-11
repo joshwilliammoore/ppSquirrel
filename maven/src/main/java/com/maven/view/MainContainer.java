@@ -34,7 +34,7 @@ public class MainContainer extends JFrame{
         this.setLayout(new BorderLayout());
         Dimension size = new Dimension (this.width, this.height);
         this.setSize(size);
-        this.setResizable(false);
+        this.setResizable(true);
         //removes ugly title bar
         this.setUndecorated(SquirrelConstants.isRemoveDefaultMenuBar());
 

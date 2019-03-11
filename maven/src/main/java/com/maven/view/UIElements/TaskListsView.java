@@ -20,11 +20,11 @@ import javax.swing.JOptionPane;
  *
  * @author Regory Gregory
  */
-public class TaskListView{
+public class TaskListsView{
     private static JPanel viewport;    
     private static JScrollPane instance = null;
     
-    private TaskListView()
+    private TaskListsView()
     {
     
     }
@@ -34,12 +34,21 @@ public class TaskListView{
         if(instance == null){
             instance = new JScrollPane();
             instance.setLayout(new ScrollPaneLayout());
-            instance.setSize(new Dimension(700,380));
-            instance.setPreferredSize(new Dimension(700,380));
+
             instance.setMinimumSize(new Dimension(700,380));
         }
     
         return instance;
+    }
+    
+      public static void resetInstance()
+    {
+      
+            instance = new JScrollPane();
+            instance.setLayout(new ScrollPaneLayout());
+
+            instance.setMinimumSize(new Dimension(700,380));
+  
     }
     
     public static JPanel getViewport()
@@ -47,27 +56,30 @@ public class TaskListView{
         if(viewport == null){
             viewport = new JPanel();
             viewport.setLayout(new GridLayout(0,1)); 
-            viewport.setSize(new Dimension(700,1000));
+            viewport.setMinimumSize(new Dimension(700,380));
+                        //viewport.setMinimumSize(new Dimension(700,1000));
+
         }
         return viewport;
     }
     
     public static void reFresh(TaskList[] taskLists)
     {
-    //getInstance();
+    getInstance();
+    resetInstance();
     //instance.removeAll();
     if(taskLists !=null)
     {
-        JPanel viewport =  getViewport();
-        viewport.removeAll();
+        
+        getViewport().removeAll();
         
     for(TaskList t : taskLists)
     {
     TaskListEntry temp = new TaskListEntry(t);
     viewport.add(temp);
     }
+    
     instance.setViewportView(viewport);
-
     instance.revalidate();
     instance.repaint();
     

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import com.maven.model.TaskList;
 import com.maven.view.RightSideElements.ActionArea;
 import com.maven.view.RightSideElements.ActionBar;
-import com.maven.view.UIElements.TaskListView;
+import com.maven.view.UIElements.TaskListsView;
 import com.maven.view.UIElements.AddForm;
 /**
  *
@@ -40,13 +40,13 @@ public class ContentLoader {
                 taskLists= ar.toArray(taskLists);
                 if(taskLists.length == 0)
                 {
-                  TaskListView.reFresh(null);  
+                  TaskListsView.reFresh(null);  
                 }else 
                 {
-                    TaskListView.reFresh(taskLists);
+                    TaskListsView.reFresh(taskLists);
                 }
-                
-                ActionArea.reFresh(TaskListView.getInstance());
+
+                ActionArea.reFresh(TaskListsView.getInstance());
                 break;
             case "TASK" :
                 break;    
@@ -60,19 +60,11 @@ public class ContentLoader {
                 break;
                 
             case "VIEW":
-
-               ActionBar.addNewBar(subCommands[1], new ActionButtonController());
-               TaskList tlView = DataHandler.getTaskListByID(Integer.parseInt(subCommands[2]));
-//               AddForm.getInstance().setSpecs(tlView, true, subCommands[1]);
-//               ActionArea.getInstance().reFresh(AddForm.getInstance());         
-                
+              
+        
                 break;    
             case "EDIT":
-                ///editing things...    
-                ActionBar.addNewBar(subCommands[1], new ActionButtonController());
-                TaskList tlEdit = DataHandler.getTaskListByID(Integer.parseInt(subCommands[2]));
-//                AddForm.getInstance().setSpecs(tlEdit, true, subCommands[1]);
-                ActionArea.getInstance().reFresh(AddForm.getInstance());
+               
                           
                 
                 break;    

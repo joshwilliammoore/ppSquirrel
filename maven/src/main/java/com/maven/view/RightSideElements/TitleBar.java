@@ -24,8 +24,8 @@ public class TitleBar extends HorizontalBar{
         
     super();
     this.setDim(new Dimension(700, 50));
-    this.setMinimumSize(this.getDim());
-    this.setSize(this.getDim());
+    //this.setMinimumSize(this.getDim());
+//    //this.setSize(this.getDim());
     this.setPreferredSize(this.getDim());
     this.setBackground(Color.BLUE);
     }

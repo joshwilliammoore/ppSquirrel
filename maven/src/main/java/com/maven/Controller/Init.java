@@ -11,7 +11,7 @@ import com.maven.view.RightSideElements.MessageBar;
 import com.maven.view.RightSideElements.TitleBar;
 import com.maven.view.RightSideElements.WorkingArea;
 
-import com.maven.view.UIElements.TaskListView;
+import com.maven.view.UIElements.TaskListsView;
 
 
 
@@ -23,7 +23,7 @@ public class Init {
     public static void init()
     {
                 ActionArea.getInstance();
-                TaskListView.getInstance();
+                TaskListsView.getInstance();
                 ActionBar.getInstance();
                 MessageBar.getInstance();
                 TitleBar.getInstance();

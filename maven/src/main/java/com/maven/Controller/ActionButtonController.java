@@ -159,20 +159,9 @@ public class ActionButtonController implements ActionListener{
             case "SEARCH":
                 break;
             case "VIEW":
-                 switch(subCommands[1])
-                      {
-                        case "TASKLIST":
-                             ContentLoader.loadContent("TASKLISTS", null);
-                            break;
-                       case "TASK":
-                            break;
+               
+                   ContentLoader.loadContent(command, null);
 
-                       case "SUBTASK":
-                            break; 
-                       default:
-                           JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+subCommands[1]);
-
-                         }
                 break;
             case "DELETE":
 

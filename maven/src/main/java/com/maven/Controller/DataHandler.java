@@ -64,7 +64,8 @@ public class DataHandler {
         File newFile = new File(filePath);
         
         try (FileInputStream fileIn = new FileInputStream(newFile);
-            ObjectInputStream objectIn = new ObjectInputStream(fileIn);)
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+                )
         {
             
             
@@ -76,7 +77,7 @@ public class DataHandler {
         }catch(Exception e)
         {
             e.printStackTrace();
-        }
+        } 
         return loaded;
      
     }
