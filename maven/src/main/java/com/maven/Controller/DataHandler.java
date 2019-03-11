@@ -23,7 +23,7 @@ public class DataHandler {
     
     private static String s = System.getProperty("file.separator");
     private static String dirPath = "."+s+SquirrelConstants.getSaveDir();
-    private static ArrayList<TaskList> taskLists = new ArrayList<TaskList>();
+    private static ArrayList<TaskList> taskLists;
 
     public static boolean saveTaskList(TaskList taskList)
     {
@@ -98,7 +98,7 @@ public class DataHandler {
     
     public static ArrayList<TaskList> loadTaskLists()
     {
-
+            taskLists = new ArrayList<TaskList>();
             File saveDir = new File(dirPath);
             if(!saveDir.exists()){
                 try{
