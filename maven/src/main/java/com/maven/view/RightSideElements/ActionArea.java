@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 /**
  *
  * @author Regory Gregory
@@ -18,8 +19,9 @@ public class ActionArea extends HorizontalBar {
     {
         super();
         this.setBackground(Color.PINK);
-        this.setDim(new Dimension(700, 300));
+        this.setDim(new Dimension(680, 300));
         this.setMinimumSize(this.getDim());
+        this.setLayout(new GridLayout(0,1));
 
     }
     
