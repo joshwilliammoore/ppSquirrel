@@ -24,10 +24,7 @@ import java.util.ArrayList;
 
 
 import com.maven.model.SubTask;
-/**
- *
- * @author Regory Gregory
- */
+
 public class AddForm extends HorizontalBar{
   
    private static AddForm instance=null;
@@ -45,7 +42,7 @@ public class AddForm extends HorizontalBar{
         this.setLayout(new GridLayout(0,2));
         this.setSize(this.getDim());
         this.setPreferredSize(this.getDim());
-        this.setBackground(Color.GREEN);
+        this.setBackground(Color.PINK);
     }
     public <T extends SubTask> void setSpecs(T typOfSubTask, boolean editable, String tag)
     {

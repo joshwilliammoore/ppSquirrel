@@ -53,24 +53,22 @@ public class TaskListsView{
     public static void reFresh(SubTask[] taskLists)
     {
     getInstance();
-   
+    getViewport().removeAll();
+
     //instance.removeAll();
     if(taskLists !=null)
     {
-        
-        getViewport().removeAll();
-        
-    for(SubTask t : taskLists)
-    {
-    TaskListEntry temp = new TaskListEntry(t);
-    viewport.add(temp);
-    }
+        for(SubTask t : taskLists)
+        {
+        TaskListEntry temp = new TaskListEntry(t);
+        viewport.add(temp);
+        }
+    
+    }   
     
     instance.setViewportView(viewport);
     instance.revalidate();
     instance.repaint();
-    
-    }    
 
     }
   

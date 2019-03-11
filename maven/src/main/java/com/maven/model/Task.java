@@ -2,7 +2,7 @@ package com.maven.model;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Task extends SubTask
+public class Task extends SubTask implements HasChildren
 {
     private ArrayList<SubTask> children;
 
@@ -21,8 +21,8 @@ public class Task extends SubTask
     public SubTask getSubtask(int Position){
         return this.children.get(Position);
     }
-    
-    public ArrayList<SubTask> getSubtasks(){
+    @Override
+    public ArrayList<SubTask> getChildren(){
         return this.children;
     }
     

@@ -6,7 +6,7 @@ import com.maven.model.User;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
-public class TaskList extends SubTask implements Serializable 
+public class TaskList extends SubTask implements Serializable, HasChildren 
 {
 
     private ArrayList<Task> tasks;
@@ -26,8 +26,8 @@ public class TaskList extends SubTask implements Serializable
     public void addTask(Task task) {
         this.tasks.add(task);
     }
-
-    public ArrayList<Task> getTasks(){
+    @Override
+    public ArrayList<Task> getChildren(){
         return this.tasks;
     }
 

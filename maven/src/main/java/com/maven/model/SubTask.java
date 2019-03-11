@@ -89,7 +89,9 @@ public class SubTask implements Serializable
        
      } 
     public void setDateDue(Date dateDue) {
+       
         
+        //there is an error, you will have to debug it later on...
         Date currentDate = new Date();
         
         if(currentDate.before(dueDate)){
@@ -169,4 +171,15 @@ public class SubTask implements Serializable
 
         return stringDate;
     }
+
+    public String getParentID() {
+        return parentID;
+    }
+
+    public void setParentID(String parentID) {
+        this.parentID = parentID;
+    }
+
+    
+    
 }

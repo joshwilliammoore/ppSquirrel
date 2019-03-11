@@ -67,12 +67,8 @@ public class DataHandler {
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
                 )
         {
-            
-            
-            
+
            loaded = (TaskList) objectIn.readObject();
-            
-            
             
         }catch(Exception e)
         {
@@ -85,7 +81,6 @@ public class DataHandler {
       public static boolean deleteTaskList(String id)
     {
        
-        
         String dirPath = "."+s+SquirrelConstants.getSaveDir();
         String filePath = dirPath+s+"taskList_id-"+id;
         DataHandler.getTaskLists().remove(DataHandler.getTaskListByID(Integer.parseInt(id)));
@@ -93,7 +88,6 @@ public class DataHandler {
 
         return newFile.delete();
       
-     
     }
     
     public static ArrayList<TaskList> loadTaskLists()
