@@ -20,6 +20,7 @@ import javax.swing.JFrame;
 import com.maven.view.TestFrame;
 import com.maven.view.RightSideElements.ActionBar;
 import com.maven.view.RightSideElements.HorizontalBar;
+import com.maven.Controller.Init;
 import com.maven.view.*;
 
 /**
@@ -28,6 +29,7 @@ import com.maven.view.*;
  */
 public class Main {
     public static void main(String[] args) {
+        Init.init();
         MainContainer mainWindow = MainContainer.getInstance();
         mainWindow.setVisible(true);
 //          JFrame testFrame = new TestFrame();

@@ -13,12 +13,6 @@ import java.awt.GridBagConstraints;
  * @author Regory Gregory
  */
 public class GeneralPanel extends JPanel{
-
-   
-   
-
-    private  int pWidth;
-    private  int pHeight;
     private Dimension dim;
     protected GridBagConstraints gbc;
    
@@ -29,9 +23,7 @@ public class GeneralPanel extends JPanel{
         this.setGbc(new GridBagConstraints());
         this.gbc.fill=GridBagConstraints.BOTH;
 
-        setpWidth(pwidth);
-        setpHeight(pheight);
-        Dimension d = new Dimension(getpWidth(), getpHeight()); 
+        Dimension d = new Dimension( pwidth, pheight); 
         this.setDim(d);
         this.setSize(this.getDim());
         this.setPreferredSize(this.getDim());
@@ -47,24 +39,6 @@ public class GeneralPanel extends JPanel{
     public void setDim(Dimension dim) {
         this.dim = dim;
     }
-  
-     
-    public int getpWidth() {
-        return pWidth;
-    }
-
-    public void setpWidth(int width) {
-        this.pWidth = width;
-    }
-
-    public int getpHeight() {
-        return pHeight;
-    }
-
-    public void setpHeight(int height) {
-        this.pHeight = height;
-    }
-
     public GridBagConstraints getGbc() {
         return gbc;
     }

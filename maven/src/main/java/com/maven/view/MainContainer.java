@@ -5,8 +5,7 @@
  */
 package com.maven.view;
 import javax.swing.JFrame;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
@@ -32,6 +31,7 @@ public class MainContainer extends JFrame{
     {
         
         super();
+        this.setLayout(new BorderLayout());
         Dimension size = new Dimension (this.width, this.height);
         this.setSize(size);
         this.setResizable(false);
@@ -40,11 +40,10 @@ public class MainContainer extends JFrame{
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
-        MainContainerPane mainPane = MainContainerPane.getInstance();
-        this.add(mainPane);
-        this.setLayout(new FlowLayout());
-        this.pack();
-        
+//        MainContainerPane mainPane = MainContainerPane.getInstance();
+        this.add(LeftSide.getInstance(), BorderLayout.WEST);
+        this.add(RightSide.getInstance(), BorderLayout.CENTER);
+     
        
     }
     public static MainContainer getInstance()

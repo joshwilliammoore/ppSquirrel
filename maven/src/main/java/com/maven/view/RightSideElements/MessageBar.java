@@ -19,8 +19,9 @@ public class MessageBar extends HorizontalBar{
     protected MessageBar()
     {
         super();
-          this.setDim(new Dimension(700, 150));
+        this.setDim(new Dimension(700, 150));
         this.setSize(this.getDim());
+        this.setMinimumSize(this.getDim());
         this.setPreferredSize(this.getDim());
         this.setBackground(Color.ORANGE);
 

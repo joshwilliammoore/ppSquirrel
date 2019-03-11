@@ -20,9 +20,9 @@ public class ActionArea extends HorizontalBar {
         this.setBackground(Color.PINK);
         this.setDim(new Dimension(700, 300));
         this.setSize(this.getDim());
+        this.setMinimumSize(this.getDim());
         this.setPreferredSize(this.getDim());
-        
-    
+
     }
     
     public static ActionArea getInstance(){

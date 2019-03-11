@@ -28,17 +28,25 @@ public class ContentLoader {
             case "HOME":
                 break;
             case "TASKLISTS" :
-                //here, you should load tasklists or if there is no available, 
-                //then it should say "There are no added tasks yet. Click "add" to create your first TaskList
+                
+              
+                
                 ActionBar.DefaultBar("TASKLIST", new ActionButtonController());
                 //temporary solution to clear the content!!!
+                
                 ArrayList<TaskList> ar = DataHandler.loadTaskLists();
                
                 TaskList[] taskLists = new TaskList[ar.size()];
                 taskLists= ar.toArray(taskLists);
-                TaskListView.reFresh(taskLists);
+                if(taskLists.length == 0)
+                {
+                  TaskListView.reFresh(null);  
+                }else 
+                {
+                    TaskListView.reFresh(taskLists);
+                }
+                
                 ActionArea.reFresh(TaskListView.getInstance());
-                //here you will have to refresh the WorkingArea so that itcom.maven.views tasks!
                 break;
             case "TASK" :
                 break;    

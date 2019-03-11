@@ -29,6 +29,7 @@ public class ActionBar extends HorizontalBar{
         super();
         this.setDim(new Dimension(700, 100));
         this.setSize(this.getDim());
+        this.setMinimumSize(this.getDim());
         this.setPreferredSize(this.getDim());
         this.setBackground(Color.RED);
         
@@ -39,7 +40,7 @@ public class ActionBar extends HorizontalBar{
     return instance;
     }
     
-    public static <E extends ActionListener> void DefaultBar(String type, E listener)
+    public static  void DefaultBar(String type, ActionButtonController listener)
     {
     instance.removeAll();
     instance.getGbc().fill = GridBagConstraints.HORIZONTAL;
@@ -81,7 +82,7 @@ public class ActionBar extends HorizontalBar{
     
     }
     
-    public static <E extends ActionListener> void  addNewBar(String type, E listener)
+    public static void  addNewBar(String type, ActionButtonController listener)
     {
         //type = TASKLIST/TASK/SUBTASK
         instance.removeAll();

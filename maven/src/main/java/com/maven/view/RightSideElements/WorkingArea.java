@@ -15,8 +15,6 @@ import java.awt.Color;
  */
 public class WorkingArea extends HorizontalBar{
     
-    private int pHeight = SquirrelConstants.getWorkingAreaHeight();
-    private String hexaColor = SquirrelConstants.getWorkingAreaBackground();
     private static WorkingArea instance=null;
     
     private WorkingArea()
@@ -26,25 +24,9 @@ public class WorkingArea extends HorizontalBar{
         this.setSize(this.getDim());
         this.setPreferredSize(this.getDim());
         this.setBackground(Color.BLACK);
-// this.setBackground(Color.decode(this.getHexaColor()));
     }
 
-    public int getpHeight() {
-        return pHeight;
-    }
-
-    public void setpHeight(int height) {
-        this.pHeight = height;
-    }
-
-    public String getHexaColor() {
-        return hexaColor;
-    }
-
-    public void setHexaColor(String hexaColor) {
-        this.hexaColor = hexaColor;
-    }
-    
+      
     public static WorkingArea getInstance()
     {
         if(instance == null) instance = new WorkingArea();

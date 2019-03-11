@@ -21,8 +21,7 @@ import com.maven.view.ReFreshable;
  * @author Regory Gregory
  */
 public class HorizontalBar extends JPanel{
-    private int pWidth = SquirrelConstants.getRightSideWidth();
-    private int pHeight;
+    
     private Dimension dim;
     private GridBagConstraints gbc; 
     private static HorizontalBar instance = null;
@@ -35,23 +34,6 @@ public class HorizontalBar extends JPanel{
         this.gbc = new GridBagConstraints();
     }
 
-    public int getpWidth() {
-        return pWidth;
-    }
-
-    public void setpWidth(int pWidth) {
-        this.pWidth = pWidth;
-    }
-
-    public int getpHeight() {
-        return pHeight;
-    }
-
-    public void setpHeight(int pHeight) {
-        this.pHeight = pHeight;
-    }
-
-    
     
     public Dimension getDim() {
         return dim;

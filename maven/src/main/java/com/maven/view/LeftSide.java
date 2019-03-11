@@ -21,7 +21,7 @@ public class LeftSide extends GeneralPanel{
       super(SquirrelConstants.getLeftSideWidth(), SquirrelConstants.getInnerPaneHeight());
 
 //     super(SquirrelConstants.getLeftSideWidth(), SquirrelConstants.getInnerPaneHeight());
-     this.setBackground(SquirrelConstants.getLeftSideBg());
+        this.setBackground(SquirrelConstants.getLeftSideBg());
         this.gbc.gridx = 0;
         this.gbc.gridy = 0;
         this.gbc.gridwidth = 1;
@@ -37,9 +37,6 @@ public class LeftSide extends GeneralPanel{
         this.add(mainMenu, this.gbc);
     }
     
-    
-    
-    
      public static  LeftSide getInstance()
     {
     if(instance==null)
@@ -49,6 +46,5 @@ public class LeftSide extends GeneralPanel{
     return instance;
       
     }
-    //making it a singleton class
  
 }
