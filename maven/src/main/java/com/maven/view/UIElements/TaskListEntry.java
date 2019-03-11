@@ -7,7 +7,7 @@ package com.maven.view.UIElements;
 
 import com.maven.view.RightSideElements.HorizontalBar;
 
-import com.maven.model.TaskList;
+import com.maven.model.SubTask;
 import com.maven.model.User;
 
 import javax.swing.JLabel;
@@ -18,7 +18,7 @@ import java.awt.GridBagConstraints;
  * @author Regory Gregory
  */
 public class TaskListEntry extends HorizontalBar{
-    public TaskListEntry (TaskList tal){
+    public TaskListEntry (SubTask tal){
     super();
     this.setSize(new Dimension(700, 100));
     this.setPreferredSize(new Dimension(700, 100));

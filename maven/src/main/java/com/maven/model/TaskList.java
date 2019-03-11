@@ -6,23 +6,8 @@ import com.maven.model.User;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
-public class TaskList implements Serializable
+public class TaskList extends SubTask implements Serializable 
 {
-    private int ID;
-
-    private String title;
-    private String description;
-    private User creator;
-
-
-    private User assignee;
-
-    private int priority;
-
-    private Date dateCreated;
-    private Date dateDue;
-    private Date dateModified;
-    private boolean completed;
 
     private ArrayList<Task> tasks;
     
@@ -30,38 +15,13 @@ public class TaskList implements Serializable
     {
      this.tasks = new ArrayList<Task>();
      this.setID();
-     this.setDateCreated();
-     this.setDateModified();
+     this.setCreatedDate();
+     this.setModifiedDateDefault();
      this.setCompleted(false);
     }
-
-    public int getID() {
-        return ID;
-    }
-
     public void setID() {
         this.ID = SquirrelConstants.getTasklistCounter();
     }
-
-    public Date getDateDue() {
-        return dateDue;
-    }
-
-    public void setDateDue(Date dateDue) {
-        this.dateDue = dateDue;
-    }
-    
-    
-    
-
-    public void setAssignee (User assignee)
-    {
-        this.assignee = assignee;
-
-    }
-        
-    
-   
     //Setters and getters for task attribute.
     public void addTask(Task task) {
         this.tasks.add(task);
@@ -76,20 +36,6 @@ public class TaskList implements Serializable
         this.tasks.add(Position, task);
     }
 
-
-   
-
-    //Boolean logic to state whether task is complete or not.
-    public boolean isCompleted(){
-        return this.completed;
-    }
-    
-    public void setCompleted(boolean complete)
-    {
-        this.completed = complete;
-    }
-
- 
       //Delete certain task.
     public void delTask(int pos){
         this.tasks.remove(pos);
@@ -99,83 +45,5 @@ public class TaskList implements Serializable
     public void delAll(boolean d){
        //It is a bit complicated as every user's tasks should be deleted as well... 
        
-    }
-
-    public void setDueDate(Date d) {
-        
-        this.dateDue = d;
-    }
-
-    public Date getDueDate() {
-        return this.dateDue;
-    }
-
-    public void setPriority(int p) {
-        this.priority = p;
-    }
-
-    public int getPriority() {
-        return priority;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public User getCreator() {
-        return creator;
-    }
-
-    public void setCreator(User creator) {
-        this.creator = creator;
-    }
-
-    public Date getDateCreated() {
-        return dateCreated;
-    }
-
-    public void setDateCreated() {
-        this.dateCreated = new Date();
-    }
-
-    public Date getDateModified() {
-        return dateModified;
-    }
-
-    public void setDateModified(Date dateModified) {
-        this.dateModified = dateModified;
-    }
-    public void setDateModified() {
-        this.dateModified = this.getDateCreated();
-    }
-    public String getStringDate(String which)
-    {
-       String stringDate = null;
-       SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
-        if(which.equals("dateCreated"))
-        {
-            stringDate = f.format(this.getDateCreated());
-        } else if(which.equals("dateModified"))
-        {
-            stringDate = f.format(this.getDateModified());
-
-        } else
-        {
-             stringDate = f.format(this.getDateDue());
-        }
-
-        return stringDate;
     }
 }

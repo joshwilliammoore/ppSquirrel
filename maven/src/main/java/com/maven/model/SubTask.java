@@ -9,31 +9,30 @@ import java.text.SimpleDateFormat;
 public class SubTask implements Serializable
 {
 
-    private int ID;
-    private String parentID;
+    protected int ID;
+    protected String parentID;
 
-    private String title;
-    private String description;
-    private Date dueDate;
-    private Date createdDate;
-    private Date modifiedDate;
-    private int priority;
-    private boolean completed;
+    protected String title;
+    protected String description;
+    protected Date dueDate;
+    protected Date createdDate;
+    protected Date modifiedDate;
+    protected int priority;
+    protected boolean completed;
 
    
-    private User creator;
+    protected User creator;
 
     
-    private User assignee;
-    
+    protected User assignee;
+    public SubTask(){}
     public SubTask(Date dueDate, int priority, String title, String description)
     {
-        Date currentDate = new Date();
         this.setID(SquirrelConstants.getTaskID());
         //incrementing the constant's value so that upon next creating it will have a new and incremented id.
         SquirrelConstants.setTaskID(SquirrelConstants.getTaskID()+1);
-        this.setCreatedDate(currentDate);
-        this.setModifiedDate(currentDate);
+        this.setCreatedDate();
+        this.setModifiedDateDefault();
         this.setDateDue(dueDate);
         this.setPriority(priority);
         this.setTitle(title);
@@ -106,18 +105,20 @@ public class SubTask implements Serializable
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
+    public void setCreatedDate() {
+        this.createdDate = new Date();
     }
 
     public Date getModifiedDate() {
         return modifiedDate;
     }
 
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
+    public void setModifiedDate(Date d) {
+        this.modifiedDate = d;
     }
-
+     public void setModifiedDateDefault() {
+        this.modifiedDate = new Date();
+    }
     public int getPriority() {
         return priority;
     }
@@ -148,5 +149,23 @@ public class SubTask implements Serializable
 
     public void setAssignee(User assignee) {
         this.assignee = assignee;
+    }
+    public String getStringDate(String which)
+    {
+       String stringDate = null;
+       SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+        if(which.equals("dateCreated"))
+        {
+            stringDate = f.format(this.getCreatedDate());
+        } else if(which.equals("dateModified"))
+        {
+            stringDate = f.format(this.getCreatedDate());
+
+        } else
+        {
+             stringDate = f.format(this.getCreatedDate());
+        }
+
+        return stringDate;
     }
 }
