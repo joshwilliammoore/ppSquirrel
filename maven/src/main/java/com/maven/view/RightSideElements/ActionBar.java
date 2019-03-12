@@ -38,11 +38,11 @@ public class ActionBar extends HorizontalBar{
     return instance;
     }
     
-    public static  void DefaultBar(String type, ActionButtonController listener)
+    public static  void DefaultBar(String type, ActionButtonController listener, int id)
     {
-    instance.removeAll();
-    instance.getGbc().fill = GridBagConstraints.HORIZONTAL;
-        
+        instance.removeAll();
+        instance.getGbc().fill = GridBagConstraints.HORIZONTAL;
+
         instance.getGbc().gridx=0;
         instance.getGbc().gridy=0;
         instance.getGbc().gridwidth=2;
@@ -51,7 +51,7 @@ public class ActionBar extends HorizontalBar{
         //this is just testing it. This whole section is basically hardcoded, so it will have to be rewritten.
         ActionBarButton jb = new ActionBarButton("Add new");
 
-                        jb.setActionCommand("NEW:"+type);
+                        jb.setActionCommand("NEW:"+type+":"+id);
                         
         jb.addActionListener(listener);
               
@@ -80,7 +80,7 @@ public class ActionBar extends HorizontalBar{
     
     }
     
-    public static void  addNewBar(String type, ActionButtonController listener)
+    public static void  addNewBar(String type, ActionButtonController listener, int id)
     {
         //type = TASKLIST/TASK/SUBTASK
         instance.removeAll();
@@ -93,13 +93,13 @@ public class ActionBar extends HorizontalBar{
         //this is just testing it. This whole section is basically hardcoded, so it will have to be rewritten.
         ActionBarButton jSave = new ActionBarButton("Save "+type);
                   
-        jSave.setActionCommand("SAVE:"+type+":ID");
+        jSave.setActionCommand("SAVE:"+type+":"+id);
         jSave.addActionListener(listener);
            
         ActionBarButton jCancel = new ActionBarButton("Cancel");
         jCancel.addActionListener(listener);
-        jCancel.setActionCommand("CANCEL:"+type);
-
+        jCancel.setActionCommand("CANCEL:"+type+":"+id);
+        JOptionPane.showMessageDialog(null, type);
         instance.add(jSave, instance.getGbc());
         
        

@@ -13,7 +13,10 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
+import com.maven.model.SubTask;
+import com.maven.model.Task;
 import com.maven.model.TaskList;
+
 import com.maven.model.SquirrelConstants;
 /**
  *
@@ -23,9 +26,9 @@ public class DataHandler {
     
     private static String s = System.getProperty("file.separator");
     private static String dirPath = "."+s+SquirrelConstants.getSaveDir();
-    private static ArrayList<TaskList> taskLists;
+    private static ArrayList<SubTask> taskLists;
 
-    public static boolean saveTaskList(TaskList taskList)
+    public static boolean saveTaskList(SubTask taskList)
     {
 
         String filePath = dirPath+s+"taskList_id-"+taskList.getID();
@@ -55,9 +58,9 @@ public class DataHandler {
         return success;
     }
     
-    public static TaskList loadTasklist(String filename)
+    public static SubTask loadTasklist(String filename)
     {
-        TaskList loaded = new TaskList();
+        SubTask loaded = new TaskList();
         
         String dirPath = "."+s+SquirrelConstants.getSaveDir();
         String filePath = dirPath+s+filename;
@@ -90,9 +93,12 @@ public class DataHandler {
       
     }
     
-    public static ArrayList<TaskList> loadTaskLists()
+    public static SubTask loadTaskLists(String type, int id)
     {
-            taskLists = new ArrayList<TaskList>();
+        taskLists = new ArrayList<SubTask>();
+
+        if(type.equals("TASKLISTS"))
+        {
             File saveDir = new File(dirPath);
             if(!saveDir.exists()){
                 try{
@@ -102,7 +108,7 @@ public class DataHandler {
                  System.out.println(e.getMessage());
 
                 }
-            
+
             }
             try{
             File[] fileList = saveDir.listFiles();
@@ -116,23 +122,88 @@ public class DataHandler {
             {
                 System.out.println(e.getMessage());
             }
-    return taskLists;
+        }  else if(type.equals("TASKLIST"))
+        {
+                    
+          return getTaskListByID(id);
+        
+        } else if(type.equals("TASK"))
+        {
+            return getTasktByID(id);
+
+        }else if(type.equals("SUBTASK")){
+            return getSubTasktByID(id);
+
+        }
+ 
+       
+    return null;
     }
     
-      public static TaskList getTaskListByID(int id)
-      {
-          for (TaskList tl : taskLists)
-          {
-          if(tl.getID()==id) return tl;
-          
-          }
-          return null;
-      }  
-      public static ArrayList<TaskList> getTaskLists() {
-        return taskLists;
-        }
+    public static SubTask getTaskListByID(int id)
+    {
+        for (SubTask tl : taskLists)
+        {
+        if(tl.getID()==id) return tl;
 
-    public static void setTaskLists(ArrayList<TaskList> taskLists) {
+        }
+        return null;
+    }  
+    
+    public static SubTask getTasktByID(int id)
+    {
+        //it is very ineffective
+        
+        for (SubTask tl : taskLists)
+        {
+           TaskList x = (TaskList) tl;
+           if(x.getChildren().size()>0)
+           {
+               ArrayList<Task> y = x.getChildren();
+               
+               for (Task t : y)
+               {
+                if(t.getID()==id) return t;
+               }
+           }
+
+        }
+        return null;
+    }
+      public static SubTask getSubTasktByID(int id)
+    {
+        for (SubTask tl : taskLists)
+        {
+           TaskList x = (TaskList) tl;
+           if(x.getChildren().size()>0)
+           {
+               ArrayList<Task> y = x.getChildren();
+               
+               for (Task t : y)
+               {
+                   if(t.getChildren().size()>0)
+                   {
+                   ArrayList<SubTask> z = t.getChildren();
+                   
+                        for(SubTask st : z)
+                        {
+                            if(st.getID()==id) return st;
+                        }
+
+                   }
+  
+               }
+           }
+
+        }
+        return null;
+    }
+    
+    public static ArrayList<SubTask> getTaskLists() {
+      return taskLists;
+      }
+
+    public static void setTaskLists(ArrayList<SubTask> taskLists) {
         DataHandler.taskLists = taskLists;
     }
 }

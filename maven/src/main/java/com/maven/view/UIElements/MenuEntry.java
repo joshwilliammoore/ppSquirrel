@@ -16,14 +16,16 @@ import com.maven.Controller.MenuController;
  */
 public class MenuEntry extends JLabel{
      
-    
+    private String commandLabel;
     public MenuEntry(String title, ImageIcon logo)
     {
     super();
     this.setDefaults();
     this.setText(title);
     this.setIcon(logo);
+    this.setCommandLabel("LISTVIEW:"+title+":0");
     this.addMouseListener(new MenuController());
+    
     }
      public MenuEntry(String title)
     {
@@ -39,4 +41,13 @@ public class MenuEntry extends JLabel{
          this.setForeground(SquirrelConstants.getMenuEntryForeground());
          this.setFont(SquirrelConstants.getMenuEntryFont());
      }
+
+    public String getCommandLabel() {
+        return commandLabel;
+    }
+
+    public void setCommandLabel(String commandLabel) {
+        this.commandLabel = commandLabel;
+    }
+     
 }

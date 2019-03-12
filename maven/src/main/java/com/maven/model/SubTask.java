@@ -94,7 +94,7 @@ public class SubTask implements Serializable
         //there is an error, you will have to debug it later on...
         Date currentDate = new Date();
         
-        if(currentDate.before(dueDate)){
+        if(!currentDate.before(dateDue)){
                 this.dueDate = dateDue;
 
         } else {

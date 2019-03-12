@@ -32,11 +32,15 @@ public class ActionButtonController implements ActionListener{
         switch(subCommands[0])
         {
             case "NEW":
-
-                   ContentLoader.loadContent(command, null);
+                   ContentLoader.loadContent("ADDVIEW:"+subCommands[1]+":"+subCommands[2], 0);
                 break;
             case "UPDATE":
                 
+                
+                //update content
+               
+                ContentLoader.loadContent("LISTVIEW:"+subCommands[1]+":"+subCommands[2], 0);
+
                 break;
             case "SAVE":
 
@@ -134,7 +138,7 @@ public class ActionButtonController implements ActionListener{
                                   if(!formatError)
                                     {
                                       DataHandler.saveTaskList(newList);   
-                                      ContentLoader.loadContent("TASKLISTS", null);    
+                                      ContentLoader.loadContent("LISTVIEW:TASKLISTS:0", null);    
                                     }
         
                                 break;
@@ -149,18 +153,14 @@ public class ActionButtonController implements ActionListener{
                 break;
             case "EDIT":
                 
-                
-                
-//                
-//                SubTask editable= new SubTask();    
-//                ContentLoader.loadContent(command, editable);
+                  ContentLoader.loadContent("EDITVIEW:"+subCommands[1]+":"+subCommands[2], 0);
                          
                 break;
             case "SEARCH":
                 break;
             case "VIEW":
-               
-                   ContentLoader.loadContent(command, null);
+                
+                   ContentLoader.loadContent("LISTVIEW:"+subCommands[1], subCommands[2]);//[2] may not always exist
 
                 break;
             case "DELETE":
@@ -171,7 +171,7 @@ public class ActionButtonController implements ActionListener{
 
                              if(!DataHandler.deleteTaskList(subCommands[2]))JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+command);
 
-                             ContentLoader.loadContent("TASKLISTS", null);
+                             ContentLoader.loadContent("LISTVIEW:"+subCommands[1]+":"+subCommands[2], null);
                             break;
                        case "TASK":
                             break;
@@ -184,21 +184,16 @@ public class ActionButtonController implements ActionListener{
                          }
                 break;    
             case "CANCEL":
-                 switch(subCommands[1])
+                if(!subCommands[1].equals("TASKLISTS") 
+                   && !subCommands[1].equals("TASKLIST") 
+                   && !subCommands[1].equals("TASK") 
+                   && !subCommands[1].equals("SUBTASK"))
                 {
-                     case "TASKLIST":
-                          ContentLoader.loadContent("TASKLISTS", null);
-                         break;
-                    case "TASK":
-                         break;
-                         
-                    case "SUBTASK":
-                         break; 
-                    default:
-                        JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+subCommands[1]);
-
+                  JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+subCommands[1]);
+                  break;
                 }
-
+                ContentLoader.loadContent("LISTVIEW:"+subCommands[1]+":"+subCommands[2], null);
+                JOptionPane.showMessageDialog(null, command);
                 break;
         
         
