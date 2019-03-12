@@ -4,27 +4,23 @@
  * and open the template in the editor.
  */
 package com.maven.view.UIElements;
-import java.awt.Component;
+
+import com.maven.model.SubTask;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneLayout ;
 import javax.swing.JPanel;
-import com.maven.view.ReFreshable;
-import com.maven.model.SubTask;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneLayout;
 
-import com.maven.view.RightSideElements.HorizontalBar;
-import javax.swing.JOptionPane;
 /**
  *
  * @author Regory Gregory
  */
-public class TaskListsView{
-    private static JPanel viewport;    
+public class ListView {
+     private static JPanel viewport;    
     private static JScrollPane instance = null;
     
-    private TaskListsView()
+    private ListView()
     {
     
     }
@@ -60,7 +56,7 @@ public class TaskListsView{
     {
         for(SubTask t : taskLists)
         {
-        TaskListEntry temp = new TaskListEntry(t);
+        ListEntry temp = new ListEntry(t);
         viewport.add(temp);
         }
     
@@ -71,6 +67,4 @@ public class TaskListsView{
     instance.repaint();
 
     }
-  
-
 }

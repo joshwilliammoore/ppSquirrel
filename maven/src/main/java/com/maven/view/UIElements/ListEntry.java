@@ -17,8 +17,9 @@ import java.awt.GridBagConstraints;
  *
  * @author Regory Gregory
  */
-public class TaskListEntry extends HorizontalBar{
-    public TaskListEntry (SubTask tal){
+public class ListEntry extends HorizontalBar{
+    public ListEntry (SubTask tal){
+    
     super();
     this.setSize(new Dimension(700, 100));
     this.setPreferredSize(new Dimension(700, 100));
