@@ -55,11 +55,11 @@ public class ContentLoader {
                         ActionArea.reFresh(ListView.getInstance());
                     } else 
                     {
-                            javax.swing.JOptionPane.showMessageDialog(null, text);
+                        javax.swing.JOptionPane.showMessageDialog(null, text);
 
                         SubTask t = DataHandler.getTaskListByID(Integer.parseInt(subCommands[2]));
                         MessageBar.getInstance().detailedView(t);
-                        ActionBar.addNewBar(subCommands[1], new ActionButtonController(), Integer.parseInt(subCommands[2]));
+                        ActionBar.DefaultBar(subCommands[1], new ActionButtonController(), Integer.parseInt(subCommands[2]));
 
                         if(t instanceof HasChildren)
                         {

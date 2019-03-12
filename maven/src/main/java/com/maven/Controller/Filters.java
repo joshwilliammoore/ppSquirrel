@@ -5,6 +5,7 @@
  */
 package com.maven.Controller;
 
+import com.maven.model.SquirrelConstants;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +16,7 @@ import com.maven.model.Task;
 import com.maven.model.TaskList;
 import com.maven.model.SubTask;
 import com.maven.model.User;
+import java.util.Arrays;
 /**
  *
  * @author Regory Gregory
@@ -85,5 +87,18 @@ public class Filters implements Comparator<SubTask>
     {
        Collections.sort(sortable, this.getInstance());
     
+    }
+    public static String returnRelative(String instance, boolean up)
+    {
+            String[] checkArray = SquirrelConstants.getListMap();
+            int index = Arrays.asList(checkArray).indexOf(instance);
+            if(index>0 && up==false)
+            {
+                index-=1;
+            } else if (index<checkArray.length-1 && up==true)
+            {
+                index+=1;
+            }
+    return Arrays.asList(checkArray).get(index);
     }
 }

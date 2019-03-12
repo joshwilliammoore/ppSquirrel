@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import com.maven.view.UIElements.ActionBarButton;
 import com.maven.Controller.ActionButtonController;
+import com.maven.Controller.Filters;
 import java.awt.event.ActionListener;
 /**
  *
@@ -49,7 +50,7 @@ public class ActionBar extends HorizontalBar{
         instance.getGbc().gridheight=1;
         
         //this is just testing it. This whole section is basically hardcoded, so it will have to be rewritten.
-        ActionBarButton jb = new ActionBarButton("Add new");
+        ActionBarButton jb = new ActionBarButton("Add new "+Filters.returnRelative(type, true));
 
                         jb.setActionCommand("NEW:"+type+":"+id);
                         
@@ -71,12 +72,21 @@ public class ActionBar extends HorizontalBar{
         jtf.setPreferredSize(new Dimension(300, 50));
 
         instance.getGbc().gridx = 4;
-        instance.getGbc().gridwidth = 5;
+        instance.getGbc().gridwidth = 4;
         instance.add(jtf, instance.getGbc());
+        if(!type.equals("TASKLISTS"))
+        {
+        instance.getGbc().gridx = 5;
+        instance.getGbc().gridwidth = 2;  
         
+        ActionBarButton jCancel = new ActionBarButton("Cancel");
+        jCancel.addActionListener(listener);
+        jCancel.setActionCommand("CANCEL:"+type+":"+id);
+        instance.add(jCancel, instance.getGbc());
+        }
         instance.revalidate();
         instance.repaint();
-    
+        
     
     }
     
@@ -100,7 +110,7 @@ public class ActionBar extends HorizontalBar{
         ActionBarButton jCancel = new ActionBarButton("Cancel");
         jCancel.addActionListener(listener);
         jCancel.setActionCommand("CANCEL:"+type+":"+id);
-        JOptionPane.showMessageDialog(null, type);
+//        JOptionPane.showMessageDialog(null, type);
         instance.add(jSave, instance.getGbc());
         
        
@@ -112,4 +122,6 @@ public class ActionBar extends HorizontalBar{
     
     
     }
+    
+    
 }
