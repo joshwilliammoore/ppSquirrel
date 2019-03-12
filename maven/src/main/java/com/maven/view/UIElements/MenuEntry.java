@@ -23,7 +23,6 @@ public class MenuEntry extends JLabel{
     this.setDefaults();
     this.setText(title);
     this.setIcon(logo);
-    this.setCommandLabel("LISTVIEW:"+title+":0");
     this.addMouseListener(new MenuController());
     
     }
@@ -31,6 +30,7 @@ public class MenuEntry extends JLabel{
     {
     super();
     this.setDefaults();
+    this.setCommandLabel("LISTVIEW:"+title.toUpperCase()+":0");
 
     this.setText(title);
      this.addMouseListener(new MenuController());

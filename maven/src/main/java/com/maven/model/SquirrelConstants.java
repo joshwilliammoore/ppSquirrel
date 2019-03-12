@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class SquirrelConstants {
 
     private static final String saveDir = "save";
+    private static final String[] listMap = {"TASKLISTS", "TASKLIST", "TASK", "SUBTASK" };
     private static final int H1SIZE = 31;
     private static int taskID = 0;
     //currently, these values have to be divisible by 100 without remainder
@@ -51,6 +52,10 @@ public class SquirrelConstants {
     private static final Color menuEntryBg = leftSideBg;
     private static final Font menuEntryFont = new Font("Arial", Font.PLAIN, 30);
     private static  final String[] menuEntries= {"Home", "Tasklists", "Settings" ,"Exit"};
+
+    public static String[] getListMap() {
+        return listMap;
+    }
     
     
     

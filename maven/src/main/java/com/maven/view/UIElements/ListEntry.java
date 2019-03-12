@@ -8,6 +8,9 @@ package com.maven.view.UIElements;
 import com.maven.view.RightSideElements.HorizontalBar;
 
 import com.maven.model.SubTask;
+import com.maven.model.TaskList;
+import com.maven.model.Task;
+
 import com.maven.model.User;
 
 import javax.swing.JLabel;
@@ -21,6 +24,8 @@ public class ListEntry extends HorizontalBar{
     public ListEntry (SubTask tal){
     
     super();
+    String type = (tal instanceof TaskList)? "TASKLIST": (tal instanceof Task)?"TASK": "SUBTASK" ;
+    
     this.setSize(new Dimension(700, 100));
     this.setPreferredSize(new Dimension(700, 100));
     
@@ -35,11 +40,11 @@ public class ListEntry extends HorizontalBar{
     JLabel date = new JLabel(tal.getStringDate("dueDate"));
     
     ActionAreaButton view = new ActionAreaButton("view");
-                        view.setActionCommand("VIEW:TASKLIST:"+tal.getID());
+                        view.setActionCommand("VIEW:"+type+":"+tal.getID());
     ActionAreaButton edit = new ActionAreaButton("edit");
-                     edit.setActionCommand("EDIT:TASKLIST:"+tal.getID());
+                     edit.setActionCommand("EDIT:"+type+":"+tal.getID());
     ActionAreaButton delete = new ActionAreaButton("delete");
-                     delete.setActionCommand("DELETE:TASKLIST:"+tal.getID());   
+                     delete.setActionCommand("DELETE:"+type+":"+tal.getID());   
     this.getGbc().fill=GridBagConstraints.HORIZONTAL;
     this.getGbc().gridx=0;
     this.getGbc().gridy=0;

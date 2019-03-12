@@ -56,6 +56,10 @@ public class ListView {
     {
         for(SubTask t : taskLists)
         {
+            
+            
+            
+            
         ListEntry temp = new ListEntry(t);
         viewport.add(temp);
         }

@@ -81,7 +81,9 @@ public class ContentLoader {
                     }
  
                 break;
-                case "ADDVIEW":  
+                case "ADDVIEW": 
+                        MessageBar.getInstance().customMessage("Here you can add a new"+subCommands[1]);
+
                         ActionBar.addNewBar(subCommands[1], new ActionButtonController(), Integer.parseInt(subCommands[2]));
                         AddForm.getInstance().setSpecs(null, true, subCommands[1]);
                         ActionArea.getInstance().reFresh(AddForm.getInstance());

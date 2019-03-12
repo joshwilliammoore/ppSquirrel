@@ -12,6 +12,7 @@ import javax.swing.JComponent;
 import java.lang.reflect.Field;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 
 import com.maven.view.UIElements.GetUIContent;
 import com.maven.view.UIElements.AddForm;
@@ -42,11 +43,12 @@ public class ActionButtonController implements ActionListener{
 
                 break;
             case "SAVE":
+                
 
                         switch(subCommands[1])
                         {
-                            case "TASKLIST":
-
+                            case "TASKLISTS":
+                                
                                 AddForm element = AddForm.getInstance();
                                         //element.setSpecs(null, true, "TaskList");    
                                 Component[] elements = element.getComponents();
@@ -129,8 +131,6 @@ public class ActionButtonController implements ActionListener{
                                                 break;
                                         }
 
-                                        
-                                        
                                     }
                                 }
                                 //saving content and refreshing ui
@@ -167,7 +167,7 @@ public class ActionButtonController implements ActionListener{
                  switch(subCommands[1])
                       {
                         case "TASKLIST":
-
+                            
                              if(!DataHandler.deleteTaskList(subCommands[2]))JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+command);
 
                              ContentLoader.loadContent("LISTVIEW:"+subCommands[1]+":"+subCommands[2], null);
@@ -191,7 +191,15 @@ public class ActionButtonController implements ActionListener{
                   JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+subCommands[1]);
                   break;
                 }
-                ContentLoader.loadContent("LISTVIEW:"+subCommands[1]+":"+subCommands[2], null);
+                
+                String[] checkArray = SquirrelConstants.getListMap();
+                int index = Arrays.asList(checkArray).indexOf(subCommands[1]);
+                if(index>0)
+                {
+                    index-=1;
+                }
+                
+                ContentLoader.loadContent("LISTVIEW:"+Arrays.asList(checkArray).get(index)+":"+subCommands[2], null);
                 JOptionPane.showMessageDialog(null, command);
                 break;
         

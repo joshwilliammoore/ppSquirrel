@@ -80,7 +80,8 @@ public class ActionBar extends HorizontalBar{
     
     }
     
-    public static void  addNewBar(String type, ActionButtonController listener, int id)
+    public static void  addNewBar(String type, 
+            ActionButtonController listener, int id)
     {
         //type = TASKLIST/TASK/SUBTASK
         instance.removeAll();
