@@ -9,9 +9,8 @@ import com.maven.view.RightSideElements.ActionBar;
 import com.maven.view.RightSideElements.ActionArea;
 import com.maven.view.RightSideElements.MessageBar;
 import com.maven.view.RightSideElements.TitleBar;
-import com.maven.view.RightSideElements.WorkingArea;
 
-import com.maven.view.UIElements.TaskListsView;
+import com.maven.view.UIElements.ListView;
 
 
 
@@ -23,11 +22,10 @@ public class Init {
     public static void init()
     {
                 ActionArea.getInstance();
-                TaskListsView.getInstance();
+                ListView.getInstance();
                 ActionBar.getInstance();
                 MessageBar.getInstance();
                 TitleBar.getInstance();
-                WorkingArea.getInstance();
     
     }
 }

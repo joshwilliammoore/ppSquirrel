@@ -13,7 +13,6 @@ import java.lang.reflect.Field;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-import com.maven.view.RightSideElements.WorkingArea;
 import com.maven.view.UIElements.GetUIContent;
 import com.maven.view.UIElements.AddForm;
 import com.maven.model.TaskList;
