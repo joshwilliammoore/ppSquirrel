@@ -159,7 +159,7 @@ public class ActionButtonController implements ActionListener{
                 break;
             case "VIEW":
                 
-                   ContentLoader.loadContent("LISTVIEW:"+subCommands[1], subCommands[2]);//[2] may not always exist
+                   ContentLoader.loadContent("LISTVIEW:"+subCommands[1]+":"+subCommands[2], 0);//[2] may not always exist
 
                 break;
             case "DELETE":

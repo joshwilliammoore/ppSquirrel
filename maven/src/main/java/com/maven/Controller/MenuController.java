@@ -21,7 +21,6 @@ public class MenuController implements MouseListener{
     public void mousePressed(MouseEvent e){
     MenuEntry parent = (MenuEntry) e.getSource();
     String text = parent.getCommandLabel().toUpperCase();
-    javax.swing.JOptionPane.showMessageDialog(null, text);
     ContentLoader.loadContent(text, null);
     }
     public void mouseReleased(MouseEvent e){}
