@@ -37,7 +37,7 @@ public class ContentLoader {
                 case "LISTVIEW":
                     
                     //logical error here, mate!!!!
-                    if(subCommands[1]=="TASKLISTS")
+                    if(subCommands[1].equals("TASKLISTS"))
                     {
                         MessageBar.getInstance().customMessage("Here you can see the"+subCommands[1]);
                         ActionBar.DefaultBar(subCommands[1], new ActionButtonController(), Integer.parseInt(subCommands[2]));
