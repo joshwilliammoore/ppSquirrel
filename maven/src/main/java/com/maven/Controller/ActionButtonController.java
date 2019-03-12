@@ -167,10 +167,16 @@ public class ActionButtonController implements ActionListener{
                  switch(subCommands[1])
                       {
                         case "TASKLIST":
-                            
                              if(!DataHandler.deleteTaskList(subCommands[2]))JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+command);
+                             String[] checkArray = SquirrelConstants.getListMap();
+                            int index = Arrays.asList(checkArray).indexOf(subCommands[1]);
+                            if(index>0)
+                            {
+                                index-=1;
+                            }
 
-                             ContentLoader.loadContent("LISTVIEW:"+subCommands[1]+":"+subCommands[2], null);
+                            ContentLoader.loadContent("LISTVIEW:"+Arrays.asList(checkArray).get(index)+":"+subCommands[2], null);
+
                             break;
                        case "TASK":
                             break;
