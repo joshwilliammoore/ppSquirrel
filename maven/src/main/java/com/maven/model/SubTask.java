@@ -33,7 +33,7 @@ public class SubTask implements Serializable
         SquirrelConstants.setTaskID(SquirrelConstants.getTaskID()+1);
         this.setCreatedDate();
         this.setModifiedDateDefault();
-        this.setDateDue(dueDate);
+        this.setDueDate(dueDate);
         this.setPriority(priority);
         this.setTitle(title);
         this.setDescription(description);
@@ -90,20 +90,20 @@ public class SubTask implements Serializable
        }
        
      } 
-    public void setDateDue(Date dateDue) {
+    public void setDueDate(Date dateDue) {
        
         
         //there is an error, you will have to debug it later on...
         Date currentDate = new Date();
         
-        if(!currentDate.before(dateDue)){
+//        if(!currentDate.before(dateDue)){
                 this.dueDate = dateDue;
 
-        } else {
-            
-            //error handling should come here!!!
-            System.out.println("Error!!!!");
-        }
+//        } else {
+//            
+//            //error handling should come here!!!
+//            System.out.println("Error!!!!");
+//        }
     }
 
     public Date getCreatedDate() {
@@ -164,11 +164,11 @@ public class SubTask implements Serializable
             stringDate = f.format(this.getCreatedDate());
         } else if(which.equals("dateModified"))
         {
-            stringDate = f.format(this.getCreatedDate());
+            stringDate = f.format(this.getModifiedDate());
 
         } else
         {
-             stringDate = f.format(this.getCreatedDate());
+             stringDate = f.format(this.getDueDate());
         }
 
         return stringDate;

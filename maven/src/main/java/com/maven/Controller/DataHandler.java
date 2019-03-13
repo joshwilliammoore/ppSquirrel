@@ -228,7 +228,7 @@ public class DataHandler {
            }
 
         }
-        return null;
+        return found;
     }
     
      
@@ -268,7 +268,7 @@ public class DataHandler {
            }
 
         }
-        return null;
+        return found;
     }
     
     public static ArrayList<SubTask> getTaskLists() {

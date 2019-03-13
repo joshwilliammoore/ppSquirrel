@@ -139,7 +139,7 @@ public class ActionButtonController implements ActionListener{
                                                   };
                                                   
                                                 try{
-                                                newList.setDateDue(format.parse(value));
+                                                newList.setDueDate(format.parse(value));
                                                 }catch(Exception ex)
                                                 {
                                                     ex.printStackTrace();
@@ -224,8 +224,33 @@ public class ActionButtonController implements ActionListener{
                   JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+subCommands[1]);
                   break;
                 }
+                         ArrayList<SubTask> nav = new ArrayList<>();
+                        String source = Filters.returnRelative(subCommands[1], true);
+                        int id = Integer.parseInt(subCommands[2]);
+                        
+                        if(source.equals("TASK"))
+                        {
+                            nav = DataHandler.getTasktByID(id);
+                            if(nav.size()>0)
+                            {
+                                id = nav.get(1).getID();
+                            }
+                        }
+                         if(source.equals("SUBTASK"))
+                        {
+                            nav = DataHandler.getSubTasktByID(id);
+                             if(nav.size()>0)
+                            {
+                                id = nav.get(1).getID();
+                            } else {
+                                 JOptionPane.showMessageDialog(null, "Can't find Subtask's parent...");
+                             }
+                        }
+//                       DataHandler.getEntry(); 
                 
-                ContentLoader.loadContent("LISTVIEW:"+subCommands[1]+":"+subCommands[2], null);
+                
+                
+                ContentLoader.loadContent("LISTVIEW:"+subCommands[1]+":"+id, null);
                 
            break;
         

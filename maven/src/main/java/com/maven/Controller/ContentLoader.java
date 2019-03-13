@@ -62,7 +62,7 @@ public class ContentLoader {
                     {
                         javax.swing.JOptionPane.showMessageDialog(null, text);
 
-                        SubTask t = DataHandler.getTaskListByID(Integer.parseInt(subCommands[2]));
+                        SubTask t = DataHandler.getEntry(subCommands[1], Integer.parseInt(subCommands[2]));
                         MessageBar.getInstance().detailedView(t);
                         ActionBar.DefaultBar(subCommands[1], new ActionButtonController(), Integer.parseInt(subCommands[2]));
 
