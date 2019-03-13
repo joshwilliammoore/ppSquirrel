@@ -23,7 +23,7 @@ import com.maven.view.RightSideElements.HorizontalBar;
 import com.maven.Controller.Init;
 import com.maven.model.User;
 import com.maven.view.*;
-import com.maven.view.UIElements.TaskListView;
+import com.maven.view.UIElements.Menu;
 
 /**
  *
@@ -76,7 +76,6 @@ public class Main {
         frank.setPassword("Password2");
         
         SubTask sub1 = new SubTask();
-        sub1.setID(1);
         sub1.setTitle("Do something");
         sub1.setDescription("Do something else.");
         sub1.setDateDueString("12/12/2019");
@@ -86,7 +85,6 @@ public class Main {
         sub1.setAssignee(ben);
         
         SubTask sub2 = new SubTask();
-        sub2.setID(2);
         sub2.setTitle("Bake the potato");
         sub2.setDescription("Stab the potato and cook it.");
         sub2.setDateDueString("02/08/2020");
@@ -96,7 +94,6 @@ public class Main {
         sub2.setAssignee(tim);
         
         SubTask sub3 = new SubTask();
-        sub3.setID(3);
         sub3.setTitle("Assassination");
         sub3.setDescription("Assassinate someone");
         sub3.setDateDueString("30/06/2019");
