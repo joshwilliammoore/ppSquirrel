@@ -3,38 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.maven.view.UIElements;
 
-import com.maven.model.TaskList;
 import com.maven.view.RightSideElements.HorizontalBar;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import java.awt.Dimension;
-import java.awt.Color;
-import java.awt.GridLayout;
-import javax.swing.ScrollPaneLayout;
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
-import javax.swing.JComponent;
-import java.util.ArrayList;
-
-
-
 import com.maven.model.SubTask;
+import com.maven.model.Task;
+import com.maven.model.TaskList;
 
-public class AddForm extends HorizontalBar{
-  
-   private static AddForm instance=null;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
+
+/**
+ *
+ * @author Regory Gregory
+ */
+public class EditForm extends HorizontalBar{
+    private static EditForm instance=null;
     //This is something I haven't finished yet. Has to be parameterized!!!
-   public static AddForm getInstance()
+   public static EditForm getInstance()
    {
-   if(instance==null)instance =  new AddForm();
+   if(instance==null)instance =  new EditForm();
    return instance;
    }
-    protected AddForm()
+   
+   
+    protected EditForm()
     {
         super();
         //will have to parameterize!!!
@@ -44,34 +39,37 @@ public class AddForm extends HorizontalBar{
         this.setPreferredSize(this.getDim());
         this.setBackground(Color.PINK);
     }
-    public void reFresh(SubTask typOfSubTask, String tag)
+    
+    public void reFresh(SubTask editable)
     {
-     
-        //removing previous elements if there are!
+        String type = (editable instanceof TaskList)? "TASKLIST": (editable instanceof Task)?"TASK": "SUBTASK";
+
+         //removing previous elements if there are!
        instance.removeAll();    
         //Title
-        JLabel labelTitle = new JLabel("Title of the "+tag);
+        JLabel labelTitle = new JLabel("Title of the "+type);
         instance.add(labelTitle);
         
         FormField titleInput = new FormField();
-  
+                  titleInput.setText(editable.getTitle());  
         titleInput.setLabel("title");
         
         instance.add(titleInput);
        //Description
 
-        JLabel labelDescription = new JLabel("Description of the "+tag);
+        JLabel labelDescription = new JLabel("Description of the "+type);
         
         instance.add(labelDescription);
         
         FormArea descriptionInput = new FormArea();
         descriptionInput.setLabel("description");
+        descriptionInput.setText(editable.getDescription());
         instance.add(descriptionInput);
 
         //Priority
 
         
-        JLabel labelPriority = new JLabel("Priority of the "+tag);
+        JLabel labelPriority = new JLabel("Priority of the "+type);
         
         instance.add(labelPriority);
         
@@ -80,46 +78,30 @@ public class AddForm extends HorizontalBar{
                   priorityDropdown.setLabel("priority");  
         instance.add(priorityDropdown);
 
-        
         //Assignee
 
-        JLabel labelAssignee = new JLabel("Assignee for the "+tag);
+        JLabel labelAssignee = new JLabel("Assignee for the "+type);
         
         instance.add(labelAssignee);
 
-        
         String[] assignees = {"John", "Fred", "Sally", "Paul", "Josh"};
         FormCombo assigneeDropdown = new FormCombo(assignees);
                     assigneeDropdown.setLabel("staff");
         instance.add(assigneeDropdown);
-        
 
          //Due date 
-         JLabel labelDueDate = new JLabel("DueDate of the "+tag);
+         JLabel labelDueDate = new JLabel("DueDate of the "+type);
         
         instance.add(labelDueDate);
         
         FormField dueDateInput = new FormField();
-                  dueDateInput.setLabel("dateDue");  
-        instance.add(dueDateInput);
-        
+                  dueDateInput.setLabel("dateDue"); 
+                  dueDateInput.setText(editable.getDateDueString());
 
-         if(typOfSubTask!=null)
-        {
-            titleInput.setText(typOfSubTask.getTitle());
-            descriptionInput.setText(typOfSubTask.getDescription());
-            //priorityDropdown.setSelectedItem(typOfSubTask.getPriority());
-            //priorityDropdown.setEditable(editable);
-            //assigneeDropdown.setSelectedItem(typOfSubTask.getAssignee().getUserName());
-            //assigneeDropdown.setEditable(editable);
-            dueDateInput.setText(typOfSubTask.getDateDueString());
-            
-            
-            
-        }
+        instance.add(dueDateInput);
+
          instance.revalidate();
          instance.repaint();
         
     }
-    
 }

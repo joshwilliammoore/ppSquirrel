@@ -221,9 +221,12 @@ public class DataHandler {
                
                for (Task t : y)
                {
+                
+                if(t.getID()==id){
                 found.add(t);
                 found.add(tl);
-                if(t.getID()==id) return found;
+                return found;
+                } 
                }
            }
 

@@ -17,6 +17,7 @@ import com.maven.view.RightSideElements.ActionBar;
 import com.maven.view.RightSideElements.MessageBar;
 import com.maven.view.UIElements.ListView;
 import com.maven.view.UIElements.AddForm;
+import com.maven.view.UIElements.EditForm;
 /**
  *
  * @author Regory Gregory
@@ -80,6 +81,9 @@ public class ContentLoader {
                                 ListView.reFresh(childrenList);
                             }
 
+                        } else 
+                        {
+                            ListView.reFresh(null);  
                         }
 
                         ActionArea.reFresh(ListView.getInstance());
@@ -87,13 +91,21 @@ public class ContentLoader {
  
                 break;
                 case "ADDVIEW": 
-                        MessageBar.getInstance().customMessage("Here you can add a new"+subCommands[1]);
+                        MessageBar.getInstance().customMessage("Here you can add a new "+subCommands[1]);
 
                         ActionBar.addNewBar(subCommands[1], new ActionButtonController(), Integer.parseInt(subCommands[2]));
-                        AddForm.getInstance().setSpecs(null, true, subCommands[1]);
+                        AddForm.getInstance().reFresh(null, subCommands[1]);
                         ActionArea.getInstance().reFresh(AddForm.getInstance());
                 break;
                 case "EDITVIEW":
+                        SubTask t = DataHandler.getEntry(subCommands[1], Integer.parseInt(subCommands[2]));
+                        MessageBar.getInstance().customMessage("Here you can edit a "+subCommands[1]);
+
+                        ActionBar.editBar(subCommands[1], new ActionButtonController(), Integer.parseInt(subCommands[2]));
+                        EditForm.getInstance().reFresh(t);
+                        ActionArea.getInstance().reFresh(EditForm.getInstance());
+                    
+                    
                     break;
            
                 case "EXIT": System.exit(0);

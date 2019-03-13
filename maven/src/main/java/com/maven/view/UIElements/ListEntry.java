@@ -24,8 +24,8 @@ public class ListEntry extends HorizontalBar{
     public ListEntry (SubTask tal){
     
     super();
-    String type = (tal instanceof TaskList)? "TASKLIST": (tal instanceof Task)?"TASK": "SUBTASK" ;
-    
+    String type = (tal instanceof TaskList)? "TASKLIST": (tal instanceof Task)?"TASK": "SUBTASK";
+    //if(type.equals("SUBTASK")) javax.swing.JOptionPane.showMessageDialog(null, tal.getID());
     this.setSize(new Dimension(700, 100));
     this.setPreferredSize(new Dimension(700, 100));
     

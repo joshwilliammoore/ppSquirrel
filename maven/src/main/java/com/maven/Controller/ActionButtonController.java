@@ -17,6 +17,8 @@ import java.util.ArrayList;
 
 import com.maven.view.UIElements.GetUIContent;
 import com.maven.view.UIElements.AddForm;
+import com.maven.view.UIElements.EditForm;
+
 import com.maven.model.TaskList;
 import com.maven.model.Task;
 import com.maven.model.SubTask;
@@ -38,6 +40,93 @@ public class ActionButtonController implements ActionListener{
                    ContentLoader.loadContent("ADDVIEW:"+subCommands[1]+":"+subCommands[2], 0);
                 break;
             case "UPDATE":
+                 SubTask updatable = DataHandler.getEntry(subCommands[1],Integer.parseInt(subCommands[2]));
+                
+                EditForm dataForm = EditForm.getInstance();
+                                        //element.reFresh(null, true, "TaskList");    
+                                Component[] elementsE = dataForm.getComponents();
+
+                                boolean formatErrorE = false;
+                                
+                                for(Component c : elementsE){
+                                    if(formatErrorE)
+                                    {
+                                    break;
+                                    }
+
+                                    if(c instanceof GetUIContent)
+                                    {
+                                        GetUIContent content = (GetUIContent) c;
+                                        String label = content.getLabel();
+                                     
+                                        String value = content.getContent();
+  
+                                        switch(label){
+                                            case "title":
+                                                if(!FormatChecker.isFieldEmpty(value)) {
+                                                JOptionPane.showMessageDialog(null, "The title field is empty. Please fill it!");
+                                                formatErrorE = true;
+                                                continue;
+                                                };
+                                                updatable.setTitle(value);
+                                                break;
+                                            case "description":
+                                                if(!FormatChecker.isFieldEmpty(value)) {
+                                                JOptionPane.showMessageDialog(null, "The description field is empty. Please fill it!"+value); 
+                                                formatErrorE = true;
+                                                continue;
+                                                };
+                                                updatable.setDescription(value);
+                                                break;
+                                            case "creator":
+                                                updatable.setCreator(new User());
+                                                break;
+                                            
+                                            case "assignee":
+                                                updatable.setAssignee(new User());
+
+                                                break;
+                                            case "priority":
+                                                if(!FormatChecker.isFieldEmpty(value)) {
+                                                JOptionPane.showMessageDialog(null, "The priority field is empty. Please fill it!"); 
+                                                formatErrorE = true;
+                                                continue;
+                                                };
+                                                updatable.setPriority(Integer.parseInt(value));
+                                                break;
+                                            case "dateDue":
+                                                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                                                if(!FormatChecker.isFieldEmpty(value)) {
+                                                JOptionPane.showMessageDialog(null, "The due date field is empty. Please fill it!"); 
+                                                formatErrorE = true;
+                                                continue;
+                                                };
+                                                 if(FormatChecker.dateFormatChecker(value).equals("badformat")) {
+                                                JOptionPane.showMessageDialog(null, "The due date field is not properly formatted. The proper format is dd/mm/yyyy."); 
+                                                formatErrorE = true;
+                                                continue;
+                                                };
+                                                if (FormatChecker.dateFormatChecker(value).equals("notlater"))
+                                                 {
+                                                  //it will have to be improved to compare time!!!   
+                                                  JOptionPane.showMessageDialog(null, "The given due date is not later than the current date. Please make it a later date."); 
+                                                  formatErrorE = true;
+                                                  continue;
+                                                  };
+                                                  
+                                                try{
+                                                updatable.setDueDate(format.parse(value));
+                                                }catch(Exception ex)
+                                                {
+                                                    ex.printStackTrace();
+                                                }
+                                                break;
+                                        }
+
+                                    }
+                                }
+                
+                
                 
                 
                 //update content
@@ -64,10 +153,9 @@ public class ActionButtonController implements ActionListener{
                   newList = new SubTask(); 
                   parent = DataHandler.getTasktByID(Integer.parseInt(subCommands[2])).get(0);
                 }
-                        
-  
+
                                 AddForm element = AddForm.getInstance();
-                                        //element.setSpecs(null, true, "TaskList");    
+                                        //element.reFresh(null, true, "TaskList");    
                                 Component[] elements = element.getComponents();
 
                                 boolean formatError = false;
@@ -200,14 +288,14 @@ public class ActionButtonController implements ActionListener{
                         {
                            
                             ArrayList<SubTask> handle=DataHandler.getTasktByID(Integer.parseInt(subCommands[2]));
-                             System.out.println(handle);
+                            System.out.println(handle);
                             TaskList p = (TaskList) handle.get(1);
                             parentID = p.getID();
                             p.removeChild(handle.get(0));
                         } 
                 else 
                         {
-                            ArrayList<SubTask> handle=DataHandler.getTasktByID(Integer.parseInt(subCommands[2]));
+                            ArrayList<SubTask> handle=DataHandler.getSubTasktByID(Integer.parseInt(subCommands[2]));
                             Task p = (Task) handle.get(1);
                             parentID = p.getID();
                             p.removeChild(handle.get(0));

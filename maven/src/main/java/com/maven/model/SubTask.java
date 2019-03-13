@@ -25,7 +25,13 @@ public class SubTask implements Serializable
 
     
     protected User assignee;
-    public SubTask(){}
+    
+    public SubTask(){
+        this.setID();
+        this.setCreatedDate();
+        this.setModifiedDateDefault();
+        this.setCompleted(false);
+    }
     public SubTask(Date dueDate, int priority, String title, String description)
     {
         this.setID();

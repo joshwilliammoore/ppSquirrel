@@ -91,7 +91,7 @@ public class ActionBar extends HorizontalBar{
         
     
     }
-    
+  
     public static void  addNewBar(String source, 
             ActionButtonController listener, int parentID)
     {
@@ -123,6 +123,38 @@ public class ActionBar extends HorizontalBar{
         instance.repaint();
     
     
+    }
+    
+    public static void editBar(String source, 
+    ActionButtonController listener, int parentID)
+    {
+            instance.removeAll();
+   
+        instance.getGbc().fill = GridBagConstraints.HORIZONTAL;
+        instance.getGbc().gridx=0;
+        instance.getGbc().gridy=0;
+        instance.getGbc().gridwidth=2;
+        instance.getGbc().gridheight=1;
+        //this is just testing it. This whole section is basically hardcoded, so it will have to be rewritten.
+        ActionBarButton jSave = new ActionBarButton("Save changes for "+source);
+        jSave.setActionCommand("UPDATE:"+source+":"+parentID);
+        jSave.addActionListener(listener);
+           
+        ActionBarButton jCancel = new ActionBarButton("Cancel");
+        jCancel.addActionListener(listener);
+
+        jCancel.setActionCommand("CANCEL:"+Filters.returnRelative(source, false)+":"+parentID);
+//        JOptionPane.showMessageDialog(null, source);
+        instance.add(jSave, instance.getGbc());
+        
+       
+        instance.getGbc().gridx=2;
+        instance.add(jCancel, instance.getGbc());
+        
+        instance.revalidate();
+        instance.repaint();
+
+        
     }
     
     
