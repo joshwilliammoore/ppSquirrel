@@ -12,15 +12,22 @@ package com.maven.model;
 public class Idcounter {
     private static int count;
     
+    public Idcounter()
+    {
+    this.count = 1;
+    }
+    
+    
+    
     public Idcounter(int count)
     {
     this.count = count;
     }
-    public static int getCount() {
+    public static int getCounter() {
         return count;
     }
 
-    public static void setCount(int count) {
+    public static void setCounter(int count) {
         Idcounter.count = count;
     }
 }

@@ -46,7 +46,7 @@ public class ContentLoader {
                     {
                         MessageBar.getInstance().customMessage("Here you can see the"+subCommands[1]);
                         ActionBar.DefaultBar(subCommands[1], new ActionButtonController(), Integer.parseInt(subCommands[2]));
-                        DataHandler.loadTaskLists(subCommands[1],Integer.parseInt(subCommands[2]));
+                        //DataHandler.loadTasklists(subCommands[1],Integer.parseInt(subCommands[2]));
                         ArrayList<SubTask> ar = DataHandler.getTaskLists();
                         SubTask[] taskLists = new SubTask[ar.size()];
                         taskLists= ar.toArray(taskLists);

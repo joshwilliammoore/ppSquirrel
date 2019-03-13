@@ -26,9 +26,8 @@ public class SquirrelConstants {
     private static final int rightSideWidth = 700;
     private static final int innerPaneHeight = 600;
     private static final boolean removeDefaultMenuBar = false;
-    private static int tasklistCounter =0;
-    private static int taskCounter = 0;
-    private static int subtaskCounter =0;
+    
+    private static int subtaskCounter =1;
 
     private static final Color mainBg = Color.decode("#ffffff");
     private static final Color rightSideBg = Color.decode("#ffffff");
@@ -218,31 +217,23 @@ public class SquirrelConstants {
         return leftSideFore;
     }
 
-    public static int getTasklistCounter() {
-        incrementTasklistCounter();
-        return tasklistCounter;
-    }
-
-    public static void incrementTasklistCounter() {
-        SquirrelConstants.tasklistCounter++;
-    }
-
-    public static int getTaskCounter() {
-        incrementTaskCounter();
-        return taskCounter;
-    }
-
-    public static void incrementTaskCounter() {
-        SquirrelConstants.taskCounter++;
-    }
-
     public static int getSubtaskCounter() {
         incrementSubtaskCounter();
         return subtaskCounter;
     }
-
+    
+    
+    
+    
     public static void incrementSubtaskCounter() {
         SquirrelConstants.subtaskCounter++;
+    }
+    public static int getCounter() {
+        return subtaskCounter;
+    }
+    
+    public static void setCounter(int count) {
+       subtaskCounter = count;
     }
     
 }

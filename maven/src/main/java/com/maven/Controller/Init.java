@@ -5,6 +5,7 @@
  */
 package com.maven.Controller;
 
+import com.maven.model.SquirrelConstants;
 import com.maven.view.RightSideElements.ActionBar;
 import com.maven.view.RightSideElements.ActionArea;
 import com.maven.view.RightSideElements.MessageBar;
@@ -21,6 +22,7 @@ import com.maven.view.UIElements.ListView;
 public class Init {
     public static void init()
     {
+                DataHandler.loadTasklists();
                 ActionArea.getInstance();
                 ListView.getInstance();
                 ActionBar.getInstance();

@@ -47,6 +47,7 @@ public class ActionButtonController implements ActionListener{
                 break;
             case "SAVE":
                 
+               
                         //here, you need to be able to handle the parent!!! Where to save it?
                          //subcommands[1] contains the type, what are you gonna do now?
                 SubTask newList=null;
@@ -156,9 +157,7 @@ public class ActionButtonController implements ActionListener{
                                       {
                                           
                                       parent.addChild(newList);
-                                      //this is incredibly ineffective atm...
-                                     
-                                      //it has not been saved to the file!!! It is just in the taskLists arraylist
+                                   
                                       } else 
                                       {
                                        //if it is null, then it is a new tasklist!!!   
@@ -169,6 +168,9 @@ public class ActionButtonController implements ActionListener{
                                       //this reloads the parent container!!!
                                       ContentLoader.loadContent("LISTVIEW:"+Filters.returnRelative(subCommands[1], false)+":"+subCommands[2], null);    
                                     }
+                DataHandler.getIDCounter().setCounter(SquirrelConstants.getCounter());
+                DataHandler.saveCounter();
+                JOptionPane.showMessageDialog(null, DataHandler.getIDCounter().getCounter());
         
                        
             break;
