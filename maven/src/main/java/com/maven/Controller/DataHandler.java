@@ -28,6 +28,43 @@ public class DataHandler {
     private static String dirPath = "."+s+SquirrelConstants.getSaveDir();
     private static ArrayList<SubTask> taskLists;
 
+    
+    
+    public static boolean updateTaskLists()
+    {
+        boolean success = true;
+
+        for(SubTask taskList : taskLists)
+        {
+                 String filePath = dirPath+s+"taskList_id-"+taskList.getID();
+                File newDir = new File(dirPath);
+                File newFile = new File(filePath);
+                try
+                {   if(!newDir.exists())
+                    {
+                     newDir.mkdirs();
+
+                    }
+                    newFile.createNewFile();
+
+                    FileOutputStream fileOut = new FileOutputStream(newFile);
+                    ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+                    objectOut.writeObject(taskList);
+                    success = true;
+                    fileOut.close();
+                    objectOut.close();
+
+
+                }catch(Exception e)
+                {
+                    success = false;
+                    e.printStackTrace();
+                }
+        }
+  
+        return success;
+    
+    }
     public static boolean saveTaskList(SubTask taskList)
     {
 
@@ -93,6 +130,8 @@ public class DataHandler {
       
     }
     
+  
+    
     public static SubTask loadTaskLists(String type, int id)
     {
         taskLists = new ArrayList<SubTask>();
@@ -129,14 +168,13 @@ public class DataHandler {
         
         } else if(type.equals("TASK"))
         {
-            return getTasktByID(id);
+            return getTasktByID(id).get(0);
 
         }else if(type.equals("SUBTASK")){
-            return getSubTasktByID(id);
+            return getSubTasktByID(id).get(0);
 
         }
  
-       
     return null;
     }
     
@@ -150,9 +188,11 @@ public class DataHandler {
         return null;
     }  
     
-    public static SubTask getTasktByID(int id)
+    public static ArrayList<SubTask> getTasktByID(int id)
     {
-        //it is very ineffective
+        ArrayList<SubTask> found = new ArrayList<>();
+        
+        
         
         for (SubTask tl : taskLists)
         {
@@ -163,15 +203,24 @@ public class DataHandler {
                
                for (Task t : y)
                {
-                if(t.getID()==id) return t;
+                found.add(t);
+                found.add(tl);
+                if(t.getID()==id) return found;
                }
            }
 
         }
         return null;
     }
-      public static SubTask getSubTasktByID(int id)
+    
+     
+    
+    
+    
+      public static  ArrayList<SubTask> getSubTasktByID(int id)
     {
+         ArrayList<SubTask> found = new ArrayList<>();
+
         for (SubTask tl : taskLists)
         {
            TaskList x = (TaskList) tl;
@@ -187,7 +236,12 @@ public class DataHandler {
                    
                         for(SubTask st : z)
                         {
-                            if(st.getID()==id) return st;
+                            if(st.getID()==id){
+                               found.add(st);
+                               found.add(t);
+                               found.add(tl);
+                               return found;
+                            }
                         }
 
                    }

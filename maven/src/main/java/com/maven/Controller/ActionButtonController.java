@@ -13,10 +13,12 @@ import java.lang.reflect.Field;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.ArrayList;
 
 import com.maven.view.UIElements.GetUIContent;
 import com.maven.view.UIElements.AddForm;
 import com.maven.model.TaskList;
+import com.maven.model.Task;
 import com.maven.model.SubTask;
 import com.maven.model.SquirrelConstants;
 import com.maven.model.User;
@@ -26,9 +28,10 @@ import com.maven.Controller.FormatChecker;
 public class ActionButtonController implements ActionListener{
     public  void actionPerformed(ActionEvent e)
     {
+        
         String command = e.getActionCommand();
         String[] subCommands = command.split(":");
-        
+        JOptionPane.showMessageDialog(null, command);
         switch(subCommands[0])
         {
             case "NEW":
@@ -44,16 +47,28 @@ public class ActionButtonController implements ActionListener{
                 break;
             case "SAVE":
                 
-
-                        switch(subCommands[1])
-                        {
-                            case "TASKLISTS":
-                                
+                        //here, you need to be able to handle the parent!!! Where to save it?
+                         //subcommands[1] contains the type, what are you gonna do now?
+                SubTask newList=null;
+                SubTask parent = null;
+                if(subCommands[1].equals("TASKLIST"))
+                {
+                    newList = new TaskList(); 
+                } else if(subCommands[1].equals("TASK"))
+                {
+                    newList = new Task(); 
+                    parent = DataHandler.getTaskListByID(Integer.parseInt(subCommands[2]));
+                } else 
+                {
+                  newList = new SubTask(); 
+                  parent = DataHandler.getTasktByID(Integer.parseInt(subCommands[2])).get(0);
+                }
+                        
+  
                                 AddForm element = AddForm.getInstance();
                                         //element.setSpecs(null, true, "TaskList");    
                                 Component[] elements = element.getComponents();
 
-                                TaskList newList = new TaskList(); 
                                 boolean formatError = false;
                                 
                                 for(Component c : elements){
@@ -136,53 +151,68 @@ public class ActionButtonController implements ActionListener{
                                 //saving content and refreshing ui
                                   if(!formatError)
                                     {
-                                      DataHandler.saveTaskList(newList);   
-                                      ContentLoader.loadContent("LISTVIEW:TASKLISTS:0", null);    
+                                      //this is where it is saved!!! 
+                                      if(parent!=null)
+                                      {
+                                          
+                                      parent.addChild(newList);
+                                      //this is incredibly ineffective atm...
+                                     
+                                      //it has not been saved to the file!!! It is just in the taskLists arraylist
+                                      } else 
+                                      {
+                                       //if it is null, then it is a new tasklist!!!   
+                                       DataHandler.saveTaskList(newList);
+
+                                      } 
+                                      
+                                      //this reloads the parent container!!!
+                                      ContentLoader.loadContent("LISTVIEW:"+Filters.returnRelative(subCommands[1], false)+":"+subCommands[2], null);    
                                     }
         
-                                break;
-                            case "TASK":
-                                break;
-                            case "SUBTASK":
-                                break;
-                        
-                        
-                        
-                        }
-                break;
+                       
+            break;
             case "EDIT":
                 
                   ContentLoader.loadContent("EDITVIEW:"+subCommands[1]+":"+subCommands[2], 0);
                          
-                break;
+            break;
             case "SEARCH":
-                break;
+            break;
             case "VIEW":
                 
                    ContentLoader.loadContent("LISTVIEW:"+subCommands[1]+":"+subCommands[2], 0);//[2] may not always exist
 
-                break;
+            break;
             case "DELETE":
-
-                 switch(subCommands[1])
-                      {
-                        case "TASKLIST":
-                             if(!DataHandler.deleteTaskList(subCommands[2]))JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+command);
+                
+                int parentID = 0; 
+                
+                if(subCommands[1].equals("TASKLIST"))
+                        {
+                          
+                        if(!DataHandler.deleteTaskList(subCommands[2]))JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+command);
                         
-                            
-                            ContentLoader.loadContent("LISTVIEW:"+Filters.returnRelative(subCommands[1], false)+":"+subCommands[2], null);
-
-                            break;
-                       case "TASK":
-                            break;
-
-                       case "SUBTASK":
-                            break; 
-                       default:
-                           JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+subCommands[1]);
-
-                         }
-                break;    
+                        } 
+                else if (subCommands[1].equals("TASK")) 
+                        {
+                           
+                            ArrayList<SubTask> handle=DataHandler.getTasktByID(Integer.parseInt(subCommands[2]));
+                             System.out.println(handle);
+                            TaskList p = (TaskList) handle.get(1);
+                            parentID = p.getID();
+                            p.removeChild(handle.get(0));
+                        } 
+                else 
+                        {
+                            ArrayList<SubTask> handle=DataHandler.getTasktByID(Integer.parseInt(subCommands[2]));
+                            Task p = (Task) handle.get(1);
+                            parentID = p.getID();
+                            p.removeChild(handle.get(0));
+                        }
+                        ContentLoader.loadContent("LISTVIEW:"+Filters.returnRelative(subCommands[1], false)+":"+parentID, 0);
+                        
+            break;    
             case "CANCEL":
                 if(!subCommands[1].equals("TASKLISTS") 
                    && !subCommands[1].equals("TASKLIST") 
@@ -193,13 +223,10 @@ public class ActionButtonController implements ActionListener{
                   break;
                 }
                 
-                ContentLoader.loadContent("LISTVIEW:"+Filters.returnRelative(subCommands[1], false)+":"+subCommands[2], null);
-                JOptionPane.showMessageDialog(null, command);
-                break;
-        
-        
+                ContentLoader.loadContent("LISTVIEW:"+subCommands[1]+":"+subCommands[2], null);
+                
+           break;
         
         }
-        
     }
 }

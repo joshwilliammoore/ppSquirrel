@@ -39,7 +39,7 @@ public class ActionBar extends HorizontalBar{
     return instance;
     }
     
-    public static  void DefaultBar(String type, ActionButtonController listener, int id)
+    public static  void DefaultBar(String source, ActionButtonController listener, int parentID)
     {
         instance.removeAll();
         instance.getGbc().fill = GridBagConstraints.HORIZONTAL;
@@ -50,9 +50,9 @@ public class ActionBar extends HorizontalBar{
         instance.getGbc().gridheight=1;
         
         //this is just testing it. This whole section is basically hardcoded, so it will have to be rewritten.
-        ActionBarButton jb = new ActionBarButton("Add new "+Filters.returnRelative(type, true));
+        ActionBarButton jb = new ActionBarButton("Add new "+Filters.returnRelative(source, true));
 
-                        jb.setActionCommand("NEW:"+type+":"+id);
+                        jb.setActionCommand("NEW:"+Filters.returnRelative(source, true)+":"+parentID);
                         
         jb.addActionListener(listener);
               
@@ -60,7 +60,7 @@ public class ActionBar extends HorizontalBar{
         
         ActionBarButton jb2 = new ActionBarButton("Search");
    
-        jb2.setActionCommand("SEARCH:"+type+":TYPE:PHRASE");
+        jb2.setActionCommand("SEARCH:"+source+":TYPE:PHRASE");
         jb2.addActionListener(listener);
                         
         instance.getGbc().gridx=2;
@@ -72,16 +72,18 @@ public class ActionBar extends HorizontalBar{
         jtf.setPreferredSize(new Dimension(300, 50));
 
         instance.getGbc().gridx = 4;
-        instance.getGbc().gridwidth = 4;
+        instance.getGbc().gridwidth = 3;
         instance.add(jtf, instance.getGbc());
-        if(!type.equals("TASKLISTS"))
+        if(!source.equals("TASKLISTS"))
         {
-        instance.getGbc().gridx = 5;
+                    //JOptionPane.showMessageDialog(null, "ejj: "+source);
+
+        instance.getGbc().gridx = 8;
         instance.getGbc().gridwidth = 2;  
         
         ActionBarButton jCancel = new ActionBarButton("Cancel");
         jCancel.addActionListener(listener);
-        jCancel.setActionCommand("CANCEL:"+type+":"+id);
+        jCancel.setActionCommand("CANCEL:"+Filters.returnRelative(source, false)+":"+parentID);
         instance.add(jCancel, instance.getGbc());
         }
         instance.revalidate();
@@ -90,8 +92,8 @@ public class ActionBar extends HorizontalBar{
     
     }
     
-    public static void  addNewBar(String type, 
-            ActionButtonController listener, int id)
+    public static void  addNewBar(String source, 
+            ActionButtonController listener, int parentID)
     {
         //type = TASKLIST/TASK/SUBTASK
         instance.removeAll();
@@ -102,15 +104,15 @@ public class ActionBar extends HorizontalBar{
         instance.getGbc().gridwidth=2;
         instance.getGbc().gridheight=1;
         //this is just testing it. This whole section is basically hardcoded, so it will have to be rewritten.
-        ActionBarButton jSave = new ActionBarButton("Save "+type);
-                  
-        jSave.setActionCommand("SAVE:"+type+":"+id);
+        ActionBarButton jSave = new ActionBarButton("Save "+source);
+        jSave.setActionCommand("SAVE:"+source+":"+parentID);
         jSave.addActionListener(listener);
            
         ActionBarButton jCancel = new ActionBarButton("Cancel");
         jCancel.addActionListener(listener);
-        jCancel.setActionCommand("CANCEL:"+type+":"+id);
-//        JOptionPane.showMessageDialog(null, type);
+
+        jCancel.setActionCommand("CANCEL:"+Filters.returnRelative(source, false)+":"+parentID);
+//        JOptionPane.showMessageDialog(null, source);
         instance.add(jSave, instance.getGbc());
         
        

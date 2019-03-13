@@ -28,7 +28,7 @@ public class SubTask implements Serializable
     public SubTask(){}
     public SubTask(Date dueDate, int priority, String title, String description)
     {
-        this.setID(SquirrelConstants.getTaskID());
+        this.setID();
         //incrementing the constant's value so that upon next creating it will have a new and incremented id.
         SquirrelConstants.setTaskID(SquirrelConstants.getTaskID()+1);
         this.setCreatedDate();
@@ -40,6 +40,8 @@ public class SubTask implements Serializable
         this.setCompleted(false);
     
     }
+    //this is here for inheritance reasons
+    public void addChild(SubTask c){}
     
     
     
@@ -47,8 +49,8 @@ public class SubTask implements Serializable
         return ID;
     }
 
-    public void setID(int id) {
-        this.ID = id;
+    public void setID() {
+        this.ID = SquirrelConstants.getSubtaskCounter();
     }
 
     public String getTitle() {

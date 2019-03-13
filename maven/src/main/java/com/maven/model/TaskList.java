@@ -9,41 +9,43 @@ import java.text.SimpleDateFormat;
 public class TaskList extends SubTask implements Serializable, HasChildren 
 {
 
-    private ArrayList<Task> tasks;
+    private ArrayList<Task> children;
     
     public TaskList()
     {
-     this.tasks = new ArrayList<Task>();
+     this.children = new ArrayList<Task>();
      this.setID();
      this.setCreatedDate();
      this.setModifiedDateDefault();
      this.setCompleted(false);
     }
-    public void setID() {
-        this.ID = SquirrelConstants.getTasklistCounter();
-    }
+    
     //Setters and getters for task attribute.
-    public void addTask(Task task) {
-        this.tasks.add(task);
+    public void addChild(SubTask st){
+       Task casting = (Task) st;
+        this.children.add(casting);
     }
+   
     @Override
     public ArrayList<Task> getChildren(){
-        return this.tasks;
+        return this.children;
     }
 
-    //Add task to array of tasks. Position of task will need to be selected.
-    public void addTask(Task task, int Position) {
-        this.tasks.add(Position, task);
+    //Add task to array of children. Position of task will need to be selected.
+    public void addChild(Task task, int Position) {
+        this.children.add(Position, task);
     }
 
-      //Delete certain task.
-    public void delTask(int pos){
-        this.tasks.remove(pos);
+    public boolean removeChild(SubTask Child){
+        return this.getChildren().remove(Child);
+    }
+    public void delChild(int pos){
+        this.children.remove(pos);
     }
 
-    //Delete all tasks.
-    public void delAll(boolean d){
-       //It is a bit complicated as every user's tasks should be deleted as well... 
+    //Delete all children.
+    public void delChildren(boolean d){
+       //It is a bit complicated as every user's children should be deleted as well... 
        
     }
 }

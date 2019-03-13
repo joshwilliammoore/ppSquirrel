@@ -35,7 +35,12 @@ public class ContentLoader {
                 
                 //the content loader has to be parameterised!!!
                 case "LISTVIEW":
-                    
+                    if(subCommands[1].equals("EXIT"))
+                    {
+                     DataHandler.updateTaskLists();
+                     System.exit(0);
+                    }
+                   
                     //logical error here, mate!!!!
                     if(subCommands[1].equals("TASKLISTS"))
                     {
