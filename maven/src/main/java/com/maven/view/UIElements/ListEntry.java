@@ -7,6 +7,7 @@ package com.maven.view.UIElements;
 
 import com.maven.view.RightSideElements.HorizontalBar;
 
+
 import com.maven.model.SubTask;
 import com.maven.model.TaskList;
 import com.maven.model.Task;
@@ -44,7 +45,10 @@ public class ListEntry extends HorizontalBar{
     ActionAreaButton edit = new ActionAreaButton("edit");
                      edit.setActionCommand("EDIT:"+type+":"+tal.getID());
     ActionAreaButton delete = new ActionAreaButton("delete");
-                     delete.setActionCommand("DELETE:"+type+":"+tal.getID());   
+                     delete.setActionCommand("DELETE:"+type+":"+tal.getID());
+    ActionAreaCheckbox done = new ActionAreaCheckbox();
+                     done.setSelected(tal.isCompleted());   
+                     done.setActionCommand("DONE:"+type+":"+tal.getID());                   
     this.getGbc().fill=GridBagConstraints.HORIZONTAL;
     this.getGbc().gridx=0;
     this.getGbc().gridy=0;
@@ -88,6 +92,7 @@ public class ListEntry extends HorizontalBar{
     this.getGbc().gridheight=2;
 
     this.add(delete, this.getGbc());
-    
+    this.getGbc().gridx=6;
+    this.add(done, this.getGbc());
     } 
 }

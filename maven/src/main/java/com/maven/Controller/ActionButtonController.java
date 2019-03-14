@@ -36,6 +36,14 @@ public class ActionButtonController implements ActionListener{
         JOptionPane.showMessageDialog(null, command);
         switch(subCommands[0])
         {
+            case "DONE":
+            SubTask completed = DataHandler.getEntry(subCommands[1],Integer.parseInt(subCommands[2]));
+            boolean switchCompleted = (completed.isCompleted())?false:true;
+            completed.setCompleted(switchCompleted);
+            
+           
+                    
+            break;        
             case "NEW":
                    ContentLoader.loadContent("ADDVIEW:"+subCommands[1]+":"+subCommands[2], 0);
                 break;
@@ -258,7 +266,7 @@ public class ActionButtonController implements ActionListener{
                                     }
                 DataHandler.getIDCounter().setCounter(SquirrelConstants.getCounter());
                 DataHandler.saveCounter();
-                JOptionPane.showMessageDialog(null, DataHandler.getIDCounter().getCounter());
+               // JOptionPane.showMessageDialog(null, DataHandler.getIDCounter().getCounter());
         
                        
             break;
