@@ -23,11 +23,14 @@ import java.util.Arrays;
  */
 public class Filters implements Comparator<SubTask>
 {
-
+    public static final byName BY_TITLE = new byName();
+    public static final byPriority BY_PRIORITY = new byPriority();
+    public static final byDate BY_DATE = new byDate();
+    public static final byPerson BY_ASSIGNEE = new byPerson();
   
-  private String type;
-  private boolean desc;
-  private Filters instance;
+    private String type;
+    private boolean desc;
+    private Filters instance;
 
   
   //so that it cannot be instantiated
@@ -100,5 +103,32 @@ public class Filters implements Comparator<SubTask>
                 index+=1;
             }
     return Arrays.asList(checkArray).get(index);
+    }
+    
+    
+    
+    private static class byDate implements Comparator<SubTask>{
+        public int compare(SubTask s1, SubTask s2){
+        int result = (s1.getDueDate().getTime()==s2.getDueDate().getTime())? 0 : (s1.getDueDate().getTime()>s2.getDueDate().getTime()) ? 1:-1;    
+        return result;
+        }
+    }
+    private static class byName implements Comparator<SubTask>{
+        public int compare(SubTask s1, SubTask s2){
+        return s1.getTitle().compareTo(s2.getTitle());
+        }
+
+    }
+     private static class byPriority implements Comparator<SubTask>{
+        public int compare(SubTask s1, SubTask s2){
+        return s1.getPriority()-s2.getPriority();
+        }
+
+    }
+      private static class byPerson implements Comparator<SubTask>{
+        public int compare(SubTask s1, SubTask s2){
+        return s1.getAssignee().getSurname().compareTo(s2.getAssignee().getSurname());
+        }
+
     }
 }

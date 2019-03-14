@@ -11,17 +11,20 @@ import java.awt.GridLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
-
+import java.util.Arrays;
 /**
  *
  * @author Regory Gregory
  */
 public class ListView {
-     private static JPanel viewport;    
+    private static JPanel viewport = null;    
     private static JScrollPane instance = null;
+    private  static FilterBar columnHeader = null;
+    private  static SubTask[] taskLists;
     
     private ListView()
     {
+ 
     
     }
     
@@ -30,9 +33,9 @@ public class ListView {
         if(instance == null){
             instance = new JScrollPane();
             instance.setLayout(new ScrollPaneLayout());
-
+            ListView.setColumnHeader(new FilterBar());
         }
-    
+
         return instance;
     }
 
@@ -46,29 +49,47 @@ public class ListView {
         return viewport;
     }
     
+
+    
     public static void reFresh(SubTask[] taskLists)
     {
     getInstance();
     getViewport().removeAll();
-
+    ListView.setTaskLists(taskLists);
     //instance.removeAll();
-    if(taskLists !=null)
+    if(ListView.getTaskLists() !=null)
     {
-        for(SubTask t : taskLists)
+        for(SubTask t : ListView.getTaskLists())
         {
-            
-            
-            
-            
         ListEntry temp = new ListEntry(t);
         viewport.add(temp);
         }
     
     }   
-    
+    //instance.setColumnHeaderView(refreshColumnHeader(taskLists));
     instance.setViewportView(viewport);
+    instance.setColumnHeaderView(columnHeader);
     instance.revalidate();
     instance.repaint();
 
     }
+    
+    public static FilterBar getColumnHeader() {
+        return columnHeader;
+    }
+
+    public static void setColumnHeader(FilterBar columnHeader) {
+        ListView.columnHeader = columnHeader;
+    }
+
+    public static SubTask[] getTaskLists() {
+        return taskLists;
+    }
+
+    public static void setTaskLists(SubTask[] taskLists) {
+        ListView.taskLists = taskLists;
+    }
+    
+
+    
 }

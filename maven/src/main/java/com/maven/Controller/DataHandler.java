@@ -26,15 +26,18 @@ public class DataHandler {
     
     private static String s = System.getProperty("file.separator");
     private static String dirPath = "."+s+SquirrelConstants.getSaveDir();
-    private static ArrayList<SubTask> taskLists;
+    private static ArrayList<SubTask> children;
     private static Idcounter IDCounter;
-    
+    //may not be necessary, but this is the "parent" of TaskLists
+    public static ArrayList<SubTask> getChildren(){
+        return children;
+    }
     
     public static boolean updateTaskLists()
     {
         boolean success = true;
 
-        for(SubTask taskList : taskLists)
+        for(SubTask taskList : children)
         {
                 String filePath = dirPath+s+"taskList_id-"+taskList.getID();
                 File newDir = new File(dirPath);
@@ -90,7 +93,7 @@ public class DataHandler {
             success = true;
             fileOut.close();
             objectOut.close();
-            taskLists.add(taskList);
+            children.add(taskList);
             
             
         }catch(Exception e)
@@ -103,7 +106,7 @@ public class DataHandler {
     
     public static void loadTasklists()
     {
-        taskLists = new ArrayList<SubTask>();
+        children = new ArrayList<SubTask>();
 
             File saveDir = new File(dirPath);
             
@@ -124,7 +127,7 @@ public class DataHandler {
             {
              if(!f.getName().equals("IDCounter1"))
              {
-               taskLists.add(loadTasklist(f.getName()));
+               children.add(loadTasklist(f.getName()));
              } else {
                  IDCounter=(loadCounter(f.getName()));  
              }
@@ -188,7 +191,7 @@ public class DataHandler {
        
         String dirPath = "."+s+SquirrelConstants.getSaveDir();
         String filePath = dirPath+s+"taskList_id-"+id;
-        DataHandler.getTaskLists().remove(DataHandler.getTaskListByID(Integer.parseInt(id)));
+        DataHandler.getChildren().remove(DataHandler.getTaskListByID(Integer.parseInt(id)));
         File newFile = new File(filePath);
 
         return newFile.delete();
@@ -198,7 +201,7 @@ public class DataHandler {
 
     public static SubTask getTaskListByID(int id)
     {
-        for (SubTask tl : taskLists)
+        for (SubTask tl : children)
         {
         if(tl.getID()==id) return tl;
 
@@ -212,7 +215,7 @@ public class DataHandler {
         
         
         
-        for (SubTask tl : taskLists)
+        for (SubTask tl : children)
         {
            TaskList x = (TaskList) tl;
            if(x.getChildren().size()>0)
@@ -242,7 +245,7 @@ public class DataHandler {
     {
          ArrayList<SubTask> found = new ArrayList<>();
 
-        for (SubTask tl : taskLists)
+        for (SubTask tl : children)
         {
            TaskList x = (TaskList) tl;
            if(x.getChildren().size()>0)
@@ -274,12 +277,10 @@ public class DataHandler {
         return found;
     }
     
-    public static ArrayList<SubTask> getTaskLists() {
-      return taskLists;
-      }
+   
 
-    public static void setTaskLists(ArrayList<SubTask> taskLists) {
-        DataHandler.taskLists = taskLists;
+    public static void setChildren(ArrayList<SubTask> children) {
+        DataHandler.children = children;
     }
 
     public static Idcounter getIDCounter() {

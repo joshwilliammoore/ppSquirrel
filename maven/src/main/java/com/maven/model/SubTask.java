@@ -8,12 +8,7 @@ import java.util.Comparator;
 
 public class SubTask implements Serializable
 {
-    
-    public static final byName BY_NAME = new byName();
-    public static final byPriority BY_PRIORITY = new byPriority();
-    public static final byDate BY_DATE = new byDate();
-    public static final byPerson BY_PERSON = new byPerson();
-    
+
     protected int ID;
     protected String parentID;
 
@@ -193,29 +188,6 @@ public class SubTask implements Serializable
         this.parentID = parentID;
     }
     
-    private static class byDate implements Comparator<SubTask>{
-        public int compare(SubTask s1, SubTask s2){
-        int result = (s1.getDueDate().getTime()==s2.getDueDate().getTime())? 0 : (s1.getDueDate().getTime()>s2.getDueDate().getTime()) ? 1:-1;    
-        return result;
-        }
-    }
-    private static class byName implements Comparator<SubTask>{
-        public int compare(SubTask s1, SubTask s2){
-        return s1.getTitle().compareTo(s2.getTitle());
-        }
 
-    }
-     private static class byPriority implements Comparator<SubTask>{
-        public int compare(SubTask s1, SubTask s2){
-        return s1.getPriority()-s2.getPriority();
-        }
-
-    }
-      private static class byPerson implements Comparator<SubTask>{
-        public int compare(SubTask s1, SubTask s2){
-        return s1.getAssignee().getSurname().compareTo(s2.getAssignee().getSurname());
-        }
-
-    }
 
 }

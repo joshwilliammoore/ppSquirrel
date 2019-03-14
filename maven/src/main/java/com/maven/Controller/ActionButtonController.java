@@ -14,10 +14,13 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import com.maven.view.UIElements.GetUIContent;
 import com.maven.view.UIElements.AddForm;
 import com.maven.view.UIElements.EditForm;
+import com.maven.view.UIElements.ListView;
+import com.maven.view.UIElements.FilterBar;
 
 import com.maven.model.TaskList;
 import com.maven.model.Task;
@@ -36,13 +39,30 @@ public class ActionButtonController implements ActionListener{
         JOptionPane.showMessageDialog(null, command);
         switch(subCommands[0])
         {
+            
+            case "FILTER":
+                
+                Comparator<SubTask> comp = Filters.BY_PRIORITY;
+                
+                if(subCommands[1].equals("TITLE"))
+                {
+                comp = Filters.BY_TITLE;
+                } else if(subCommands[1].equals("DATE"))
+                {
+                comp = Filters.BY_DATE;
+                } else if(subCommands[1].equals("ASSIGNEE"))
+                {
+                comp = Filters.BY_ASSIGNEE;
+                } 
+                Arrays.sort(ListView.getTaskLists(), comp);
+                ListView.reFresh(ListView.getTaskLists());
+                
+            break;    
             case "DONE":
             SubTask completed = DataHandler.getEntry(subCommands[1],Integer.parseInt(subCommands[2]));
             boolean switchCompleted = (completed.isCompleted())?false:true;
             completed.setCompleted(switchCompleted);
-            
-           
-                    
+       
             break;        
             case "NEW":
                    ContentLoader.loadContent("ADDVIEW:"+subCommands[1]+":"+subCommands[2], 0);
