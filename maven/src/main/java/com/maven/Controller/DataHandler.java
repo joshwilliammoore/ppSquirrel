@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import com.maven.model.SubTask;
+import com.maven.model.User;
 import com.maven.model.Task;
 import com.maven.model.TaskList;
 import com.maven.model.Idcounter;
@@ -28,6 +29,18 @@ public class DataHandler {
     private static String dirPath = "."+s+SquirrelConstants.getSaveDir();
     private static ArrayList<SubTask> children;
     private static Idcounter IDCounter;
+    private static ArrayList<User> users = new ArrayList<User>();
+
+    
+    public static ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public static void setUsers(ArrayList<User> users) {
+        DataHandler.users = users;
+    }
+    
+    
     //may not be necessary, but this is the "parent" of TaskLists
     public static ArrayList<SubTask> getChildren(){
         return children;
@@ -351,6 +364,20 @@ public class DataHandler {
         }
      return success;
     }    
+    public static User getUserByUserName(String name)
+    {
+        User returnable = null;
+        if(getUsers().size()==0)
+        {
+            return returnable;
+        }
+        for(User u: getUsers())
+        {
+            if(u.getUserName().equals(name)) returnable = u;
+        
+        }
+        return returnable;
+    }
     
     
     

@@ -10,7 +10,8 @@ import com.maven.view.RightSideElements.ActionBar;
 import com.maven.view.RightSideElements.ActionArea;
 import com.maven.view.RightSideElements.MessageBar;
 import com.maven.view.RightSideElements.TitleBar;
-
+import com.maven.view.UIElements.AddForm;
+import com.maven.view.UIElements.EditForm;
 import com.maven.view.UIElements.ListView;
 
 
@@ -22,12 +23,16 @@ import com.maven.view.UIElements.ListView;
 public class Init {
     public static void init()
     {
+                UsersForTesting.init();
+                DataHandler.setUsers(UsersForTesting.getUsers());
                 DataHandler.loadTasklists();
                 ActionArea.getInstance();
                 ListView.getInstance();
                 ActionBar.getInstance();
                 MessageBar.getInstance();
                 TitleBar.getInstance();
-    
+             
+                AddForm.setUsers(DataHandler.getUsers());
+                EditForm.setUsers(DataHandler.getUsers());
     }
 }

@@ -110,8 +110,16 @@ public class ActionButtonController implements ActionListener{
                                                 updatable.setCreator(new User());
                                                 break;
                                             
-                                            case "assignee":
-                                                updatable.setAssignee(new User());
+                                            case "staff":
+                                                
+                                               User assignee = DataHandler.getUserByUserName(value);
+
+                                                if(assignee==null)
+                                                {
+                                                    JOptionPane.showMessageDialog(null, "User name does not exist:"+value);
+                                                    break;
+                                                }
+                                                   updatable.setAssignee(assignee);
 
                                                 break;
                                             case "priority":
@@ -222,8 +230,14 @@ public class ActionButtonController implements ActionListener{
                                                 newList.setCreator(new User());
                                                 break;
                                             
-                                            case "assignee":
-                                                   newList.setAssignee(new User());
+                                            case "staff":
+                                                User assignee = DataHandler.getUserByUserName(value);
+                                                if(assignee==null)
+                                                {
+                                                    JOptionPane.showMessageDialog(null, "User name does not exist:"+value);
+                                                    break;
+                                                }
+                                                   newList.setAssignee(assignee);
 
                                                 break;
                                             case "priority":

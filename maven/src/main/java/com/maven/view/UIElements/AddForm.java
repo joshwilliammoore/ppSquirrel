@@ -7,6 +7,8 @@
 package com.maven.view.UIElements;
 
 import com.maven.model.TaskList;
+import com.maven.model.User;
+
 import com.maven.view.RightSideElements.HorizontalBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -19,8 +21,9 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JComponent;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
+import java.util.Collections;
 
 
 import com.maven.model.SubTask;
@@ -28,6 +31,9 @@ import com.maven.model.SubTask;
 public class AddForm extends HorizontalBar{
   
    private static AddForm instance=null;
+   private static ArrayList<User> users;
+   
+   
     //This is something I haven't finished yet. Has to be parameterized!!!
    public static AddForm getInstance()
    {
@@ -87,9 +93,13 @@ public class AddForm extends HorizontalBar{
         
         instance.add(labelAssignee);
 
-        
-        String[] assignees = {"John", "Fred", "Sally", "Paul", "Josh"};
-        FormCombo assigneeDropdown = new FormCombo(assignees);
+      
+        String[] arrayUsers = new String[users.size()];
+        for(int i =0; i<users.size(); i++)
+        {
+        arrayUsers[i]=users.get(i).getUserName();
+        }
+        FormCombo assigneeDropdown = new FormCombo(arrayUsers);
                     assigneeDropdown.setLabel("staff");
         instance.add(assigneeDropdown);
         
@@ -120,6 +130,14 @@ public class AddForm extends HorizontalBar{
          instance.revalidate();
          instance.repaint();
         
+    }
+
+    public static ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public static void setUsers(ArrayList<User> users) {
+        AddForm.users = users;
     }
     
 }

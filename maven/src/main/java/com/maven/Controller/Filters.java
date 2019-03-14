@@ -21,7 +21,7 @@ import java.util.Arrays;
  *
  * @author Regory Gregory
  */
-public class Filters implements Comparator<SubTask>
+public class Filters
 {
     public static final byName BY_TITLE = new byName();
     public static final byPriority BY_PRIORITY = new byPriority();
@@ -60,37 +60,9 @@ public class Filters implements Comparator<SubTask>
     public void setDesc(boolean desc) {
         this.desc = desc;
     }
-    public int compare(SubTask o1, SubTask o2)
-    {
-        int verdict =0;
-    switch(type)
-    {
-        case "PERSON":
-            User u1 = o1.getAssignee();
-            User u2 = o2.getAssignee();
-            verdict = u1.getSurname().compareTo(u2.getSurname());
-            break;
-        case "PRIORITY":
-            verdict = o1.getPriority()-o2.getPriority();
-            break;
-        case "DUEDATE":
-//            boolean after =o1.getDateDue().after(o2.getDateDue());
-//            boolean before =o1.getDateDue().before(o2.getDateDue());
-            
-//           verdict = (after) ?  1 : (before) ? -1 :0;
-            break;
-        default:
-            //maybe throw error message
-            break;
-    }
-    return (desc)? -verdict : verdict;
-    }
+
     
-    public void sort(ArrayList<SubTask> sortable)
-    {
-       Collections.sort(sortable, this.getInstance());
-    
-    }
+ 
     public static String returnRelative(String instance, boolean up)
     {
             String[] checkArray = SquirrelConstants.getListMap();
@@ -127,7 +99,7 @@ public class Filters implements Comparator<SubTask>
     }
       private static class byPerson implements Comparator<SubTask>{
         public int compare(SubTask s1, SubTask s2){
-        return s1.getAssignee().getSurname().compareTo(s2.getAssignee().getSurname());
+        return s1.getAssignee().getUserName().compareTo(s2.getAssignee().getUserName());
         }
 
     }

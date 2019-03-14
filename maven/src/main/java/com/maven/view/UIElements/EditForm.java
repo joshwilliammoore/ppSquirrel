@@ -9,10 +9,12 @@ import com.maven.view.RightSideElements.HorizontalBar;
 import com.maven.model.SubTask;
 import com.maven.model.Task;
 import com.maven.model.TaskList;
+import com.maven.model.User;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 
 /**
@@ -21,6 +23,7 @@ import javax.swing.JLabel;
  */
 public class EditForm extends HorizontalBar{
     private static EditForm instance=null;
+    private static ArrayList<User> users;
     //This is something I haven't finished yet. Has to be parameterized!!!
    public static EditForm getInstance()
    {
@@ -43,7 +46,7 @@ public class EditForm extends HorizontalBar{
     public void reFresh(SubTask editable)
     {
         String type = (editable instanceof TaskList)? "TASKLIST": (editable instanceof Task)?"TASK": "SUBTASK";
-
+         
          //removing previous elements if there are!
        instance.removeAll();    
         //Title
@@ -84,8 +87,12 @@ public class EditForm extends HorizontalBar{
         
         instance.add(labelAssignee);
 
-        String[] assignees = {"John", "Fred", "Sally", "Paul", "Josh"};
-        FormCombo assigneeDropdown = new FormCombo(assignees);
+        String[] arrayUsers = new String[users.size()];
+        for(int i =0; i<users.size(); i++)
+        {
+        arrayUsers[i]=users.get(i).getUserName();
+        }
+        FormCombo assigneeDropdown = new FormCombo(arrayUsers);
                     assigneeDropdown.setLabel("staff");
         instance.add(assigneeDropdown);
 
@@ -103,5 +110,12 @@ public class EditForm extends HorizontalBar{
          instance.revalidate();
          instance.repaint();
         
+    }
+    public static ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public static void setUsers(ArrayList<User> users) {
+        EditForm.users = users;
     }
 }
