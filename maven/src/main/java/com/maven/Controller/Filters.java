@@ -23,11 +23,17 @@ import java.util.Arrays;
  */
 public class Filters
 {
-    public static final byName BY_TITLE = new byName();
-    public static final byPriority BY_PRIORITY = new byPriority();
-    public static final byDate BY_DATE = new byDate();
-    public static final byPerson BY_ASSIGNEE = new byPerson();
-  
+    public static final byName FILTER_BY_TITLE = new byName();
+    public static final byPriority FILTER_BY_PRIORITY = new byPriority();
+    public static final byDate FILTER_BY_DATE = new byDate();
+    public static final byPerson FILTER_BY_ASSIGNEE = new byPerson();
+    public static final SearchInTitle SEARCH_BY_TITLE = new SearchInTitle();
+    public static final SearchForPriority SEARCH_BY_PRIORITY = new SearchForPriority();
+    public static final SearchInDescription SEARCH_BY_DESCRIPTION = new SearchInDescription();
+    public static final SearchForDueDate SEARCH_BY_DUEDATE = new SearchForDueDate();
+    public static final SearchForAssignee SEARCH_BY_ASSIGNEE = new SearchForAssignee();
+
+    
     private String type;
     private boolean desc;
     private Filters instance;
@@ -62,8 +68,7 @@ public class Filters
     }
 
     
- 
-    public static String returnRelative(String instance, boolean up)
+     public static String returnRelative(String instance, boolean up)
     {
             String[] checkArray = SquirrelConstants.getListMap();
             int index = Arrays.asList(checkArray).indexOf(instance);
@@ -75,6 +80,87 @@ public class Filters
                 index+=1;
             }
     return Arrays.asList(checkArray).get(index);
+    }
+     
+    public static class SearchInTitle
+    {
+          public ArrayList<SubTask> search(SubTask[] source, String phrase)
+        {
+            ArrayList<SubTask> results = new ArrayList<>();
+            String regex = ".*"+phrase+".*";    
+            for(SubTask st : source)
+               {
+                 if(st.getTitle().matches(regex)) results.add(st);  
+               }
+            return results;
+        }
+        
+    } 
+    
+    public static class SearchForPriority
+    {
+         public ArrayList<SubTask> search(SubTask[] source, String priority)
+        {
+            ArrayList<SubTask> results = new ArrayList<>();
+                for(SubTask st : source)
+                {
+                    if(st.getPriority()==Integer.parseInt(priority))
+                    {
+                        results.add(st);
+                    }
+                }
+            return results;
+        }
+        
+    } 
+    
+    public static class SearchInDescription
+    {
+         public ArrayList<SubTask> search(SubTask[] source, String phrase)
+        {
+            ArrayList<SubTask> results = new ArrayList<>();
+            String regex = ".*"+phrase+".*";    
+            for(SubTask st : source)
+               {
+                 if(st.getDescription().matches(regex)) results.add(st);  
+               }
+            return results;
+        }
+        
+    } 
+    
+    public static class SearchForDueDate
+    {
+         public ArrayList<SubTask> search(SubTask[] source, Date date)
+        {
+            ArrayList<SubTask> results = new ArrayList<>();
+             for(SubTask st : source)
+            {
+                if(st.getDueDate().getTime()==date.getTime())
+                {
+                    results.add(st);
+                }
+            }
+            return results;
+        }
+    
+    }
+    
+      public static class SearchForAssignee
+    {
+         public ArrayList<SubTask> search(SubTask[] source, String userName)
+        {
+            ArrayList<SubTask> results = new ArrayList<>();
+             for(SubTask st : source)
+            {
+                if(st.getAssignee().getUserName().equals(userName))
+                {
+                    results.add(st);
+                }
+            }
+            return results;
+        }
+    
     }
     
     

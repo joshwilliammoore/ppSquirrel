@@ -25,7 +25,11 @@ public class ActionBar extends HorizontalBar{
     
     private int pHeight = SquirrelConstants.getActionBarHeight();
     private String hexaColor = SquirrelConstants.getActionBarBackground();
+    
     private static ActionBar instance = null;
+    private JTextField searchField;
+    private FormCombo searchOption;
+    
     
     public ActionBar()
     {
@@ -33,6 +37,11 @@ public class ActionBar extends HorizontalBar{
         this.setDim(new Dimension(700, 100));
         this.setPreferredSize(this.getDim());
         this.setBackground(Color.RED);
+        this.searchField = new JTextField();
+        
+        String[] searchOptions = {"TITLE", "ASSIGNEE", "PRIORITY", "DUE_DATE", "DESCRIPTION"};
+        
+        this.searchOption = new FormCombo(searchOptions);
         
     }
     public static ActionBar getInstance()
@@ -62,9 +71,9 @@ public class ActionBar extends HorizontalBar{
         
         String[] searchOptions = {"TITLE", "ASSIGNEE", "PRIORITY", "DUE_DATE", "DESCRIPTION"};
         
-        FormCombo searchTypeSelector = new FormCombo(searchOptions);
+        
         instance.getGbc().gridx=4;
-        instance.add(searchTypeSelector, instance.getGbc());
+        instance.add(instance.getSearchOption(), instance.getGbc());
         
         ActionBarButton jb2 = new ActionBarButton("Search");
          
@@ -75,7 +84,7 @@ public class ActionBar extends HorizontalBar{
         instance.add(jb2, instance.getGbc());
         
         
-        JTextField jtf = new JTextField();
+        JTextField jtf = instance.getSearchField();
         jtf.setSize(new Dimension(300, 50));
         jtf.setPreferredSize(new Dimension(300, 50));
 
@@ -164,6 +173,23 @@ public class ActionBar extends HorizontalBar{
 
         
     }
+
+    public JTextField getSearchField() {
+        return searchField;
+    }
+
+    public void setSearchField(JTextField searchField) {
+        this.searchField = searchField;
+    }
+
+    public FormCombo getSearchOption() {
+        return searchOption;
+    }
+
+    public void setSearchOption(FormCombo searchOption) {
+        this.searchOption = searchOption;
+    }
+    
     
     
 }

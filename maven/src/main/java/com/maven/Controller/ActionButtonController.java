@@ -28,6 +28,7 @@ import com.maven.model.SubTask;
 import com.maven.model.SquirrelConstants;
 import com.maven.model.User;
 import com.maven.Controller.FormatChecker;
+import com.maven.view.RightSideElements.ActionBar;
 
 
 public class ActionButtonController implements ActionListener{
@@ -37,22 +38,24 @@ public class ActionButtonController implements ActionListener{
         String command = e.getActionCommand();
         String[] subCommands = command.split(":");
         JOptionPane.showMessageDialog(null, command);
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        
         switch(subCommands[0])
         {
             
             case "FILTER":
                 
-                Comparator<SubTask> comp = Filters.BY_PRIORITY;
+                Comparator<SubTask> comp = Filters.FILTER_BY_PRIORITY;
                 
                 if(subCommands[1].equals("TITLE"))
                 {
-                comp = Filters.BY_TITLE;
+                comp = Filters.FILTER_BY_TITLE;
                 } else if(subCommands[1].equals("DATE"))
                 {
-                comp = Filters.BY_DATE;
+                comp = Filters.FILTER_BY_DATE;
                 } else if(subCommands[1].equals("ASSIGNEE"))
                 {
-                comp = Filters.BY_ASSIGNEE;
+                comp = Filters.FILTER_BY_ASSIGNEE;
                 } 
                 Arrays.sort(ListView.getTaskLists(), comp);
                 ListView.reFresh(ListView.getTaskLists());
@@ -131,7 +134,7 @@ public class ActionButtonController implements ActionListener{
                                                 updatable.setPriority(Integer.parseInt(value));
                                                 break;
                                             case "dateDue":
-                                                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                                                
                                                 if(!FormatChecker.isFieldEmpty(value)) {
                                                 JOptionPane.showMessageDialog(null, "The due date field is empty. Please fill it!"); 
                                                 formatErrorE = true;
@@ -249,7 +252,6 @@ public class ActionButtonController implements ActionListener{
                                                 newList.setPriority(Integer.parseInt(value));
                                                 break;
                                             case "dateDue":
-                                                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
                                                 if(!FormatChecker.isFieldEmpty(value)) {
                                                 JOptionPane.showMessageDialog(null, "The due date field is empty. Please fill it!"); 
                                                 formatError = true;
@@ -310,6 +312,68 @@ public class ActionButtonController implements ActionListener{
                          
             break;
             case "SEARCH":
+                   String searchPhrase =  ActionBar.getInstance().getSearchField().getText();
+                   String type = ActionBar.getInstance().getSearchOption().getContent();
+                   SubTask[] searchAble = ListView.getTaskLists();
+                   ArrayList<SubTask> returnable = new ArrayList<>();
+                   if(!FormatChecker.isFieldEmpty(searchPhrase)) {
+                   JOptionPane.showMessageDialog(null, "The search field is empty! Please enter an appropriate search phrase!"); 
+                   break;
+                   }
+                   else if(type.equals("TITLE"))
+                   {
+                    returnable =  Filters.SEARCH_BY_TITLE.search(searchAble, searchPhrase);
+                   } 
+                   else if(type.equals("ASSIGNEE"))
+                   {
+                    returnable = Filters.SEARCH_BY_ASSIGNEE.search(searchAble, searchPhrase);
+                   }
+                   else if(type.equals("PRIORITY"))
+                   {
+                   returnable = Filters.SEARCH_BY_PRIORITY.search(searchAble, searchPhrase);
+                   } 
+                    else if(type.equals("DESCRIPTION"))
+                   {
+                   returnable = Filters.SEARCH_BY_DESCRIPTION.search(searchAble, searchPhrase);
+                   }
+                   else if (type.equals("DUE_DATE"))
+                   {
+                   if(FormatChecker.dateFormatChecker(searchPhrase).equals("badformat")) {
+                   JOptionPane.showMessageDialog(null, "The search phrase is not properly formatted! The proper format is dd/mm/yyyy."); 
+                        try {
+                           Date d = format.parse(searchPhrase); 
+                           returnable = Filters.SEARCH_BY_DUEDATE.search(searchAble, d);
+                        } catch(Exception p)
+                        {
+                            JOptionPane.showMessageDialog(null, "The search phrase is not properly formatted! The proper format is dd/mm/yyyy."); 
+                        }
+
+                        };
+                       
+                   } 
+                   else 
+                   {
+                     JOptionPane.showMessageDialog(null, "Fatal error. The search type requested does not exist:"+command); 
+
+                   }
+                   
+                   if(returnable.size()>0)
+                   {
+                    
+                      SubTask[] convertToArray = new SubTask[returnable.size()]; 
+                      convertToArray = returnable.toArray(convertToArray);
+                      ListView.reFresh(convertToArray);
+                      //here, you have to give the user to clear the search and see
+                      //the full list again.
+                   } else 
+                   {
+                    JOptionPane.showMessageDialog(null, "There is no match for the selected searchphrase. Try a different one!"); 
+   
+                   }
+                   ///search function here
+                   
+                   ///refreshing view!!!
+                   
             break;
             case "VIEW":
                 

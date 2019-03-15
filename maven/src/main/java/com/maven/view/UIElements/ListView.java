@@ -22,6 +22,7 @@ public class ListView {
     private  static FilterBar columnHeader = null;
     private  static SubTask[] taskLists;
     
+    
     private ListView()
     {
  
