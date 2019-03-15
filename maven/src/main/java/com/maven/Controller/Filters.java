@@ -17,6 +17,7 @@ import com.maven.model.TaskList;
 import com.maven.model.SubTask;
 import com.maven.model.User;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Regory Gregory
@@ -133,6 +134,7 @@ public class Filters
     {
          public ArrayList<SubTask> search(SubTask[] source, Date date)
         {
+            JOptionPane.showMessageDialog(null, date.getTime());
             ArrayList<SubTask> results = new ArrayList<>();
              for(SubTask st : source)
             {

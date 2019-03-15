@@ -338,8 +338,11 @@ public class ActionButtonController implements ActionListener{
                    }
                    else if (type.equals("DUE_DATE"))
                    {
-                   if(FormatChecker.dateFormatChecker(searchPhrase).equals("badformat")) {
-                   JOptionPane.showMessageDialog(null, "The search phrase is not properly formatted! The proper format is dd/mm/yyyy."); 
+                        if(FormatChecker.dateFormatChecker(searchPhrase).equals("badformat")) {
+                        JOptionPane.showMessageDialog(null, "The search phrase is not properly formatted! The proper format is dd/mm/yyyy."); 
+
+                        } 
+                        else{
                         try {
                            Date d = format.parse(searchPhrase); 
                            returnable = Filters.SEARCH_BY_DUEDATE.search(searchAble, d);
@@ -347,10 +350,8 @@ public class ActionButtonController implements ActionListener{
                         {
                             JOptionPane.showMessageDialog(null, "The search phrase is not properly formatted! The proper format is dd/mm/yyyy."); 
                         }
-
-                        };
-                       
-                   } 
+                        }
+                   }
                    else 
                    {
                      JOptionPane.showMessageDialog(null, "Fatal error. The search type requested does not exist:"+command); 
