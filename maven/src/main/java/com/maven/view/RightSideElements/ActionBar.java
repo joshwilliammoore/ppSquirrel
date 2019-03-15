@@ -11,10 +11,12 @@ import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
-import com.maven.view.UIElements.ActionBarButton;
 import com.maven.Controller.ActionButtonController;
+
+import com.maven.view.UIElements.ActionBarButton;
+import com.maven.view.UIElements.FormCombo;
+
 import com.maven.Controller.Filters;
-import java.awt.event.ActionListener;
 /**
  *
  * @author Regory Gregory
@@ -58,9 +60,15 @@ public class ActionBar extends HorizontalBar{
               
         instance.add(jb, instance.getGbc());
         
+        String[] searchOptions = {"TITLE", "ASSIGNEE", "PRIORITY", "DUE_DATE", "DESCRIPTION"};
+        
+        FormCombo searchTypeSelector = new FormCombo(searchOptions);
+        instance.getGbc().gridx=4;
+        instance.add(searchTypeSelector, instance.getGbc());
+        
         ActionBarButton jb2 = new ActionBarButton("Search");
-   
-        jb2.setActionCommand("SEARCH:"+source+":TYPE:PHRASE");
+         
+        jb2.setActionCommand("SEARCH:"+source);
         jb2.addActionListener(listener);
                         
         instance.getGbc().gridx=2;
@@ -71,14 +79,14 @@ public class ActionBar extends HorizontalBar{
         jtf.setSize(new Dimension(300, 50));
         jtf.setPreferredSize(new Dimension(300, 50));
 
-        instance.getGbc().gridx = 4;
+        instance.getGbc().gridx = 6;
         instance.getGbc().gridwidth = 3;
         instance.add(jtf, instance.getGbc());
         if(!source.equals("TASKLISTS"))
         {
                     //JOptionPane.showMessageDialog(null, "ejj: "+source);
 
-        instance.getGbc().gridx = 8;
+        instance.getGbc().gridx = 10;
         instance.getGbc().gridwidth = 2;  
         
         ActionBarButton jCancel = new ActionBarButton("Cancel");
