@@ -50,6 +50,30 @@ public class ActionBar extends HorizontalBar{
     return instance;
     }
     
+    public static  void SearchResultsBar(String source, ActionButtonController listener, int parentID)
+    {
+        instance.removeAll();
+        instance.getGbc().fill = GridBagConstraints.HORIZONTAL;
+
+        instance.getGbc().gridx=0;
+        instance.getGbc().gridy=0;
+        instance.getGbc().gridwidth=2;
+        instance.getGbc().gridheight=1;
+        
+        ActionBarButton jb = new ActionBarButton("Back");
+
+                        jb.setActionCommand("CANCEL:"+source+":"+parentID);
+                        
+        jb.addActionListener(listener);
+              
+        instance.add(jb, instance.getGbc());
+        
+        instance.revalidate();
+        instance.repaint();
+        
+    
+    }
+    
     public static  void DefaultBar(String source, ActionButtonController listener, int parentID)
     {
         instance.removeAll();
@@ -77,7 +101,7 @@ public class ActionBar extends HorizontalBar{
         
         ActionBarButton jb2 = new ActionBarButton("Search");
          
-        jb2.setActionCommand("SEARCH:"+source);
+        jb2.setActionCommand("SEARCH:"+source+":"+parentID);
         jb2.addActionListener(listener);
                         
         instance.getGbc().gridx=2;
@@ -141,6 +165,7 @@ public class ActionBar extends HorizontalBar{
     
     
     }
+    
     
     public static void editBar(String source, 
     ActionButtonController listener, int parentID)
