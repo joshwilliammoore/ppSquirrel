@@ -6,6 +6,7 @@
 package com.maven.model;
 import java.util.ArrayList;
 import java.io.Serializable;
+import java.util.Date;
 /**
  *
  * @author joshw
@@ -13,11 +14,30 @@ import java.io.Serializable;
 public class User implements Serializable{
     private String givenName;
     private String surname;
-    private Role role;
+    private int role;
     private String userName;
     private String email;
     private String password;
-   
+    public User(){}
+    public User(String name, String password, int userLevel){
+       setGivenName(name);
+       setSurname(name);
+       setUserName(name);
+       setPassword(password);
+       setEmail(name+"@hotmail.com");
+       setRole(userLevel);
+    }
+    
+    
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+
+    
     public void setGivenName(String g){
         this.givenName = g;
     }

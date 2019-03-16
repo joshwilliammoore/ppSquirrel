@@ -1,9 +1,11 @@
 package com.maven.model;
 
+import static com.maven.model.SquirrelConstants.incrementSubtaskCounter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import static java.time.Instant.now;
 import java.util.Comparator;
 
 public class SubTask implements Serializable
@@ -19,12 +21,24 @@ public class SubTask implements Serializable
     protected Date modifiedDate;
     protected int priority;
     protected boolean completed;
+    protected boolean deleted;
 
-   
     protected User creator;
 
-    
     protected User assignee;
+    
+    public SubTask(String description, String completionDate, int priorityOrder){
+        setID();
+        setTitle(description);
+        setDescription(description);
+        setDateDueString(completionDate);
+        setCreatedDate();
+        setPriority(priorityOrder);
+        setCompleted(false);
+        setDeleted(false);
+        
+        
+    }
     
     public SubTask(){
         this.setID();
@@ -145,6 +159,14 @@ public class SubTask implements Serializable
     public void setCompleted(boolean completed) {
         this.completed = completed; 
    }
+    
+    public boolean isDeleted(){
+        return deleted;
+    }
+    
+    public void setDeleted(boolean deleted){
+        this.deleted = deleted;
+    }
    
     public User getCreator() {
         return creator;

@@ -6,6 +6,10 @@ public class Task extends SubTask implements HasChildren
 {
     private ArrayList<SubTask> children;
     
+    public Task(String description, String completionDate, int priorityOrder){
+       super(description,completionDate,priorityOrder);
+        
+    }
     
     public Task()
     {
