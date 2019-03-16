@@ -18,7 +18,7 @@ public class User implements Serializable{
     private String userName;
     private String email;
     private String password;
-    
+    public User(){}
     public User(String name, String password, int userLevel){
        setGivenName(name);
        setSurname(name);
