@@ -41,7 +41,7 @@ public class DataHandler {
     private static ArrayList<SubTask> children;
     private static Idcounter IDCounter;
     private static ArrayList<User> users = new ArrayList<User>();
-
+    private static int webServicesID = 0;
     
     public static ArrayList<User> getUsers() {
         return users;
@@ -167,6 +167,16 @@ public class DataHandler {
             try
             {
                 fetchedList = webFetcher.getWebLists();
+                if(webServicesID ==0)
+                {
+                webServicesID = fetchedList.getID();     
+                children.add(fetchedList);
+                } else 
+                {
+                
+                
+                }
+                
             }catch(CustomException e)
             {
                 e.printStackTrace();
@@ -226,7 +236,9 @@ public class DataHandler {
         }
         return null;
     }
-    
+    //deprecated. Instead of actually deleting anything the attribute of each entity is set to deleted and it is not displayed.
+    //This way, if the user have decided to delete one task from the webservices, the it is still in the list and can
+    //if the app tries to download the list, it won't reinstate an already deleted tasklist due to not being in the list anymore.
       public static boolean deleteTaskList(String id)
     {
        
