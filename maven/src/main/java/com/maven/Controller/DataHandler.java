@@ -19,6 +19,17 @@ import com.maven.model.Task;
 import com.maven.model.TaskList;
 import com.maven.model.Idcounter;
 import com.maven.model.SquirrelConstants;
+import com.maven.model.CustomException;
+
+
+import java.io.BufferedInputStream;
+import java.util.Scanner;
+import java.net.URL;
+import java.net.MalformedURLException;
+import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
+
+
 /**
  *
  * @author Regory Gregory
@@ -150,6 +161,23 @@ public class DataHandler {
             {
                 System.out.println(e.getMessage());
             }
+            
+            FetchWeb webFetcher = new FetchWeb();
+            TaskList[] fetchedList = null;
+            try
+            {
+                fetchedList = webFetcher.getWebLists();
+            }catch(CustomException e)
+            {
+                e.printStackTrace();
+            }catch (JsonParseException e) {
+               e.printStackTrace();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+            
         
  
     }
@@ -379,6 +407,63 @@ public class DataHandler {
         return returnable;
     }
     
-    
+    public static class FetchWeb {
+
+        private String urlString;
+
+
+        public FetchWeb()
+        {
+            this.setUrlString(SquirrelConstants.getWebServiceURL());
+
+        }
+        public String fetch() throws CustomException
+        {
+
+            String result = "";
+            try
+            {
+              URL address = new URL(this.urlString);
+
+             BufferedInputStream inStream=new BufferedInputStream(address.openStream());
+             Scanner sc = new Scanner(inStream);
+
+             while(sc.hasNext())
+             {
+                 result = sc.nextLine();
+             }
+            }catch (MalformedURLException e)
+            {
+                javax.swing.JOptionPane.showMessageDialog(null, "URL is not formatted properly, fetching the WebService tasks was not possible.");
+            }catch (Exception e)
+            {
+              e.printStackTrace();
+
+            }
+
+            if(result.length()<1)
+            {
+             throw new CustomException("Something went wrong. Gson.fetch returned an empty String");
+
+            }
+        return result;    
+        }
+        public TaskList[] getWebLists() throws CustomException
+        {
+            String fetchedString = this.fetch();
+            Gson converter = new Gson();
+            TaskList[] tList = converter.fromJson(fetchedString, TaskList[].class);
+            return tList;
+        }
+
+        public String getUrlString() {
+            return urlString;
+        }
+
+        public void setUrlString(String urlString) {
+            this.urlString = urlString;
+        }
+
+    }    
     
 }
