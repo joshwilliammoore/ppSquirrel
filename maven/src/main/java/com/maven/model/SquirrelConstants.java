@@ -18,6 +18,7 @@ public class SquirrelConstants {
     private static final String[] listMap = {"TASKLISTS", "TASKLIST", "TASK", "SUBTASK" };
     private static final int H1SIZE = 31;
     private static int taskID = 0;
+    private static final String webServiceURL = "http://nooblab.com/p2.json";
     //currently, these values have to be divisible by 100 without remainder
     //Main panel configuration
     private static final int mainContainerWidth = 1000;
@@ -234,6 +235,10 @@ public class SquirrelConstants {
     
     public static void setCounter(int count) {
        subtaskCounter = count;
+    }
+
+    public static String getWebServiceURL() {
+        return webServiceURL;
     }
     
 }
