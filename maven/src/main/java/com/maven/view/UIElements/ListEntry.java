@@ -33,10 +33,10 @@ public class ListEntry extends HorizontalBar{
     
     JLabel title = new JLabel(tal.getTitle());
 //    JLabel userName = new JLabel(tal.getTaskManager().getSurname());
-    JLabel userName = new JLabel(tal.getAssignee().getUserName());
+    JLabel userName = new JLabel(tal.getUser().getUserName());
 
 //    JLabel priorirty = new JLabel(Integer.toString(tal.getPriority()));#
-    JLabel priorirty = new JLabel(Integer.toString(tal.getPriority()));
+    JLabel priorirty = new JLabel(Integer.toString(tal.getPriorityOrder()));
 
     JLabel date = new JLabel(tal.getStringDate("dueDate"));
     

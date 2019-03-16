@@ -9,11 +9,11 @@ import java.text.SimpleDateFormat;
 public class TaskList extends SubTask implements Serializable, HasChildren 
 {
 
-    private ArrayList<Task> children;
+    private ArrayList<Task> subtasks;
     
     public TaskList()
     {
-     this.children = new ArrayList<Task>();
+     this.subtasks = new ArrayList<Task>();
      this.setID();
      this.setCreatedDate();
      this.setModifiedDateDefault();
@@ -23,29 +23,33 @@ public class TaskList extends SubTask implements Serializable, HasChildren
     //Setters and getters for task attribute.
     public void addChild(SubTask st){
        Task casting = (Task) st;
-        this.children.add(casting);
+        this.subtasks.add(casting);
     }
-   
+    public void setChildren(ArrayList<Task> children)
+    {
+    this.subtasks = children;
+    }
     @Override
-    public ArrayList<Task> getChildren(){
-        return this.children;
+    public ArrayList<Task> getSubtasks(){
+        return this.subtasks;
     }
 
-    //Add task to array of children. Position of task will need to be selected.
+    //Add task to array of subtasks. Position of task will need to be selected.
     public void addChild(Task task, int Position) {
-        this.children.add(Position, task);
+        this.subtasks.add(Position, task);
     }
 
     public boolean removeChild(SubTask Child){
-        return this.getChildren().remove(Child);
+        return this.getSubtasks().remove(Child);
     }
     public void delChild(int pos){
-        this.children.remove(pos);
+        this.subtasks.remove(pos);
     }
 
-    //Delete all children.
+    //Delete all subtasks.
     public void delChildren(boolean d){
-       //It is a bit complicated as every user's children should be deleted as well... 
+       //It is a bit complicated as every user's subtasks should be deleted as well... 
        
     }
+    
 }

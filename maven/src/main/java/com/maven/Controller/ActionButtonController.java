@@ -125,7 +125,7 @@ public class ActionButtonController implements ActionListener{
                                                     JOptionPane.showMessageDialog(null, "User name does not exist:"+value);
                                                     break;
                                                 }
-                                                   updatable.setAssignee(assignee);
+                                                   updatable.setUser(assignee);
 
                                                 break;
                                             case "priority":
@@ -134,7 +134,7 @@ public class ActionButtonController implements ActionListener{
                                                 formatErrorE = true;
                                                 continue;
                                                 };
-                                                updatable.setPriority(Integer.parseInt(value));
+                                                updatable.setPriorityOrder(Integer.parseInt(value));
                                                 break;
                                             case "dateDue":
                                                 
@@ -243,7 +243,7 @@ public class ActionButtonController implements ActionListener{
                                                     JOptionPane.showMessageDialog(null, "User name does not exist:"+value);
                                                     break;
                                                 }
-                                                   newList.setAssignee(assignee);
+                                                   newList.setUser(assignee);
 
                                                 break;
                                             case "priority":
@@ -252,7 +252,7 @@ public class ActionButtonController implements ActionListener{
                                                 formatError = true;
                                                 continue;
                                                 };
-                                                newList.setPriority(Integer.parseInt(value));
+                                                newList.setPriorityOrder(Integer.parseInt(value));
                                                 break;
                                             case "dateDue":
                                                 if(!FormatChecker.isFieldEmpty(value)) {

@@ -12,5 +12,5 @@ import java.util.ArrayList;
  * @author Regory Gregory
  */
 public interface HasChildren<T> {
-   public ArrayList<T> getChildren();
+   public ArrayList<T> getSubtasks();
 }

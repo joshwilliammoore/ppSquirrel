@@ -28,6 +28,9 @@ import java.net.URL;
 import java.net.MalformedURLException;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+import java.util.Arrays;
 
 
 /**
@@ -130,7 +133,12 @@ public class DataHandler {
     
     public static void loadTasklists()
     {
-        children = new ArrayList<SubTask>();
+        
+            /*******************************************************************
+            ****************** Loading the tasklists from files*****************
+            *******************************************************************/
+        
+            children = new ArrayList<SubTask>();
 
             File saveDir = new File(dirPath);
             
@@ -144,39 +152,43 @@ public class DataHandler {
                 }
 
             }
-            try{
-            File[] fileList = saveDir.listFiles();
-
-            for(File f : fileList)
-            {
-             if(!f.getName().equals("IDCounter1"))
-             {
-               children.add(loadTasklist(f.getName()));
-             } else {
-                 IDCounter=(loadCounter(f.getName()));  
-             }
             
-            }
+            try
+            {
+                File[] fileList = saveDir.listFiles();
+
+                for(File f : fileList)
+                {
+                 if(!f.getName().equals("IDCounter1"))
+                 {
+                   children.add(loadTasklist(f.getName()));
+                 } else {
+                     IDCounter=(loadCounter(f.getName()));  
+                 }
+
+                }
             }catch (Exception e)
             {
                 System.out.println(e.getMessage());
             }
             
+            /*******************************************************************
+            ****************** Fetching web service tasks ********************
+            *******************************************************************/
+            
             FetchWeb webFetcher = new FetchWeb();
-            TaskList[] fetchedList = null;
+            ArrayList<Task> fetchedList = null;
+            TaskList webTaskList = new TaskList();
+            webTaskList.setTitle("Tasklist fetched from JSON webservice");
+            webTaskList.setDescription("Tasklist fetched from JSON webservice");
+            webTaskList.setStringDueDate("02/02/2050");
+            webTaskList.setUser(users.get(0));
+            webTaskList.setCreator(users.get(0));
+            
             try
             {
-                fetchedList = webFetcher.getWebLists();
-                if(webServicesID ==0)
-                {
-                webServicesID = fetchedList.getID();     
-                children.add(fetchedList);
-                } else 
-                {
-                
-                
-                }
-                
+             fetchedList = webFetcher.getWebLists();
+        
             }catch(CustomException e)
             {
                 e.printStackTrace();
@@ -188,15 +200,22 @@ public class DataHandler {
                 e.printStackTrace();
             }
             
+            if(fetchedList.size()>0)
+            {
+                webTaskList.setChildren(fetchedList);
+                webServicesID = webTaskList.getID();
+                children.add(webTaskList);
+            }
+            
         
  
     }
     
    
     
-    public static SubTask loadTasklist(String filename)
+    public static TaskList loadTasklist(String filename)
     {
-        SubTask loaded = new TaskList();
+        TaskList loaded = new TaskList();
         
         String dirPath = "."+s+SquirrelConstants.getSaveDir();
         String filePath = dirPath+s+filename;
@@ -271,9 +290,9 @@ public class DataHandler {
         for (SubTask tl : children)
         {
            TaskList x = (TaskList) tl;
-           if(x.getChildren().size()>0)
+           if(x.getSubtasks().size()>0)
            {
-               ArrayList<Task> y = x.getChildren();
+               ArrayList<Task> y = x.getSubtasks();
                
                for (Task t : y)
                {
@@ -301,15 +320,15 @@ public class DataHandler {
         for (SubTask tl : children)
         {
            TaskList x = (TaskList) tl;
-           if(x.getChildren().size()>0)
+           if(x.getSubtasks().size()>0)
            {
-               ArrayList<Task> y = x.getChildren();
+               ArrayList<Task> y = x.getSubtasks();
                
                for (Task t : y)
                {
-                   if(t.getChildren().size()>0)
+                   if(t.getSubtasks().size()>0)
                    {
-                   ArrayList<SubTask> z = t.getChildren();
+                   ArrayList<SubTask> z = t.getSubtasks();
                    
                         for(SubTask st : z)
                         {
@@ -439,11 +458,14 @@ public class DataHandler {
 
              BufferedInputStream inStream=new BufferedInputStream(address.openStream());
              Scanner sc = new Scanner(inStream);
-
+            
              while(sc.hasNext())
              {
-                 result = sc.nextLine();
+                 result += sc.nextLine();
              }
+            System.out.println(result); 
+            inStream.close();
+             sc.close();
             }catch (MalformedURLException e)
             {
                 javax.swing.JOptionPane.showMessageDialog(null, "URL is not formatted properly, fetching the WebService tasks was not possible.");
@@ -460,11 +482,27 @@ public class DataHandler {
             }
         return result;    
         }
-        public TaskList[] getWebLists() throws CustomException
+        public ArrayList<Task> getWebLists() throws CustomException
         {
             String fetchedString = this.fetch();
+            Type typeToken = new TypeToken<ArrayList<Task>>(){}.getType();
             Gson converter = new Gson();
-            TaskList[] tList = converter.fromJson(fetchedString, TaskList[].class);
+            System.out.println(fetchedString);
+            ArrayList<Task> tList = converter.fromJson(fetchedString, typeToken);
+            for(Task t : tList)
+            {
+                t.JSONCorrection();
+                ArrayList<SubTask> subtasks = t.getSubtasks();
+                if(subtasks.size()>0)
+                {
+                    for(SubTask st : subtasks)
+                    {
+                        st.JSONCorrection();
+                    }
+                }
+            
+            
+            }
             return tList;
         }
 

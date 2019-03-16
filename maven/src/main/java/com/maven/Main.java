@@ -25,14 +25,46 @@ import com.maven.Controller.Init;
 import com.maven.model.User;
 import com.maven.view.*;
 import com.maven.view.UIElements.Menu;
-
+import com.maven.Controller.WebTest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 /**
  *
  * @author Gregory
  */
 public class Main {
     public static void main(String[] args) {
+//     Date result = null;  
+//     SimpleDateFormat smf = new SimpleDateFormat("MMM dd, yyyy hh:mm:ss aa");
+//     try{
+//        result = smf.parse("Mar 4, 2019 4:27:05 PM");
+// 
+//     } catch (ParseException e)
+//     {
+//         e.getStackTrace();
+//     }
+//         System.out.println("Parsed dateTime:");
+//
+//     System.out.println(result.getTime());
+//        
         
+////        
+//        Task[] result = null;
+//        System.out.println(result);
+//            WebTest w = new WebTest();
+//            try{
+//                
+//            
+//            result = w. getWebLists();
+//            }
+//            catch(Exception e)
+//            {
+//            e.printStackTrace();
+//            }
+//            System.out.println("Test output:");
+//            result[1].getSubtasks().get(0).JSONCorrection();
+//            System.out.println(result[1].getSubtasks().get(0).getDateDueString());
+//           
         Init.init();
         
         MainContainer mainWindow = MainContainer.getInstance();
