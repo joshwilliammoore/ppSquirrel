@@ -62,8 +62,12 @@ public class ListView {
     {
         for(SubTask t : ListView.getTaskLists())
         {
-        ListEntry temp = new ListEntry(t);
-        viewport.add(temp);
+            if(t.getDeleted()==false)
+            {
+            ListEntry temp = new ListEntry(t);
+            viewport.add(temp);
+            }
+        
         }
     
     }   
