@@ -368,6 +368,7 @@ public class ActionButtonController implements ActionListener{
                       SubTask[] convertToArray = new SubTask[returnable.size()]; 
                       convertToArray = returnable.toArray(convertToArray);
                       ListView.reFresh(convertToArray);
+                      ActionBar.SearchResultsBar(subCommands[1],new ActionButtonController(),Integer.parseInt(subCommands[2]));
                       //here, you have to give the user to clear the search and see
                       //the full list again.
                    } else 
