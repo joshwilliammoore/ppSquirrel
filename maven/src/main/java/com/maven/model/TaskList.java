@@ -13,11 +13,9 @@ public class TaskList extends SubTask implements Serializable, HasChildren
     
     public TaskList()
     {
+     super();
      this.subtasks = new ArrayList<Task>();
-     this.setID();
-     this.setCreatedDate();
-     this.setModifiedDateDefault();
-     this.setCompleted(false);
+     
     }
     
     //Setters and getters for task attribute.

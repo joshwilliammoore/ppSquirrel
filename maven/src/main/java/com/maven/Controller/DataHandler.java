@@ -42,27 +42,14 @@ public class DataHandler {
     private static String s = System.getProperty("file.separator");
     private static String dirPath = "."+s+SquirrelConstants.getSaveDir();
     private static ArrayList<SubTask> children;
-    private static Idcounter IDCounter;
+    private static Idcounter IDCounter = new Idcounter();
     private static ArrayList<User> users = new ArrayList<User>();
     
-    public static ArrayList<User> getUsers() {
-        return users;
-    }
-
-    public static void setUsers(ArrayList<User> users) {
-        DataHandler.users = users;
-    }
-    
-    
-    //may not be necessary, but this is the "parent" of TaskLists
-    public static ArrayList<SubTask> getChildren(){
-        return children;
-    }
-    
+   
     public static boolean updateTaskLists()
     {
         boolean success = true;
-
+        DataHandler.getIDCounter().setIDCounterCounter(SquirrelConstants.getCounter());
         for(SubTask taskList : children)
         {
                 String filePath = dirPath+s+"taskList_id-"+taskList.getID();
@@ -92,14 +79,14 @@ public class DataHandler {
                 }
               
         }
-        boolean saveCounterSuccess = saveCounter(); 
+        boolean saveCounterSuccess = DataHandler.saveCounter(); 
         success =  (success && saveCounterSuccess);
         return success;
     
     }
     public static boolean saveTaskList(SubTask taskList)
     {
-
+        
         String filePath = dirPath+s+"taskList_id-"+taskList.getID();
         File newDir = new File(dirPath);
         File newFile = new File(filePath);
@@ -137,7 +124,7 @@ public class DataHandler {
             *******************************************************************/
         
             children = new ArrayList<SubTask>();
-
+            
             File saveDir = new File(dirPath);
             
             if(!saveDir.exists()){
@@ -162,8 +149,11 @@ public class DataHandler {
                  {
                    children.add(loadTasklist(f.getName()));
                  } else {
-                     IDCounter=loadCounter(); 
-                     JOptionPane.showMessageDialog(null, IDCounter.getCount());
+                     
+                     loadCounter(); 
+                     
+                     SquirrelConstants.setCounter(DataHandler.getIDCounter().getIDCounterCounter());
+                     
 
                  }
 
@@ -202,7 +192,6 @@ public class DataHandler {
             /************** If they have not been fetched *********************
               then they are automatically added to the tasklists**************/
             int webId = IDCounter.getWebId();
-            JOptionPane.showMessageDialog(null, IDCounter.getWebId());
             if(webId==-1)
             {
             
@@ -215,9 +204,9 @@ public class DataHandler {
                     if(fetchedList.size()>0)
                 {
                     webTaskList.setChildren(fetchedList);
-                    IDCounter.setWebId(webTaskList.getID());
+                    DataHandler.IDCounter.setWebId(webTaskList.getID());
+                    DataHandler.getIDCounter().setIDCounterCounter(SquirrelConstants.getCounter());
                     
-                    saveCounter();
                     
                     children.add(webTaskList);
                 } else 
@@ -280,6 +269,7 @@ public class DataHandler {
                    //handle error
                 }
             }
+            saveCounter();
 
     }
  
@@ -408,10 +398,7 @@ public class DataHandler {
         return found;
     }
     
-     
-    
-    
-    
+
     public static  ArrayList<SubTask> getSubTasktByID(int id)
     {
          ArrayList<SubTask> found = new ArrayList<>();
@@ -509,16 +496,49 @@ public class DataHandler {
     public static void setChildren(ArrayList<SubTask> children) {
         DataHandler.children = children;
     }
+    
+     public static ArrayList<User> getUsers() {
+        return users;
+    }
 
+    public static void setUsers(ArrayList<User> users) {
+        DataHandler.users = users;
+    }
+    
+    
+    //may not be necessary, but this is the "parent" of TaskLists
+    public static ArrayList<SubTask> getChildren(){
+        return children;
+    }
+    
+     public static User getUserByUserName(String name)
+    {
+        if(name.length()<1)
+        {
+        return null;
+        }
+        User returnable = null;
+        if(getUsers().size()==0)
+        {
+            return returnable;
+        }
+        for(User u: getUsers())
+        {
+            if(u.getUserName().equals(name)) returnable = u;
+        
+        }
+        return returnable;
+    }
+    
     public static Idcounter getIDCounter() {
-        return IDCounter;
+        return DataHandler.IDCounter;
     }
 
     public static void setIDCounter(Idcounter IDCounter) {
         DataHandler.IDCounter = IDCounter;
     }
     
-     public static Idcounter loadCounter()
+     public static void loadCounter()
     {
         Idcounter loaded = new Idcounter();
         
@@ -539,17 +559,21 @@ public class DataHandler {
         {
             e.printStackTrace();
         } 
-        SquirrelConstants.setCounter(DataHandler.getIDCounter().getCounter());
+        
+        DataHandler.IDCounter = loaded;
 
-        return loaded;
      
     }
         
     public static boolean saveCounter()
     {
+        int currentLargest = SquirrelConstants.getCounter();
+        DataHandler.IDCounter.setIDCounterCounter(currentLargest);
+        
         String filePath = dirPath+s+"IDCounter";
         File newDir = new File(dirPath);
         File newFile = new File(filePath);
+
         boolean success = false;
         try
         {   if(!newDir.exists())
@@ -565,7 +589,7 @@ public class DataHandler {
             
             FileOutputStream fileOut = new FileOutputStream(newFile);
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-            objectOut.writeObject(IDCounter);
+            objectOut.writeObject(DataHandler.IDCounter);
             success = true;
             
             fileOut.close();
@@ -578,24 +602,7 @@ public class DataHandler {
         }
      return success;
     }    
-    public static User getUserByUserName(String name)
-    {
-        if(name.length()<1)
-        {
-        return null;
-        }
-        User returnable = null;
-        if(getUsers().size()==0)
-        {
-            return returnable;
-        }
-        for(User u: getUsers())
-        {
-            if(u.getUserName().equals(name)) returnable = u;
-        
-        }
-        return returnable;
-    }
+   
     
     public static class FetchWeb {
 
@@ -627,7 +634,7 @@ public class DataHandler {
              sc.close();
             }catch (MalformedURLException e)
             {
-                javax.swing.JOptionPane.showMessageDialog(null, "URL is not formatted properly, fetching the WebService tasks was not possible.");
+              JOptionPane.showMessageDialog(null, "URL is not formatted properly, fetching the WebService tasks was not possible.");
             }catch (Exception e)
             {
               e.printStackTrace();
@@ -654,13 +661,13 @@ public class DataHandler {
                 User u = t.getUser();
                 u.JSONCorection();
                 DataHandler.users.add(u);
-                DataHandler.getIDCounter().setCounter(SquirrelConstants.getCounter());
+                DataHandler.getIDCounter().setIDCounterCounter(SquirrelConstants.getCounter());
                 ArrayList<SubTask> subtasks = t.getSubtasks();
                 if(subtasks.size()>0)
                 {
                     for(SubTask st : subtasks)
                     {
-                        DataHandler.getIDCounter().setCounter(SquirrelConstants.getCounter());
+                        DataHandler.getIDCounter().setIDCounterCounter(SquirrelConstants.getCounter());
                         st.JSONCorrection();
                         st.setUser(u);
                     }

@@ -53,6 +53,7 @@ public class SubTask implements Serializable
     
     public SubTask(){
         this.setID();
+        //javax.swing.JOptionPane.showMessageDialog(null, "New task ID has been assigned:"+SquirrelConstants.getCounter());
         this.setDeleted(false);
         this.setCreatedDate();
         this.setModifiedDateDefault();

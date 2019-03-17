@@ -5,48 +5,43 @@
  */
 package com.maven.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Regory Gregory
  */
-public class Idcounter {
-    private static int count;
-    private static int webId=-1;
+public class Idcounter implements Serializable{
+    private  int count;
+    private  int webId;
 
-    public static int getCount() {
-        return count;
+   
+    public  int getWebId() {
+        return this.webId;
     }
 
-    public static void setCount(int count) {
-        Idcounter.count = count;
-    }
-
-    public static int getWebId() {
-        return webId;
-    }
-
-    public static void setWebId(int webId) {
-        Idcounter.webId = webId;
+    public  void setWebId(int webId) {
+        this.webId = webId;
     }
     
     
     
     public Idcounter()
     {
-    this.count = 1;
+        this.count=1;
+        this.webId=-1;
+        
     }
-    
-    
     
     public Idcounter(int count)
     {
     this.count = count;
     }
-    public static int getCounter() {
-        return count;
+    public  int getIDCounterCounter() {
+        return this.count;
     }
 
-    public static void setCounter(int count) {
-        Idcounter.count = count;
+    public  void setIDCounterCounter(int count) {
+        this.count = count;
     }
 }
