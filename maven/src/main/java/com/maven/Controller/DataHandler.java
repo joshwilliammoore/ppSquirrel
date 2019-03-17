@@ -44,7 +44,6 @@ public class DataHandler {
     private static ArrayList<SubTask> children;
     private static Idcounter IDCounter;
     private static ArrayList<User> users = new ArrayList<User>();
-    private static int webServicesID = 0;
     
     public static ArrayList<User> getUsers() {
         return users;
@@ -135,7 +134,7 @@ public class DataHandler {
     {
         
             /*******************************************************************
-            ****************** Loading the tasklists from files*****************
+            ****************** Loading the task lists from files*****************
             *******************************************************************/
         
             children = new ArrayList<SubTask>();
@@ -159,6 +158,7 @@ public class DataHandler {
 
                 for(File f : fileList)
                 {
+                
                  if(!f.getName().equals("IDCounter1"))
                  {
                    children.add(loadTasklist(f.getName()));
@@ -176,15 +176,13 @@ public class DataHandler {
             ****************** Fetching web service tasks ********************
             *******************************************************************/
             
-            FetchWeb webFetcher = new FetchWeb();
-            ArrayList<Task> fetchedList = null;
-            TaskList webTaskList = new TaskList();
-            webTaskList.setTitle("Tasklist fetched from JSON webservice");
-            webTaskList.setDescription("No further description.");
-            webTaskList.setStringDueDate("02/02/2050");
-            webTaskList.setUser(users.get(0));
-            webTaskList.setCreator(users.get(0));
             
+         
+            FetchWeb webFetcher = new FetchWeb();
+            ArrayList<Task> fetchedList = new ArrayList<>();
+
+            /************** Fetching web service tasks ************************/
+
             try
             {
              fetchedList = webFetcher.getWebLists();
@@ -200,19 +198,86 @@ public class DataHandler {
                 e.printStackTrace();
             }
             
-            if(fetchedList.size()>0)
+            /************** If they have not been fetched *********************
+              then they are automatically added to the tasklists**************/
+            int webId = IDCounter.getWebId();
+            if(webId==0)
             {
-                webTaskList.setChildren(fetchedList);
-                webServicesID = webTaskList.getID();
-                children.add(webTaskList);
-            }
             
-        
- 
+                TaskList webTaskList = new TaskList();
+                webTaskList.setTitle("Tasklist fetched from JSON webservice");
+                webTaskList.setDescription("No further description.");
+                webTaskList.setStringDueDate("02/02/2050");
+                webTaskList.setUser(users.get(0));
+                webTaskList.setCreator(users.get(0));
+                    if(fetchedList.size()>0)
+                {
+                    webTaskList.setChildren(fetchedList);
+                    IDCounter.setWebId(webTaskList.getID());
+
+                    children.add(webTaskList);
+                } else 
+                {
+                                   //handle error
+
+                }
+
+            
+            } 
+            else 
+            {
+             /************** If there has been a fetch, local copy has to be 
+             checked so that changes made by the user won't be overwritten
+             then they are automatically added to the task lists.
+             For this purpose the title of the task and subtask is checked. If
+             a local copy exists, it wont be overwritten**********************/
+                
+            TaskList localTasklist = (TaskList)getEntry("TASKLIST", webId);
+            
+            if(fetchedList.size()>0)
+                 {
+                 //walking through every single task    
+                    for(Task fetchedTask : fetchedList)
+                    {
+                        fetchedTask.JSONCorrection();
+                        String fetchedTitle = fetchedTask.getTitle();
+                        
+                        ArrayList<SubTask> localMatch = getTaskByTitle(fetchedTitle);
+                       //as it returns an empty ArrayList if no match
+                        if(localMatch.size()>0)
+                        {
+                        //now you have to go through every single subtask...
+                        // it is extremely ineffective, again, loop in a loop and then calls a funciton that uses a loop in a loop
+                        ArrayList<SubTask> remoteMatchedSubtasks = fetchedTask.getSubtasks();
+                       
+                        Task typecast = (Task)localMatch.get(0);
+                        
+                            for(SubTask stremote : remoteMatchedSubtasks)
+                            {
+                                  if(containsSubtaskByTitle(typecast, stremote.getTitle())){
+                                  continue;
+                            }else 
+                            {
+                             typecast.addChild(stremote);
+                            }
+                        }
+                      
+                        ArrayList<SubTask>  localMatchedSubtasks = typecast.getSubtasks();
+
+                        } else 
+                        {
+                            localTasklist.addChild(fetchedTask);
+                        }
+                    }      
+                 }
+            else 
+                {
+                   //handle error
+                }
+            }
+
     }
-    
-   
-    
+ 
     public static TaskList loadTasklist(String filename)
     {
         TaskList loaded = new TaskList();
@@ -310,10 +375,39 @@ public class DataHandler {
     }
     
      
+    public static ArrayList<SubTask> getTaskByTitle(String title)
+    {
+        ArrayList<SubTask> found = new ArrayList<>();
+        
+        
+        
+        for (SubTask tl : children)
+        {
+           TaskList x = (TaskList) tl;
+           if(x.getSubtasks().size()>0)
+           {
+               ArrayList<Task> y = x.getSubtasks();
+               
+               for (Task t : y)
+               {
+                
+                if(t.getTitle().equals(title)){
+                found.add(t);
+                found.add(tl);
+                return found;
+                } 
+               }
+           }
+
+        }
+        return found;
+    }
+    
+     
     
     
     
-      public static  ArrayList<SubTask> getSubTasktByID(int id)
+    public static  ArrayList<SubTask> getSubTasktByID(int id)
     {
          ArrayList<SubTask> found = new ArrayList<>();
 
@@ -349,7 +443,63 @@ public class DataHandler {
         return found;
     }
     
-   
+    public static  ArrayList<SubTask> getSubTasktByTitle(String title)
+    {
+         ArrayList<SubTask> found = new ArrayList<>();
+
+        for (SubTask tl : children)
+        {
+           TaskList x = (TaskList) tl;
+           if(x.getSubtasks().size()>0)
+           {
+               ArrayList<Task> y = x.getSubtasks();
+               
+               for (Task t : y)
+               {
+                   if(t.getSubtasks().size()>0)
+                   {
+                   ArrayList<SubTask> z = t.getSubtasks();
+                   
+                        for(SubTask st : z)
+                        {
+                            if(st.getTitle().equals(title)){
+                               found.add(st);
+                               found.add(t);
+                               found.add(tl);
+                               return found;
+                            }
+                        }
+
+                   }
+  
+               }
+           }
+
+        }
+        return found;
+    }
+    
+    public static  boolean containsSubtaskByTitle(Task parent, String childTitle)
+    {
+
+           if(parent.getSubtasks().size()>0)
+           {
+               ArrayList<SubTask> y = parent.getSubtasks();
+               
+               for (SubTask t : y)
+               {
+                   if(t.getTitle().equals(childTitle))
+                   {
+                   return true;
+                   }
+  
+               }
+           }
+
+
+        return false;
+    }
+
 
     public static void setChildren(ArrayList<SubTask> children) {
         DataHandler.children = children;
