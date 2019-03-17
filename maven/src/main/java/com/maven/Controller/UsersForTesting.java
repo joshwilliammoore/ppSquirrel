@@ -53,11 +53,11 @@ public class UsersForTesting {
         frank.setPassword("Password2");
         
         User webSercvices = new User();
-        frank.setName("WEBSERVICES");
-        frank.setSurname("WEBSERVICES");
-        frank.setUserName("WEBSERVICES");
-        frank.setEmail("WEBSERVICES@WEBSERVICES.com");
-        frank.setPassword("WEBSERVICES");
+        webSercvices.setName("WEBSERVICES_name");
+        webSercvices.setSurname("WEBSERVICES_sur_name");
+        webSercvices.setUserName("WEBSERVICES_u_name");
+        webSercvices.setEmail("WEBSERVICES@WEBSERVICES.com");
+        webSercvices.setPassword("WEBSERVICES");
         
         users.add(webSercvices);
         users.add(tim);

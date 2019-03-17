@@ -180,7 +180,7 @@ public class DataHandler {
             ArrayList<Task> fetchedList = null;
             TaskList webTaskList = new TaskList();
             webTaskList.setTitle("Tasklist fetched from JSON webservice");
-            webTaskList.setDescription("Tasklist fetched from JSON webservice");
+            webTaskList.setDescription("No further description.");
             webTaskList.setStringDueDate("02/02/2050");
             webTaskList.setUser(users.get(0));
             webTaskList.setCreator(users.get(0));
@@ -425,6 +425,10 @@ public class DataHandler {
     }    
     public static User getUserByUserName(String name)
     {
+        if(name.length()<1)
+        {
+        return null;
+        }
         User returnable = null;
         if(getUsers().size()==0)
         {
@@ -492,12 +496,15 @@ public class DataHandler {
             for(Task t : tList)
             {
                 t.JSONCorrection();
+                User u = t.getUser();
+                u.JSONCorection();
                 ArrayList<SubTask> subtasks = t.getSubtasks();
                 if(subtasks.size()>0)
                 {
                     for(SubTask st : subtasks)
                     {
                         st.JSONCorrection();
+                        st.setUser(u);
                     }
                 }
             
