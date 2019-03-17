@@ -254,7 +254,8 @@ public class DataHandler {
                         
                             for(SubTask stremote : remoteMatchedSubtasks)
                             {
-                                  if(containsSubtaskByTitle(typecast, stremote.getTitle())){
+                                stremote.JSONCorrection();
+                                if(containsSubtaskByTitle(typecast, stremote.getTitle())){
                                   continue;
                             }else 
                             {
