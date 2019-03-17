@@ -304,8 +304,9 @@ public class ActionButtonController implements ActionListener{
                                       ContentLoader.loadContent("LISTVIEW:"+Filters.returnRelative(subCommands[1], false)+":"+subCommands[2], null);    
                                     }
                 DataHandler.getIDCounter().setCounter(SquirrelConstants.getCounter());
+                //JOptionPane.showMessageDialog(null, DataHandler.getIDCounter().getCounter());
                 DataHandler.saveCounter();
-               // JOptionPane.showMessageDialog(null, DataHandler.getIDCounter().getCounter());
+               //JOptionPane.showMessageDialog(null, DataHandler.getIDCounter().getCounter());
         
                        
             break;

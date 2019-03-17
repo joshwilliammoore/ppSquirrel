@@ -11,7 +11,7 @@ package com.maven.model;
  */
 public class Idcounter {
     private static int count;
-    private static int webId=0;
+    private static int webId=-1;
 
     public static int getCount() {
         return count;

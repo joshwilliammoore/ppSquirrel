@@ -94,7 +94,6 @@ public class DataHandler {
         }
         boolean saveCounterSuccess = saveCounter(); 
         success =  (success && saveCounterSuccess);
-        
         return success;
     
     }
@@ -159,11 +158,13 @@ public class DataHandler {
                 for(File f : fileList)
                 {
                 
-                 if(!f.getName().equals("IDCounter1"))
+                 if(!f.getName().equals("IDCounter"))
                  {
                    children.add(loadTasklist(f.getName()));
                  } else {
-                     IDCounter=(loadCounter(f.getName()));  
+                     IDCounter=loadCounter(); 
+                     JOptionPane.showMessageDialog(null, IDCounter.getCount());
+
                  }
 
                 }
@@ -201,7 +202,8 @@ public class DataHandler {
             /************** If they have not been fetched *********************
               then they are automatically added to the tasklists**************/
             int webId = IDCounter.getWebId();
-            if(webId==0)
+            JOptionPane.showMessageDialog(null, IDCounter.getWebId());
+            if(webId==-1)
             {
             
                 TaskList webTaskList = new TaskList();
@@ -214,7 +216,9 @@ public class DataHandler {
                 {
                     webTaskList.setChildren(fetchedList);
                     IDCounter.setWebId(webTaskList.getID());
-
+                    
+                    saveCounter();
+                    
                     children.add(webTaskList);
                 } else 
                 {
@@ -514,12 +518,12 @@ public class DataHandler {
         DataHandler.IDCounter = IDCounter;
     }
     
-     public static Idcounter loadCounter(String filename)
+     public static Idcounter loadCounter()
     {
         Idcounter loaded = new Idcounter();
         
         String dirPath = "."+s+SquirrelConstants.getSaveDir();
-        String filePath = dirPath+s+filename;
+        String filePath = dirPath+s+"IDCounter";
         File newFile = new File(filePath);
         
         try (FileInputStream fileIn = new FileInputStream(newFile);
@@ -543,7 +547,7 @@ public class DataHandler {
         
     public static boolean saveCounter()
     {
-        String filePath = dirPath+s+"IDCounter1";
+        String filePath = dirPath+s+"IDCounter";
         File newDir = new File(dirPath);
         File newFile = new File(filePath);
         boolean success = false;
@@ -649,11 +653,14 @@ public class DataHandler {
                 t.JSONCorrection();
                 User u = t.getUser();
                 u.JSONCorection();
+                DataHandler.users.add(u);
+                DataHandler.getIDCounter().setCounter(SquirrelConstants.getCounter());
                 ArrayList<SubTask> subtasks = t.getSubtasks();
                 if(subtasks.size()>0)
                 {
                     for(SubTask st : subtasks)
                     {
+                        DataHandler.getIDCounter().setCounter(SquirrelConstants.getCounter());
                         st.JSONCorrection();
                         st.setUser(u);
                     }
