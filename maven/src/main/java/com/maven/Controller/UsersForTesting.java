@@ -18,47 +18,54 @@ public class UsersForTesting {
     {
         users = new ArrayList<User>();
         User tim = new User();
-        tim.setGivenName("Tim");
+        tim.setName("Tim");
         tim.setSurname("Howard");
         tim.setUserName("thoward37");
         tim.setEmail("timhoward37@hotmail.com");
         tim.setPassword("Something37");
         
         User ben = new User();
-        ben.setGivenName("Ben");
+        ben.setName("Ben");
         ben.setSurname("Dover");
         ben.setUserName("bDover123");
         ben.setEmail("bdover123@hotmail.com");
         ben.setPassword("SomethingElse123");
         
         User dave = new User();
-        dave.setGivenName("Dave");
+        dave.setName("Dave");
         dave.setSurname("Walker");
         dave.setUserName("dwalker01");
         dave.setEmail("davewalker@hotmail.com");
         dave.setPassword("Password1");
         
         User tom = new User();
-        tom.setGivenName("Tom");
+        tom.setName("Tom");
         tom.setSurname("Turner");
         tom.setUserName("tomturner8");
         tom.setEmail("tomTurner12@gmail.com");
         tom.setPassword("BadPassword");
         
         User frank = new User();
-        frank.setGivenName("Frank");
+        frank.setName("Frank");
         frank.setSurname("Castle");
         frank.setUserName("66franky66");
         frank.setEmail("frank.castle@hotmail.com");
         frank.setPassword("Password2");
         
+        User webSercvices = new User();
+        webSercvices.setName("WEBSERVICES_name");
+        webSercvices.setSurname("WEBSERVICES_sur_name");
+        webSercvices.setUserName("WEBSERVICES_u_name");
+        webSercvices.setEmail("WEBSERVICES@WEBSERVICES.com");
+        webSercvices.setPassword("WEBSERVICES");
         
-        
+        users.add(webSercvices);
         users.add(tim);
         users.add(ben);
         users.add(dave);
         users.add(tom);
         users.add(frank);
+        
     }
 
     public static ArrayList<User> getUsers() {

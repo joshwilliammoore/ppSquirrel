@@ -5,12 +5,18 @@
  */
 package com.maven.model;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Regory Gregory
  */
-public interface HasChildren<T> {
-   public ArrayList<T> getSubtasks();
+public class CustomException extends Exception{
+    public CustomException()
+    {
+    super();
+    }
+    
+     public CustomException(String message)
+    {
+    super(message);
+    }
 }

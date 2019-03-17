@@ -38,6 +38,7 @@ public class ActionButtonController implements ActionListener{
         String command = e.getActionCommand();
         String[] subCommands = command.split(":");
         JOptionPane.showMessageDialog(null, command);
+        
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         
         switch(subCommands[0])
@@ -62,13 +63,15 @@ public class ActionButtonController implements ActionListener{
                 
             break;    
             case "DONE":
-            SubTask completed = DataHandler.getEntry(subCommands[1],Integer.parseInt(subCommands[2]));
+            SubTask completed = DataHandler.getEntry(subCommands[1],
+                    Integer.parseInt(subCommands[2]));
             boolean switchCompleted = (completed.isCompleted())?false:true;
             completed.setCompleted(switchCompleted);
        
             break;        
             case "NEW":
-                   ContentLoader.loadContent("ADDVIEW:"+subCommands[1]+":"+subCommands[2], 0);
+                   ContentLoader.loadContent("ADDVIEW:"
+                           +subCommands[1]+":"+subCommands[2], 0);
                 break;
             case "UPDATE":
                  SubTask updatable = DataHandler.getEntry(subCommands[1],Integer.parseInt(subCommands[2]));
@@ -122,7 +125,7 @@ public class ActionButtonController implements ActionListener{
                                                     JOptionPane.showMessageDialog(null, "User name does not exist:"+value);
                                                     break;
                                                 }
-                                                   updatable.setAssignee(assignee);
+                                                   updatable.setUser(assignee);
 
                                                 break;
                                             case "priority":
@@ -131,7 +134,7 @@ public class ActionButtonController implements ActionListener{
                                                 formatErrorE = true;
                                                 continue;
                                                 };
-                                                updatable.setPriority(Integer.parseInt(value));
+                                                updatable.setPriorityOrder(Integer.parseInt(value));
                                                 break;
                                             case "dateDue":
                                                 
@@ -240,7 +243,7 @@ public class ActionButtonController implements ActionListener{
                                                     JOptionPane.showMessageDialog(null, "User name does not exist:"+value);
                                                     break;
                                                 }
-                                                   newList.setAssignee(assignee);
+                                                   newList.setUser(assignee);
 
                                                 break;
                                             case "priority":
@@ -249,7 +252,7 @@ public class ActionButtonController implements ActionListener{
                                                 formatError = true;
                                                 continue;
                                                 };
-                                                newList.setPriority(Integer.parseInt(value));
+                                                newList.setPriorityOrder(Integer.parseInt(value));
                                                 break;
                                             case "dateDue":
                                                 if(!FormatChecker.isFieldEmpty(value)) {
@@ -384,30 +387,35 @@ public class ActionButtonController implements ActionListener{
             break;
             case "DELETE":
                 
-                int parentID = 0; 
-                
-                if(subCommands[1].equals("TASKLIST"))
-                        {
-                          
-                        if(!DataHandler.deleteTaskList(subCommands[2]))JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+command);
-                        
-                        } 
-                else if (subCommands[1].equals("TASK")) 
-                        {
-                           
-                            ArrayList<SubTask> handle=DataHandler.getTasktByID(Integer.parseInt(subCommands[2]));
-                            System.out.println(handle);
-                            TaskList p = (TaskList) handle.get(1);
-                            parentID = p.getID();
-                            p.removeChild(handle.get(0));
-                        } 
-                else 
-                        {
-                            ArrayList<SubTask> handle=DataHandler.getSubTasktByID(Integer.parseInt(subCommands[2]));
-                            Task p = (Task) handle.get(1);
-                            parentID = p.getID();
-                            p.removeChild(handle.get(0));
-                        }
+                int parentID = Integer.parseInt(subCommands[2]);
+               if(parentID<1)
+               {
+               JOptionPane.showMessageDialog(null, "The request could not be completed. Wrong id parameter:"+ subCommands[2]);
+               return;
+               }
+               DataHandler.getEntry(subCommands[1], parentID).setDeleted(true);
+
+//                if(subCommands[1].equals("TASKLIST"))
+//                        {
+//                          
+//                        if(!DataHandler.deleteTaskList(subCommands[2]))JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+command);
+//                        } 
+//                else if (subCommands[1].equals("TASK")) 
+//                        {
+//                           
+//                            ArrayList<SubTask> handle=DataHandler.getTasktByID(Integer.parseInt(subCommands[2]));
+//                            System.out.println(handle);
+//                            TaskList p = (TaskList) handle.get(1);
+//                            parentID = p.getID();
+//                            p.removeChild(handle.get(0));
+//                        } 
+//                else 
+//                        {
+//                            ArrayList<SubTask> handle=DataHandler.getSubTasktByID(Integer.parseInt(subCommands[2]));
+//                            Task p = (Task) handle.get(1);
+//                            parentID = p.getID();
+//                            p.removeChild(handle.get(0));
+//                        }
                         ContentLoader.loadContent("LISTVIEW:"+Filters.returnRelative(subCommands[1], false)+":"+parentID, 0);
                         
             break;    

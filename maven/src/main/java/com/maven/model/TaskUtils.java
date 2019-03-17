@@ -19,7 +19,7 @@ public class TaskUtils {
     {
         ArrayList<Task> results = new ArrayList<>();
         
-       for(Task t : tl.getChildren())
+       for(Task t : tl.getSubtasks())
        {
            if (t.getCreator().getUserName().equals( searchPhrase.getUserName())){
                results.add(t);
@@ -60,7 +60,7 @@ public class TaskUtils {
         SimpleDateFormat sdf1 = new SimpleDateFormat(searchFor);
        String searchString = sdf1.format(searchPhrase);
         
-       for(Task t : tl.getChildren())
+       for(Task t : tl.getSubtasks())
        {
         
          String matchString = sdf1.format( t.getCreatedDate());
@@ -76,7 +76,7 @@ public class TaskUtils {
     {
         ArrayList<Task> results = new ArrayList<>();
         
-       for(Task t : tl.getChildren())
+       for(Task t : tl.getSubtasks())
        {
          //comparision logic goes here
        }

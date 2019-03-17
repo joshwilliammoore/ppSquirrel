@@ -66,7 +66,7 @@ public class MessageBar extends HorizontalBar{
 
         JLabel createdDate = new JLabel( t.getStringDate("dateCreated") );
         JLabel modifiedDate = new JLabel( t.getStringDate("dateModified"));
-        JLabel priority = new JLabel(Integer.toString(t.getPriority()));
+        JLabel priority = new JLabel(Integer.toString(t.getPriorityOrder()));
         String isCompleted = (t.isCompleted())? "Yes" : "No";
         
         JLabel completed = new JLabel(isCompleted);

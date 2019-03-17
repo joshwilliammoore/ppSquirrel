@@ -7,44 +7,57 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import static java.time.Instant.now;
 import java.util.Comparator;
+import java.text.ParseException;
 
-public class SubTask implements Serializable
+public class SubTask implements Serializable 
 {
 
     protected int ID;
-    protected String parentID;
 
     protected String title;
+    
     protected String description;
+    
+    protected String completionDate;
+    
     protected Date dueDate;
+    
     protected Date createdDate;
+    
     protected Date modifiedDate;
-    protected int priority;
+    
+    protected int priorityOrder;
+    
     protected boolean completed;
+    
     protected boolean deleted;
 
     protected User creator;
 
-    protected User assignee;
+    protected User user;
     
-    public SubTask(String description, String completionDate, int priorityOrder){
-        setID();
-        setTitle(description);
-        setDescription(description);
-        setDateDueString(completionDate);
-        setCreatedDate();
-        setPriority(priorityOrder);
-        setCompleted(false);
-        setDeleted(false);
-        
-        
-    }
+    protected String parentID;
+    
+//    public SubTask(String description, String completionDate, int priorityOrder){
+//        setID();
+//        setTitle(description);
+//        setDescription(description);
+//        setDateDueString(completionDate);
+//        setCreatedDate();
+//        setPriorityOrder(priorityOrder);
+//        setCompleted(false);
+//        setDeleted(false);
+//        
+//        
+//    }
     
     public SubTask(){
         this.setID();
+        this.setDeleted(false);
         this.setCreatedDate();
         this.setModifiedDateDefault();
         this.setCompleted(false);
+    
     }
     public SubTask(Date dueDate, int priority, String title, String description)
     {
@@ -54,12 +67,31 @@ public class SubTask implements Serializable
         this.setCreatedDate();
         this.setModifiedDateDefault();
         this.setDueDate(dueDate);
-        this.setPriority(priority);
+        this.setPriorityOrder(priority);
         this.setTitle(title);
         this.setDescription(description);
         this.setCompleted(false);
     
     }
+    public void JSONCorrection()
+    {
+     this.setTitle(this.getDescription());
+     SimpleDateFormat smf = new SimpleDateFormat("MMM dd, yyyy hh:mm:ss aa");
+     try{
+        this.setDueDate(smf.parse(this.getCompletionDate()));
+ 
+     } catch (ParseException e)
+     {  
+         System.out.println("Parse error when converting completion date:"+this.getCompletionDate());
+         e.getStackTrace();
+     }catch (Exception e)
+     {  
+         System.out.println("Parse error when converting completion date:"+this.getCompletionDate());
+         e.getStackTrace();
+     }
+    }
+    
+  
     //this is here for inheritance reasons
     public void addChild(SubTask c){}
     
@@ -74,6 +106,10 @@ public class SubTask implements Serializable
     }
 
     public String getTitle() {
+        if(this.title.equals(null))
+        {
+        return this.description;
+        }
         return title;
     }
 
@@ -144,12 +180,12 @@ public class SubTask implements Serializable
      public void setModifiedDateDefault() {
         this.modifiedDate = new Date();
     }
-    public int getPriority() {
-        return priority;
+    public int getPriorityOrder() {
+        return priorityOrder;
     }
 
-    public void setPriority(int priority) {
-        this.priority = priority;
+    public void setPriorityOrder(int priorityOrder) {
+        this.priorityOrder = priorityOrder;
     }
 
     public boolean isCompleted() {
@@ -176,12 +212,12 @@ public class SubTask implements Serializable
         this.creator = creator;
     }
     
-    public User getAssignee() {
-        return assignee;
+    public User getUser() {
+        return user;
     }
 
-    public void setAssignee(User assignee) {
-        this.assignee = assignee;
+    public void setUser(User user) {
+        this.user = user;
     }
     public String getStringDate(String which)
     {
@@ -201,6 +237,31 @@ public class SubTask implements Serializable
 
         return stringDate;
     }
+    
+     public void setStringDueDate(String date)
+    {
+       Date newDueDate = null;
+       SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+       
+       try
+       {
+           newDueDate = f.parse(date);
+
+       }catch (Exception e)
+       {
+       e.printStackTrace();
+       
+       }
+        this.setDueDate(newDueDate);
+    }
+
+    public String getCompletionDate() {
+        return completionDate;
+    }
+
+    public void setCompletionDate(String completionDate) {
+        this.completionDate = completionDate;
+    }
 
     public String getParentID() {
         return parentID;
@@ -209,6 +270,9 @@ public class SubTask implements Serializable
     public void setParentID(String parentID) {
         this.parentID = parentID;
     }
+    
+    
+   
     
 
 

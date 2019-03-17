@@ -70,7 +70,7 @@ public class ContentLoader {
                         if(t instanceof HasChildren)
                         {
                         HasChildren x = (HasChildren) t;   
-                        ArrayList<SubTask> children =  x.getChildren();
+                        ArrayList<SubTask> children =  x.getSubtasks();
                         SubTask[] childrenList = new SubTask[children.size()];
                         childrenList= children.toArray(childrenList);
                             if(childrenList.length == 0)

@@ -105,7 +105,7 @@ public class Filters
             ArrayList<SubTask> results = new ArrayList<>();
                 for(SubTask st : source)
                 {
-                    if(st.getPriority()==Integer.parseInt(priority))
+                    if(st.getPriorityOrder()==Integer.parseInt(priority))
                     {
                         results.add(st);
                     }
@@ -155,7 +155,7 @@ public class Filters
             ArrayList<SubTask> results = new ArrayList<>();
              for(SubTask st : source)
             {
-                if(st.getAssignee().getUserName().equals(userName))
+                if(st.getUser().getUserName().equals(userName))
                 {
                     results.add(st);
                 }
@@ -181,13 +181,13 @@ public class Filters
     }
      private static class byPriority implements Comparator<SubTask>{
         public int compare(SubTask s1, SubTask s2){
-        return s1.getPriority()-s2.getPriority();
+        return s1.getPriorityOrder()-s2.getPriorityOrder();
         }
 
     }
       private static class byPerson implements Comparator<SubTask>{
         public int compare(SubTask s1, SubTask s2){
-        return s1.getAssignee().getUserName().compareTo(s2.getAssignee().getUserName());
+        return s1.getUser().getUserName().compareTo(s2.getUser().getUserName());
         }
 
     }

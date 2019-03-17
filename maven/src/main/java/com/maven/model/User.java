@@ -12,38 +12,48 @@ import java.util.Date;
  * @author joshw
  */
 public class User implements Serializable{
-    private String givenName;
+    private String name;
     private String surname;
-    private int role;
+    private int userLevel;
     private String userName;
     private String email;
     private String password;
+    
     public User(){}
+    
+    
+    public void JSONCorection()
+    {
+    this.setSurname(this.getName());
+    this.setUserName(this.getName());
+    this.setPassword(this.getName());
+    this.setEmail(this.getName()+"@unknown.com");
+    }
     public User(String name, String password, int userLevel){
-       setGivenName(name);
+       setName(name);
        setSurname(name);
        setUserName(name);
        setPassword(password);
        setEmail(name+"@hotmail.com");
-       setRole(userLevel);
+       setUserLevel(userLevel);
     }
     
     
-    public int getRole() {
-        return role;
-    }
-
-    public void setRole(int role) {
-        this.role = role;
+    public int getUserLevel() {
+        return userLevel;
     }
 
+    public void setUserLevel(int userLevel) {
+        this.userLevel = userLevel;
+    }
+
     
-    public void setGivenName(String g){
-        this.givenName = g;
+    public void setName(String g){
+        this.name = g;
     }
     
-    public String getGivenName(){
-        return givenName;
+    public String getName(){
+        return name;
     }
     
     public void setSurname(String s){
@@ -55,7 +65,7 @@ public class User implements Serializable{
     }
     
     public String getFullName(){
-        return givenName + " " + surname;
+        return name + " " + surname;
     }
     
     public void setUserName(String u){
