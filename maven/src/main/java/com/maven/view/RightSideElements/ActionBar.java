@@ -87,6 +87,7 @@ public class ActionBar extends HorizontalBar{
         //this is just testing it. This whole section is basically hardcoded, so it will have to be rewritten.
        
         JTextField jtf = instance.getSearchField();
+                   jtf.setText("Type your search query here..."); 
         jtf.setSize(new Dimension(300, 50));
         jtf.setPreferredSize(new Dimension(300, 50));
 
@@ -99,6 +100,7 @@ public class ActionBar extends HorizontalBar{
         instance.add(instance.getSearchOption(), instance.getGbc());
         
          ActionBarButton jb2 = new ActionBarButton("Search");
+                         
          
         jb2.setActionCommand("SEARCH:"+source+":"+parentID);
         jb2.addActionListener(listener);
