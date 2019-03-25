@@ -51,7 +51,10 @@ public class ActionButtonController implements ActionListener{
                 if(subCommands[1].equals("TITLE"))
                 {
                 comp = Filters.FILTER_BY_TITLE;
-                } else if(subCommands[1].equals("DATE"))
+                } else if(subCommands[1].equals("DONE"))
+                {
+                comp = Filters.FILTER_BY_COMPLETION; 
+                }else if(subCommands[1].equals("DATE"))
                 {
                 comp = Filters.FILTER_BY_DATE;
                 } else if(subCommands[1].equals("ASSIGNEE"))

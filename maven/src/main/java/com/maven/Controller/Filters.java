@@ -23,11 +23,13 @@ import javax.swing.JOptionPane;
  * @author Regory Gregory
  */
 public class Filters
+        
 {
     public static final byName FILTER_BY_TITLE = new byName();
     public static final byPriority FILTER_BY_PRIORITY = new byPriority();
     public static final byDate FILTER_BY_DATE = new byDate();
     public static final byPerson FILTER_BY_ASSIGNEE = new byPerson();
+    public static final byCompletion FILTER_BY_COMPLETION = new byCompletion();
     public static final SearchInTitle SEARCH_BY_TITLE = new SearchInTitle();
     public static final SearchForPriority SEARCH_BY_PRIORITY = new SearchForPriority();
     public static final SearchInDescription SEARCH_BY_DESCRIPTION = new SearchInDescription();
@@ -115,6 +117,8 @@ public class Filters
         
     } 
     
+    
+    
     public static class SearchInDescription
     {
          public ArrayList<SubTask> search(SubTask[] source, String phrase)
@@ -166,7 +170,12 @@ public class Filters
     }
     
     
-    
+      private static class byCompletion implements Comparator<SubTask>{
+        public int compare(SubTask s1, SubTask s2){
+        int result = (s1.isCompleted()==s2.isCompleted())? 0 : (s1.isCompleted()) ? 1:-1;    
+        return result;
+        }
+    }
     private static class byDate implements Comparator<SubTask>{
         public int compare(SubTask s1, SubTask s2){
         int result = (s1.getDueDate().getTime()==s2.getDueDate().getTime())? 0 : (s1.getDueDate().getTime()>s2.getDueDate().getTime()) ? 1:-1;    
