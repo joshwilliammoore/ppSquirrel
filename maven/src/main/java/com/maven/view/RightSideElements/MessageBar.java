@@ -57,6 +57,7 @@ public class MessageBar extends HorizontalBar{
             this.setLayout(new FlowLayout());
             JLabel h1 = new Header(message);
             instance.add(h1);
+            instance.repaint();
 
     }
     public void detailedView(SubTask t)
@@ -127,7 +128,7 @@ public class MessageBar extends HorizontalBar{
         instance.add(mainTitle, BorderLayout.NORTH);
         instance.add(grids, BorderLayout.CENTER);
         //instance.add(assignee);
-   
+        instance.repaint();
 
         
      if(t instanceof SubTask)

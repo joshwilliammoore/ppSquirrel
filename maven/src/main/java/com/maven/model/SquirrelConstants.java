@@ -121,7 +121,7 @@ public class SquirrelConstants {
     private static final Font logoFont = new Font("Arial", Font.PLAIN, 22);
     private static final Font HeaderFont = new Font("Arial", Font.PLAIN, 40);
     private static final Font SubHeaderFont = new Font("Arial", Font.PLAIN, 22);
-    private static final Font DetailEntryFont = new Font("Arial", Font.PLAIN, 22);
+    private static final Font DetailEntryFont = new Font("Arial", Font.PLAIN, 18);
 
 /******************************************************************************
  * **********************Horizontal pane settings******************************
