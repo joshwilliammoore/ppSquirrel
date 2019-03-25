@@ -46,11 +46,12 @@ public class ListEntry extends HorizontalBar{
     
     ActionAreaCheckbox done = new ActionAreaCheckbox();
            done.setSelected(tal.isCompleted());   
-           done.setActionCommand("DONE:"+type+":"+tal.getID());  
+           done.setActionCommand("DONE:"+type+":"+tal.getID());
+           done.setHorizontalAlignment(JLabel.CENTER);
 
       this.add(done);  
       this.add(title);
-       this.add(date);
+      this.add(date);
       this.add(userName);
       this.add(priorirty);
       this.add(new ActionButtonContainer(tal, type));

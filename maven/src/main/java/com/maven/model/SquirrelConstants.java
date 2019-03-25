@@ -86,7 +86,7 @@ public class SquirrelConstants {
     private static final String[] menuEntries= {"Home", "Tasklists", "Admin" ,"Exit"};
     
 /******************************************************************************
- * ******************************* Paddings ** *******************************
+ * ******************************* Padding, margin ****************************
  * ****************************************************************************/
     
     public static final Insets ActionButtonPadding = new Insets(20, 20, 20, 20);
@@ -97,6 +97,7 @@ public class SquirrelConstants {
 
     public static final Border searchDropDownPadding = BorderFactory.createEmptyBorder(20, 20, 20, 20);
     public static final Border HeaderPadding = BorderFactory.createEmptyBorder(50, 20, 20, 20);
+    public static final Border MessageBarMargin = BorderFactory.createEmptyBorder(20, 10, 20, 10);
 
 /******************************************************************************
  * ************************* Border configuration *******************************
@@ -204,6 +205,10 @@ public class SquirrelConstants {
 
     public static Border getListEntryLabelBorder() {
         return ListEntryLabelBorder;
+    }
+
+    public static Border getMessageBarMargin() {
+        return MessageBarMargin;
     }
     
     

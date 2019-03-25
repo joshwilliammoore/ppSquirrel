@@ -6,6 +6,7 @@
 package com.maven.Controller;
 
 import java.util.ArrayList;
+import java.awt.Dimension;
 
 import com.maven.model.SubTask;
 import com.maven.model.Task;
@@ -45,7 +46,8 @@ public class ContentLoader {
                     //logical error here, mate!!!!
                     if(subCommands[1].equals("TASKLISTS"))
                     {
-                        MessageBar.getInstance().customMessage("Here you can see the"+subCommands[1]);
+                       // MessageBar.getInstance().setSize(new Dimension(MessageBar.getInstance().getWidth(), 300));
+                        MessageBar.getInstance().customMessage(subCommands[1].substring(0,1)+subCommands[1].substring(1).toLowerCase());
                         ActionBar.DefaultBar(subCommands[1], new ActionButtonController(), Integer.parseInt(subCommands[2]));
                         //DataHandler.loadTasklists(subCommands[1],Integer.parseInt(subCommands[2]));
                         ArrayList<SubTask> ar = DataHandler.getChildren();
@@ -91,7 +93,7 @@ public class ContentLoader {
  
                 break;
                 case "ADDVIEW": 
-                        MessageBar.getInstance().customMessage("Here you can add a new "+subCommands[1]);
+                        MessageBar.getInstance().customMessage("Add a new "+subCommands[1].substring(0,1)+subCommands[1].substring(1).toLowerCase());
 
                         ActionBar.addNewBar(subCommands[1], new ActionButtonController(), Integer.parseInt(subCommands[2]));
                         AddForm.getInstance().reFresh(null, subCommands[1]);
@@ -99,7 +101,7 @@ public class ContentLoader {
                 break;
                 case "EDITVIEW":
                         SubTask t = DataHandler.getEntry(subCommands[1], Integer.parseInt(subCommands[2]));
-                        MessageBar.getInstance().customMessage("Here you can edit a "+subCommands[1]);
+                        MessageBar.getInstance().customMessage("Edit a"+subCommands[1].substring(0,1)+subCommands[1].substring(1).toLowerCase());
 
                         ActionBar.editBar(subCommands[1], new ActionButtonController(), Integer.parseInt(subCommands[2]));
                         EditForm.getInstance().reFresh(t);

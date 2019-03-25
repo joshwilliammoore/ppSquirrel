@@ -32,10 +32,11 @@ public class MessageBar extends HorizontalBar{
     protected MessageBar()
     {
         super();
-        this.setDim(new Dimension(900, 150));
+        this.setDim(new Dimension(900, 300));
         this.setPreferredSize(this.getDim());
         this.setBackground(SquirrelConstants.getMessageBarColour());
         this.setLayout(new GridLayout(0, 2));
+        this.setBorder(SquirrelConstants.getMessageBarMargin());
 
     }
     
@@ -68,7 +69,8 @@ public class MessageBar extends HorizontalBar{
         this.setLayout(new BorderLayout());
         
         JPanel grids = new JPanel(new GridLayout(0,4));
-      
+        grids.setBackground(SquirrelConstants.getColorLight());
+
         JLabel titleLabel = new DetailEntryLabel("Title: ");
         JLabel title = new DetailEntry(t.getTitle());
         
@@ -138,7 +140,7 @@ public class MessageBar extends HorizontalBar{
      
     }
     
-    private class Header extends JLabel
+    private static class Header extends JLabel
     {
         private Header(String label)
         {
@@ -151,12 +153,13 @@ public class MessageBar extends HorizontalBar{
         }
     
     }
-     private class SubHeader extends JLabel
+     private static class SubHeader extends JLabel
     {
         private SubHeader(String label)
         {
             super(label);
             this.setHorizontalTextPosition(JLabel.CENTER);
+            this.setHorizontalAlignment(JLabel.CENTER);
             this.setVerticalAlignment(JLabel.BOTTOM);
             this.setVerticalTextPosition(JLabel.BOTTOM);
             this.setFont(SquirrelConstants.getSubHeaderFont());
@@ -164,7 +167,7 @@ public class MessageBar extends HorizontalBar{
         }
     
     }
-       private class DetailEntry extends JLabel
+       private static class DetailEntry extends JLabel
     {
         private DetailEntry(String label)
         {
@@ -175,11 +178,11 @@ public class MessageBar extends HorizontalBar{
             this.setVerticalTextPosition(JLabel.BOTTOM);
             this.setFont(SquirrelConstants.getDetailEntryFont());
             this.setForeground(SquirrelConstants.getColorPrimary());
-          
+            this.setBackground(SquirrelConstants.getColorLight());
         }
     
     }
-       private class DetailEntryLabel extends JLabel
+       private static class DetailEntryLabel extends JLabel
     {
         private DetailEntryLabel(String label)
         {
@@ -189,6 +192,9 @@ public class MessageBar extends HorizontalBar{
             this.setVerticalAlignment(JLabel.BOTTOM);
             this.setVerticalTextPosition(JLabel.BOTTOM);
             this.setFont(SquirrelConstants.getDetailEntryFont());
+            this.setForeground(SquirrelConstants.getColorPrimary());
+            this.setBackground(SquirrelConstants.getColorLight());
+
             
 
           
