@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package com.maven.view.UIElements;
+
+import com.maven.model.SquirrelConstants;
 import javax.swing.JComboBox;
+import java.awt.Insets;
 /**
  *
  * @author Regory Gregory
@@ -15,9 +18,10 @@ public class FormCombo extends JComboBox implements GetUIContent{
     public FormCombo(Object[] s)
     {
     super(s);
+//    this(SquirrelConstants.getActionButtonPadding());
     }
     
-    
+ 
     public String getContent()
     {
        if(this.getSelectedItem() instanceof Integer){

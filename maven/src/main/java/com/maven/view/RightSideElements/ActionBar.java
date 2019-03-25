@@ -36,7 +36,7 @@ public class ActionBar extends HorizontalBar{
         super();
         this.setDim(new Dimension(700, 100));
         this.setPreferredSize(this.getDim());
-        this.setBackground(Color.RED);
+        this.setBackground(SquirrelConstants.getActionBarColour());
         this.searchField = new JTextField();
         
         String[] searchOptions = {"TITLE", "ASSIGNEE", "PRIORITY", "DUE_DATE", "DESCRIPTION"};
@@ -77,52 +77,55 @@ public class ActionBar extends HorizontalBar{
     public static  void DefaultBar(String source, ActionButtonController listener, int parentID)
     {
         instance.removeAll();
-        instance.getGbc().fill = GridBagConstraints.HORIZONTAL;
+        instance.getGbc().fill = GridBagConstraints.BOTH;
 
         instance.getGbc().gridx=0;
         instance.getGbc().gridy=0;
-        instance.getGbc().gridwidth=2;
         instance.getGbc().gridheight=1;
+        instance.getGbc().ipadx=25;
         
         //this is just testing it. This whole section is basically hardcoded, so it will have to be rewritten.
-        ActionBarButton jb = new ActionBarButton("Add new "+Filters.returnRelative(source, true));
-
-                        jb.setActionCommand("NEW:"+Filters.returnRelative(source, true)+":"+parentID);
-                        
-        jb.addActionListener(listener);
-              
-        instance.add(jb, instance.getGbc());
-        
-        String[] searchOptions = {"TITLE", "ASSIGNEE", "PRIORITY", "DUE_DATE", "DESCRIPTION"};
-        
-        
-        instance.getGbc().gridx=4;
-        instance.add(instance.getSearchOption(), instance.getGbc());
-        
-        ActionBarButton jb2 = new ActionBarButton("Search");
-         
-        jb2.setActionCommand("SEARCH:"+source+":"+parentID);
-        jb2.addActionListener(listener);
-                        
-        instance.getGbc().gridx=2;
-        instance.add(jb2, instance.getGbc());
-        
-        
+       
         JTextField jtf = instance.getSearchField();
         jtf.setSize(new Dimension(300, 50));
         jtf.setPreferredSize(new Dimension(300, 50));
 
-        instance.getGbc().gridx = 6;
+        instance.getGbc().gridx = 0;
         instance.getGbc().gridwidth = 3;
-        instance.add(jtf, instance.getGbc());
+        instance.add(jtf, instance.getGbc());        
+        
+        instance.getGbc().gridx=4;
+        instance.getGbc().gridwidth = 2;
+        instance.add(instance.getSearchOption(), instance.getGbc());
+        
+         ActionBarButton jb2 = new ActionBarButton("Search");
+         
+        jb2.setActionCommand("SEARCH:"+source+":"+parentID);
+        jb2.addActionListener(listener);
+                        
+        instance.getGbc().gridx=6;
+        instance.add(jb2, instance.getGbc());
+        
+        
+        ActionBarButton jb = new ActionBarButton("Add new "+Filters.returnRelative(source, true));
+
+                        jb.setActionCommand("NEW:"+Filters.returnRelative(source, true)+":"+parentID);
+                        
+                        jb.addActionListener(listener);
+                        jb.setBackground(SquirrelConstants.getColorDanger());
+       instance.getGbc().gridx = 9;
+
+        instance.add(jb, instance.getGbc());
+   
+        
         if(!source.equals("TASKLISTS"))
         {
                     //JOptionPane.showMessageDialog(null, "ejj: "+source);
 
-        instance.getGbc().gridx = 10;
+        instance.getGbc().gridx = 11;
         instance.getGbc().gridwidth = 2;  
         
-        ActionBarButton jCancel = new ActionBarButton("Cancel");
+        ActionBarButton jCancel = new ActionBarButton("Go back");
         jCancel.addActionListener(listener);
         jCancel.setActionCommand("CANCEL:"+Filters.returnRelative(source, false)+":"+parentID);
         instance.add(jCancel, instance.getGbc());
@@ -144,6 +147,7 @@ public class ActionBar extends HorizontalBar{
         instance.getGbc().gridy=0;
         instance.getGbc().gridwidth=2;
         instance.getGbc().gridheight=1;
+        instance.getGbc().ipadx=25;
         //this is just testing it. This whole section is basically hardcoded, so it will have to be rewritten.
         ActionBarButton jSave = new ActionBarButton("Save "+source);
         jSave.setActionCommand("SAVE:"+source+":"+parentID);

@@ -31,7 +31,6 @@ public class RightSide extends GeneralPanel{
         super(SquirrelConstants.getRightSideWidth(), SquirrelConstants.getInnerPaneHeight());
       
         this.setLayout(new BorderLayout());
-        this.setBackground(Color.YELLOW);
         this.setBackground(SquirrelConstants.getRightSideBg());
        
         

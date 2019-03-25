@@ -45,7 +45,7 @@ public class ListView {
         if(viewport == null){
             viewport = new JPanel();
             viewport.setLayout(new GridLayout(0,1)); 
-            viewport.setMinimumSize(new Dimension(680,380));
+            //viewport.setMinimumSize(new Dimension(680,380));
         }
         return viewport;
     }

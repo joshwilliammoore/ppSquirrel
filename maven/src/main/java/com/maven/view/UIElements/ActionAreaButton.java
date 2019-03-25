@@ -5,6 +5,7 @@
  */
 package com.maven.view.UIElements;
 import com.maven.Controller.ActionButtonController;
+import com.maven.model.SquirrelConstants;
 import javax.swing.JButton;
 /**
  *
@@ -15,5 +16,8 @@ public class ActionAreaButton extends JButton{
     {
         super(text);
         this.addActionListener(new ActionButtonController());
+        this.setBackground(SquirrelConstants.getActionAreaButtonBackground());
+        this.setForeground(SquirrelConstants.getActionAreaButtonForeground());
+        this.setMargin(SquirrelConstants.getActionBarButtonPadding());
     }
 }

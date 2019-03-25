@@ -14,6 +14,7 @@ import java.awt.GridBagConstraints;
 
 import java.awt.GridLayout;
 import javax.swing.JLabel;
+import com.maven.model.SquirrelConstants;
 /**
  *
  * @author Regory Gregory
@@ -27,37 +28,45 @@ public class FilterBar extends JPanel{
     
     
    
-    JLabel filters = new JLabel("Filter:");
-    ActionAreaButton byName = new ActionAreaButton("Title");  
-                     byName.setActionCommand("FILTER:TITLE");   
-    ActionAreaButton byDate = new ActionAreaButton("Date");
-                     byDate.setActionCommand("FILTER:DATE");  
-    ActionAreaButton byPerson = new ActionAreaButton("Assignee");
-                     byPerson.setActionCommand("FILTER:ASSIGNEE");  
-    ActionAreaButton byPriority = new ActionAreaButton("Priority");
-                     byPriority.setActionCommand("FILTER:PRIORITY:");
+    ActionAreaButton byDone = new FilterBarButton("Done");  
+                     byDone.setActionCommand("FILTER:DONE");
+                     
+    ActionAreaButton byName = new FilterBarButton("Title");  
+                     byName.setActionCommand("FILTER:TITLE");  
+                     
+    ActionAreaButton byDate = new FilterBarButton("Date");
+                     byDate.setActionCommand("FILTER:DATE"); 
+                     
+    ActionAreaButton byPerson = new FilterBarButton("Assignee");
+                     byPerson.setActionCommand("FILTER:ASSIGNEE");
+                     
+    ActionAreaButton byPriority = new FilterBarButton("Priority");
+                     byPriority.setActionCommand("FILTER:PRIORITY");
+                     
+    ActionAreaButton actions = new FilterBarButton("Actions");
+                     actions.setActionCommand("DISABLED:DISABLED");
     
                      
-    this.add(filters);          
+    this.add(byDone);          
     this.add(byName);  
     this.add(byDate); 
     this.add(byPerson); 
     this.add(byPriority);
+    this.add(actions);
+ 
     
-    
-    this.setLayout(new GridLayout(2,0));
-    
-    JLabel title = new JLabel("Description/Assignee:");
-    JLabel assignee = new JLabel("                      Priority:");
-    JLabel priority = new JLabel("Due Date:");
-    JLabel date = new JLabel("");
-    
-    this.add(title);  
-    this.add(assignee); 
-    this.add(priority); 
-    this.add(date);
     }
-
+    
+    private class FilterBarButton extends ActionAreaButton
+    {
+        public FilterBarButton(String label)
+        {
+            super(label);
+            this.setMargin(SquirrelConstants.getFilterBarButton());
+        }
+        
+        
+    }
    
 
     

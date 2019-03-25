@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.maven.view.RightSideElements;
+import com.maven.model.SquirrelConstants;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Component;
@@ -18,7 +19,7 @@ public class ActionArea extends HorizontalBar {
     private ActionArea()
     {
         super();
-        this.setBackground(Color.PINK);
+        this.setBackground(SquirrelConstants.getActionAreaColour());
         this.setDim(new Dimension(680, 300));
         this.setMinimumSize(this.getDim());
         this.setLayout(new GridLayout(0,1));
