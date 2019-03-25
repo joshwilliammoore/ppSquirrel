@@ -37,9 +37,9 @@ public class ListEntry extends HorizontalBar{
     //this.setLayout(new GridLayout(1,0));
     this.setPreferredSize(new Dimension(900, 100));
     this.setLayout(new GridLayout(1,0));
-    JLabel title = new ListEntryLabel(tal.getTitle());
+    JLabel title = new ListEntryLabel("<html>"+tal.getTitle()+"</html>");
 
-    JLabel userName = new ListEntryLabel(tal.getUser().getUserName());
+    JLabel userName = new ListEntryLabel("<html>"+tal.getUser().getUserName()+"</html>");
 
     JLabel priorirty = new ListEntryLabel(Integer.toString(tal.getPriorityOrder()));
     JLabel date = new ListEntryLabel(tal.getStringDate("dueDate"));

@@ -72,13 +72,13 @@ public class MessageBar extends HorizontalBar{
         grids.setBackground(SquirrelConstants.getColorLight());
 
         JLabel titleLabel = new DetailEntryLabel("Title: ");
-        JLabel title = new DetailEntry(t.getTitle());
+        JLabel title = new DetailEntry("<html>"+t.getTitle()+"</html>");
         
         grids.add(titleLabel);
         grids.add(title);
         
         JLabel descriptionLabel = new DetailEntryLabel("Description: ");
-        JLabel description = new DetailEntry(t.getDescription());
+        JLabel description = new DetailEntry("<html>"+t.getDescription()+"</html>");
         
         grids.add(descriptionLabel);
         grids.add(description);

@@ -83,7 +83,8 @@ public class ActionBar extends HorizontalBar{
         instance.getGbc().gridy=0;
         instance.getGbc().gridheight=1;
         instance.getGbc().ipadx=25;
-        
+        if(!source.equals("SUBTASK"))
+        {
         //this is just testing it. This whole section is basically hardcoded, so it will have to be rewritten.
        
         JTextField jtf = instance.getSearchField();
@@ -108,7 +109,7 @@ public class ActionBar extends HorizontalBar{
         instance.getGbc().gridx=6;
         instance.add(jb2, instance.getGbc());
         
-        
+      
         ActionBarButton jb = new ActionBarButton("Add new "+Filters.returnRelative(source, true));
 
                         jb.setActionCommand("NEW:"+Filters.returnRelative(source, true)+":"+parentID);
@@ -118,6 +119,8 @@ public class ActionBar extends HorizontalBar{
        instance.getGbc().gridx = 9;
 
         instance.add(jb, instance.getGbc());
+        }
+     
    
         
         if(!source.equals("TASKLISTS"))
