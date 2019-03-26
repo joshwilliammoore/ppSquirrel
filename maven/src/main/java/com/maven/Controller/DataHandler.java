@@ -774,5 +774,14 @@ public class DataHandler<T extends SubTask> {
         DataHandler.allEntries = allEntries;
     }
     
+    //Logins
+    public static boolean correctLogin(String userName, String password){
+        for(User u: getUsers()){
+            if(u.getUserName()==userName && u.getPassword()==password){
+                return true;
+            }
+        }
+        return false;
+    }
     
 }
