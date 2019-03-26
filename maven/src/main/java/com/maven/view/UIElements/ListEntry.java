@@ -42,7 +42,7 @@ public class ListEntry extends HorizontalBar{
     JLabel userName = new ListEntryLabel("<html>"+tal.getUser().getUserName()+"</html>");
 
     JLabel priorirty = new ListEntryLabel(Integer.toString(tal.getPriorityOrder()));
-    JLabel date = new ListEntryLabel(tal.getStringDate("dueDate"));
+    JLabel date = new ListEntryLabel(tal.getDateDueString());
     
     ActionAreaCheckbox done = new ActionAreaCheckbox();
            done.setSelected(tal.isCompleted());   

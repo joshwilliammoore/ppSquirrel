@@ -47,7 +47,7 @@ public class DataHandler<T extends SubTask> {
     private static ArrayList<User> users = new ArrayList<User>();
     private static HashSet<SubTask> allEntries;
    
-    //This is just a quick fix
+    //This is just a quick fix, the algorhytm's efficiency is horrific. However, it is only done onnce when the program is started.
     
     public static void quickFixONotation()
    {
@@ -106,7 +106,8 @@ public class DataHandler<T extends SubTask> {
                 }
               
         }
-        boolean saveCounterSuccess = DataHandler.saveCounter(); 
+        boolean saveCounterSuccess = DataHandler.saveCounter();
+        
         success =  (success && saveCounterSuccess);
         return success;
     
@@ -329,6 +330,7 @@ public class DataHandler<T extends SubTask> {
                 }
             }
             saveCounter();
+            updateTaskLists();
             quickFixONotation();    
     }
  
@@ -717,6 +719,7 @@ public class DataHandler<T extends SubTask> {
             for(Task t : tList)
             {
                 t.JSONCorrection();
+                t.setPriorityOrder(t.getPriorityOrder()+1);
                 User u = t.getUser();
                 u.JSONCorection();
                 DataHandler.users.add(u);

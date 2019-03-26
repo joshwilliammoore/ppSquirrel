@@ -83,7 +83,7 @@ public class SquirrelConstants {
     
     private static final Font menuEntryFont = new Font("Arial", Font.PLAIN, 30);
     
-    private static final String[] menuEntries= {"Home", "Tasklists", "Admin" ,"Exit"};
+    private static final String[] menuEntries= {"Home", "Tasklists", /*"Admin" ,*/"Exit"};
     
 /******************************************************************************
  * ******************************* Padding, margin ****************************

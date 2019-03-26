@@ -85,7 +85,7 @@ public class MessageBar extends HorizontalBar{
                 
         
         JLabel dueDateLabel = new DetailEntryLabel("Due date: ");
-        JLabel dueDate = new DetailEntry(t.getStringDate("dueDate"));
+        JLabel dueDate = new DetailEntry(t.getDateDueString());
         
         grids.add(dueDateLabel);
         grids.add(dueDate);

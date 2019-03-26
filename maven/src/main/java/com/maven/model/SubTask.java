@@ -136,7 +136,7 @@ public class SubTask<T extends SubTask> implements Serializable
 
     
      public String getDateDueString() {
-        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         return f.format(this.dueDate);
      }
     

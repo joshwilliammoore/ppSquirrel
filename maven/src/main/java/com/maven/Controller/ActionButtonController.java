@@ -43,6 +43,7 @@ public class ActionButtonController implements ActionListener{
         JOptionPane.showMessageDialog(null, command);
         
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatWithTime = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         int parentID = 0;
         switch(subCommands[0])
         {
@@ -72,13 +73,18 @@ public class ActionButtonController implements ActionListener{
             SubTask completed = DataHandler.getEntryFromAllEntriesByID(Integer.parseInt(subCommands[2]));
             boolean switchCompleted = (completed.isCompleted())?false:true;
             completed.setCompleted(switchCompleted);
-       
+            if(!DataHandler.updateTaskLists())
+            {
+                JOptionPane.showMessageDialog(null, "Saving the tasklists failed!");
+                
+            }; 
             break;        
             case "NEW":
                    ContentLoader.loadContent("ADDVIEW:"
                            +subCommands[1]+":"+subCommands[2], 0);
                 break;
             case "UPDATE":
+                
                 SubTask updatable = DataHandler.getEntryFromAllEntriesByID(Integer.parseInt(subCommands[2]));
                 JOptionPane.showMessageDialog(null, updatable.getID());
                 EditForm dataForm = EditForm.getInstance();
@@ -149,7 +155,7 @@ public class ActionButtonController implements ActionListener{
                                                 continue;
                                                 };
                                                  if(FormatChecker.dateFormatChecker(value).equals("badformat")) {
-                                                JOptionPane.showMessageDialog(null, "The due date field is not properly formatted. The proper format is dd/mm/yyyy."); 
+                                                JOptionPane.showMessageDialog(null, "The due date field is not properly formatted. The proper format is dd/mm/yyyy or dd/mm/yyyy hh:mm."); 
                                                 formatErrorE = true;
                                                 continue;
                                                 };
@@ -160,11 +166,25 @@ public class ActionButtonController implements ActionListener{
                                                   formatErrorE = true;
                                                   continue;
                                                   };
-                                                  
+                                                
+                                            
                                                 try{
-                                                updatable.setDueDate(format.parse(value));
+                                                    
+                                                updatable.setDueDate(formatWithTime.parse(value));
+                                                
                                                 }catch(Exception ex)
+                                                    
                                                 {
+                                                       try{
+                                                         updatable.setDueDate(format.parse(value));
+                                                         }catch(Exception ex1)
+                                                         {
+       
+                                                          ex.printStackTrace();
+                                                          } 
+                                                        
+                                                    
+                                                    
                                                     ex.printStackTrace();
                                                 }
                                                 break;
@@ -178,15 +198,20 @@ public class ActionButtonController implements ActionListener{
                 
                 //update content
                 parentID = 0;    
-                
-                 if(subCommands[1].equals("TASK") || subCommands[1].equals("SUBTASK"))
+                if(!formatErrorE)
+                {
+                   if(subCommands[1].equals("TASK") || subCommands[1].equals("SUBTASK"))
                 {
                     parentID = updatable.getParent().getID();
                 } 
                  
-                ContentLoader.loadContent("LISTVIEW:"+Filters.returnRelative(subCommands[1], false)+":"+parentID, null);    
-
-//                ContentLoader.loadContent("LISTVIEW:"+subCommands[1]+":"+subCommands[2], 0);
+                ContentLoader.loadContent("LISTVIEW:"+Filters.returnRelative(subCommands[1], false)+":"+parentID, null);  
+                
+                }
+                if(!DataHandler.updateTaskLists())
+                {
+                JOptionPane.showMessageDialog(null, "Saving the tasklists failed!");
+                }; 
 
                 break;
             case "SAVE":
@@ -265,28 +290,48 @@ public class ActionButtonController implements ActionListener{
                                                 newList.setPriorityOrder(Integer.parseInt(value));
                                                 break;
                                             case "dateDue":
+                                                
                                                 if(!FormatChecker.isFieldEmpty(value)) {
+                                                    
                                                 JOptionPane.showMessageDialog(null, "The due date field is empty. Please fill it!"); 
                                                 formatError = true;
                                                 continue;
+                                                
                                                 };
-                                                 if(FormatChecker.dateFormatChecker(value).equals("badformat")) {
-                                                JOptionPane.showMessageDialog(null, "The due date field is not properly formatted. The proper format is dd/mm/yyyy."); 
+                                                
+                                                if(FormatChecker.dateFormatChecker(value).equals("badformat")) {
+                                                    
+                                                JOptionPane.showMessageDialog(null, "The due date field is not properly formatted. The proper format is dd/mm/yyyy or dd/mm/yyyy hh:mm."); 
                                                 formatError = true;
                                                 continue;
+                                                
                                                 };
+                                                
                                                 if (FormatChecker.dateFormatChecker(value).equals("notlater"))
                                                  {
-                                                  //it will have to be improved to compare time!!!   
+                                                  //it will have to be improved to compare time, doesn't work currently  
                                                   JOptionPane.showMessageDialog(null, "The given due date is not later than the current date. Please make it a later date."); 
                                                   formatError = true;
                                                   continue;
                                                   };
-                                                  
+                                                
                                                 try{
-                                                newList.setDueDate(format.parse(value));
+                                                    
+                                                newList.setDueDate(formatWithTime.parse(value));
+                                                
                                                 }catch(Exception ex)
+                                                    
                                                 {
+                                                       try{
+                                                             newList.setDueDate(format.parse(value));
+                                                         }catch(Exception ex1)
+                                                         {
+       
+                                                          ex.printStackTrace();
+                                                          } 
+                                                        
+                                                    
+                                                    
                                                     ex.printStackTrace();
                                                 }
                                                 break;
@@ -316,8 +361,11 @@ public class ActionButtonController implements ActionListener{
                                       //this reloads the parent container!!!
                                       ContentLoader.loadContent("LISTVIEW:"+Filters.returnRelative(subCommands[1], false)+":"+subCommands[2], null);    
                                     }
-
-                DataHandler.saveCounter();
+                if(!DataHandler.updateTaskLists())
+                {
+                JOptionPane.showMessageDialog(null, "Saving the tasklists failed!");
+                
+                };                  
         
                        
             break;
@@ -327,6 +375,7 @@ public class ActionButtonController implements ActionListener{
                          
             break;
             case "SEARCH":
+                
                    String searchPhrase =  ActionBar.getInstance().getSearchField().getText();
                    String type = ActionBar.getInstance().getSearchOption().getContent();
                    SubTask[] searchAble = ListView.getTaskLists();
@@ -407,8 +456,17 @@ public class ActionButtonController implements ActionListener{
                }
                SubTask deletable = DataHandler.getEntryFromAllEntriesByID(instanceID);
                        deletable.setDeleted(true); 
-                       ContentLoader.loadContent("LISTVIEW:"+Filters.returnRelative(subCommands[1], false)+":"+deletable.getParent().getID(), 0);
-                        
+                       int deletedParent = 0;
+                       if(!(deletable instanceof TaskList))
+                       {
+                       deletedParent = deletable.getParent().getID();
+                       }
+                       ContentLoader.loadContent("LISTVIEW:"+Filters.returnRelative(subCommands[1], false)+":"+deletedParent, 0);
+                 if(!DataHandler.updateTaskLists())
+                {
+                JOptionPane.showMessageDialog(null, "Saving the changes failed!");
+                
+                };         
             break;    
             case "CANCEL":
                 if(!subCommands[1].equals("TASKLISTS") 

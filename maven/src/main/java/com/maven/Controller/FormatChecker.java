@@ -16,21 +16,48 @@ public class FormatChecker {
     public static String dateFormatChecker(String dateToCheck)
     {
         SimpleDateFormat format= new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatWithTime = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        
         Date today = new Date();
         long epochToday = today.getTime()/1000/60/60/60/24;
-        try{
-            Date checkIt = format.parse(dateToCheck);
-            long checkItInt = checkIt.getTime()/1000/60/60/24;
+        String feedback="nolater";
+        
+        long checkItInt=0;
+        Date checkIt = new Date();
+        
+        try
+        {
+            checkIt = formatWithTime.parse(dateToCheck);
+            checkItInt = checkIt.getTime()/1000/60/60/24;
+        } 
+        catch(ParseException pex)
+        {
+            
+            feedback="badformat";
+            try
+            {
+                
+            checkIt = format.parse(dateToCheck);
+            checkItInt = checkIt.getTime()/1000/60/60/24;
+            
+            }
+            catch(ParseException pex2)
+            {
+            System.out.println(pex.getMessage());
+            System.out.println(pex2.getMessage());
+            return feedback;
+            
+            }
+     
+        }
+ 
             if(checkItInt>epochToday)
             {
-                return "later";
+                feedback = "later";
             }
-            return "notlater";
-        } catch(ParseException pex)
-        {
-            System.out.println(pex.getMessage());
-        }
-         return "badformat";
+            return feedback;
+         
+         
 
     }
     
