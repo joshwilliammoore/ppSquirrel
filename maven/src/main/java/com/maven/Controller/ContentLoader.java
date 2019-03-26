@@ -65,7 +65,7 @@ public class ContentLoader {
                     {
                         javax.swing.JOptionPane.showMessageDialog(null, text);
 
-                        SubTask t = DataHandler.getEntry(subCommands[1], Integer.parseInt(subCommands[2]));
+                        SubTask t = DataHandler.getEntryFromAllEntriesByID(Integer.parseInt(subCommands[2]));
                         MessageBar.getInstance().detailedView(t);
                         ActionBar.DefaultBar(subCommands[1], new ActionButtonController(), Integer.parseInt(subCommands[2]));
 
@@ -100,7 +100,7 @@ public class ContentLoader {
                         ActionArea.getInstance().reFresh(AddForm.getInstance());
                 break;
                 case "EDITVIEW":
-                        SubTask t = DataHandler.getEntry(subCommands[1], Integer.parseInt(subCommands[2]));
+                        SubTask t = DataHandler.getEntryFromAllEntriesByID( Integer.parseInt(subCommands[2]));
                         MessageBar.getInstance().customMessage("Edit a"+subCommands[1].substring(0,1)+subCommands[1].substring(1).toLowerCase());
 
                         ActionBar.editBar(subCommands[1], new ActionButtonController(), Integer.parseInt(subCommands[2]));

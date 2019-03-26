@@ -40,7 +40,7 @@ public class FilterBar extends JPanel{
     ActionAreaButton byPerson = new FilterBarButton("Assignee");
                      byPerson.setActionCommand("FILTER:ASSIGNEE");
                      
-    ActionAreaButton byPriority = new FilterBarButton("Priority");
+    ActionAreaButton byPriority = new FilterBarButton("Priority Order");
                      byPriority.setActionCommand("FILTER:PRIORITY");
                      
     ActionAreaButton actions = new FilterBarButton("Actions");

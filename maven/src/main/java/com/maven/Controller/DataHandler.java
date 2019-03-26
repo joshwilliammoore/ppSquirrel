@@ -31,21 +31,48 @@ import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.Arrays;
+import java.util.HashSet;
 
 
 /**
  *
  * @author Regory Gregory
  */
-public class DataHandler {
+public class DataHandler<T extends SubTask> {
     
     private static String s = System.getProperty("file.separator");
     private static String dirPath = "."+s+SquirrelConstants.getSaveDir();
     private static ArrayList<SubTask> children;
     private static Idcounter IDCounter = new Idcounter();
     private static ArrayList<User> users = new ArrayList<User>();
-    
+    private static HashSet<SubTask> allEntries;
    
+    //This is just a quick fix
+    
+    public static void quickFixONotation()
+   {
+       for(SubTask tl : children)
+       {
+           allEntries.add(tl);
+
+            for(Object t : tl.getSubtasks())
+            {
+                  Task typecastT = (Task) t;
+                  typecastT.setParent(tl);
+                  allEntries.add(typecastT);
+                  
+                  for(Object st : typecastT.getSubtasks())
+                    {
+                        SubTask typecastST = (SubTask) st;
+                        typecastST.setParent(typecastT);
+                        allEntries.add(typecastST);
+                    }
+
+            }
+       
+       }
+   
+   }
     public static boolean updateTaskLists()
     {
         boolean success = true;
@@ -84,6 +111,30 @@ public class DataHandler {
         return success;
     
     }
+    public static SubTask getEntryFromAllEntriesByID(int id)
+    {
+        for(SubTask t: allEntries)
+        {
+            if (t.getID()==id)
+            {
+                return t;
+            }
+        }
+       return null; 
+    }
+    
+        public static SubTask getEntryFromAllEntriesByTitle(String title)
+    {
+        for(SubTask t: allEntries)
+        {
+            if (t.getTitle().equals(title));
+            {
+                return t;
+            }
+        }
+       return null; 
+    }
+    
     public static boolean saveTaskList(SubTask taskList)
     {
         
@@ -106,7 +157,7 @@ public class DataHandler {
             fileOut.close();
             objectOut.close();
             children.add(taskList);
-            
+            allEntries.add(taskList);
             
         }catch(Exception e)
         {
@@ -122,7 +173,7 @@ public class DataHandler {
             /*******************************************************************
             ****************** Loading the task lists from files*****************
             *******************************************************************/
-        
+            allEntries = new HashSet<>();
             children = new ArrayList<SubTask>();
             
             File saveDir = new File(dirPath);
@@ -192,7 +243,8 @@ public class DataHandler {
             /************** If they have not been fetched *********************
               then they are automatically added to the tasklists**************/
             int webId = IDCounter.getWebId();
-            if(webId==-1)
+            
+            if(webId<1)
             {
             
                 TaskList webTaskList = new TaskList();
@@ -201,17 +253,19 @@ public class DataHandler {
                 webTaskList.setStringDueDate("02/02/2050");
                 webTaskList.setUser(users.get(0));
                 webTaskList.setCreator(users.get(0));
-                    if(fetchedList.size()>0)
+                
+                if(fetchedList.size()>0)
                 {
                     webTaskList.setChildren(fetchedList);
                     DataHandler.IDCounter.setWebId(webTaskList.getID());
                     DataHandler.getIDCounter().setIDCounterCounter(SquirrelConstants.getCounter());
                     
                     
-                    children.add(webTaskList);
+                    DataHandler.children.add(webTaskList);
+                  
                 } else 
                 {
-                                   //handle error
+                                   JOptionPane.showMessageDialog(null, "Fetching from the webservice was not possible!");
 
                 }
 
@@ -232,7 +286,9 @@ public class DataHandler {
                  //walking through every single task    
                     for(Task fetchedTask : fetchedList)
                     {
-                        fetchedTask.JSONCorrection();
+                        //fetchedTask.JSONCorrection();
+                        //fixing zero indexed subtask priority
+                        fetchedTask.setPriorityOrder(fetchedTask.getPriorityOrder()+1);
                         String fetchedTitle = fetchedTask.getTitle();
                         
                         ArrayList<SubTask> localMatch = getTaskByTitle(fetchedTitle);
@@ -247,20 +303,23 @@ public class DataHandler {
                         
                             for(SubTask stremote : remoteMatchedSubtasks)
                             {
-                                stremote.JSONCorrection();
-                                if(containsSubtaskByTitle(typecast, stremote.getTitle())){
+                               // stremote.JSONCorrection();
+                            if(containsSubtaskByTitle(typecast, stremote.getTitle()))
+                            {
                                   continue;
                             }else 
                             {
                              typecast.addChild(stremote);
+                             
+                           
                             }
                         }
-                      
-                        ArrayList<SubTask>  localMatchedSubtasks = typecast.getSubtasks();
 
                         } else 
                         {
                             localTasklist.addChild(fetchedTask);
+                           
+                           
                         }
                     }      
                  }
@@ -270,7 +329,7 @@ public class DataHandler {
                 }
             }
             saveCounter();
-
+            quickFixONotation();    
     }
  
     public static TaskList loadTasklist(String filename)
@@ -687,5 +746,30 @@ public class DataHandler {
         }
 
     }    
+
+    public static String getS() {
+        return s;
+    }
+
+    public static void setS(String s) {
+        DataHandler.s = s;
+    }
+
+    public static String getDirPath() {
+        return dirPath;
+    }
+
+    public static void setDirPath(String dirPath) {
+        DataHandler.dirPath = dirPath;
+    }
+
+    public static HashSet<SubTask> getAllEntries() {
+        return allEntries;
+    }
+
+    public static void setAllEntries(HashSet<SubTask> allEntries) {
+        DataHandler.allEntries = allEntries;
+    }
+    
     
 }

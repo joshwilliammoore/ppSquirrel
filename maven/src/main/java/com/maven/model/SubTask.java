@@ -9,7 +9,7 @@ import static java.time.Instant.now;
 import java.util.Comparator;
 import java.text.ParseException;
 
-public class SubTask implements Serializable 
+public class SubTask<T extends SubTask> implements Serializable 
 {
 
     protected int ID;
@@ -37,6 +37,7 @@ public class SubTask implements Serializable
     protected User user;
     
     protected String parentID;
+    protected SubTask parent;
     
 //    public SubTask(String description, String completionDate, int priorityOrder){
 //        setID();
@@ -50,7 +51,10 @@ public class SubTask implements Serializable
 //        
 //        
 //    }
-    
+    public ArrayList<T> getSubtasks()
+    {
+        return null;
+    }
     public SubTask(){
         this.setID();
         //javax.swing.JOptionPane.showMessageDialog(null, "New task ID has been assigned:"+SquirrelConstants.getCounter());
@@ -271,10 +275,13 @@ public class SubTask implements Serializable
     public void setParentID(String parentID) {
         this.parentID = parentID;
     }
-    
-    
-   
-    
 
+    public SubTask getParent() {
+        return parent;
+    }
+
+    public <T extends SubTask> void setParent(T parent) {
+        this.parent = parent;
+    }
 
 }

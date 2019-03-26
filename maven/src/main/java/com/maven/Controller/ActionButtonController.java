@@ -21,6 +21,8 @@ import com.maven.view.UIElements.AddForm;
 import com.maven.view.UIElements.EditForm;
 import com.maven.view.UIElements.ListView;
 import com.maven.view.UIElements.FilterBar;
+import com.maven.view.RightSideElements.HorizontalBar;
+
 
 import com.maven.model.TaskList;
 import com.maven.model.Task;
@@ -35,12 +37,13 @@ public class ActionButtonController implements ActionListener{
     public  void actionPerformed(ActionEvent e)
     {
         
+        
         String command = e.getActionCommand();
         String[] subCommands = command.split(":");
         JOptionPane.showMessageDialog(null, command);
         
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        
+        int parentID = 0;
         switch(subCommands[0])
         {
             
@@ -66,8 +69,7 @@ public class ActionButtonController implements ActionListener{
                 
             break;    
             case "DONE":
-            SubTask completed = DataHandler.getEntry(subCommands[1],
-                    Integer.parseInt(subCommands[2]));
+            SubTask completed = DataHandler.getEntryFromAllEntriesByID(Integer.parseInt(subCommands[2]));
             boolean switchCompleted = (completed.isCompleted())?false:true;
             completed.setCompleted(switchCompleted);
        
@@ -77,8 +79,8 @@ public class ActionButtonController implements ActionListener{
                            +subCommands[1]+":"+subCommands[2], 0);
                 break;
             case "UPDATE":
-                 SubTask updatable = DataHandler.getEntry(subCommands[1],Integer.parseInt(subCommands[2]));
-                
+                SubTask updatable = DataHandler.getEntryFromAllEntriesByID(Integer.parseInt(subCommands[2]));
+                JOptionPane.showMessageDialog(null, updatable.getID());
                 EditForm dataForm = EditForm.getInstance();
                                         //element.reFresh(null, true, "TaskList");    
                                 Component[] elementsE = dataForm.getComponents();
@@ -175,15 +177,20 @@ public class ActionButtonController implements ActionListener{
                 
                 
                 //update content
-               
-                ContentLoader.loadContent("LISTVIEW:"+subCommands[1]+":"+subCommands[2], 0);
+                parentID = 0;    
+                
+                 if(subCommands[1].equals("TASK") || subCommands[1].equals("SUBTASK"))
+                {
+                    parentID = updatable.getParent().getID();
+                } 
+                 
+                ContentLoader.loadContent("LISTVIEW:"+Filters.returnRelative(subCommands[1], false)+":"+parentID, null);    
+
+//                ContentLoader.loadContent("LISTVIEW:"+subCommands[1]+":"+subCommands[2], 0);
 
                 break;
             case "SAVE":
-                
-               
-                        //here, you need to be able to handle the parent!!! Where to save it?
-                         //subcommands[1] contains the type, what are you gonna do now?
+
                 SubTask newList=null;
                 SubTask parent = null;
                 if(subCommands[1].equals("TASKLIST"))
@@ -192,11 +199,11 @@ public class ActionButtonController implements ActionListener{
                 } else if(subCommands[1].equals("TASK"))
                 {
                     newList = new Task(); 
-                    parent = DataHandler.getTaskListByID(Integer.parseInt(subCommands[2]));
+                    parent = DataHandler.getEntryFromAllEntriesByID(Integer.parseInt(subCommands[2]));
                 } else 
                 {
                   newList = new SubTask(); 
-                  parent = DataHandler.getTasktByID(Integer.parseInt(subCommands[2])).get(0);
+                  parent = DataHandler.getEntryFromAllEntriesByID(Integer.parseInt(subCommands[2]));
                 }
 
                                 AddForm element = AddForm.getInstance();
@@ -287,7 +294,7 @@ public class ActionButtonController implements ActionListener{
 
                                     }
                                 }
-                                //saving content and refreshing ui
+
                                   if(!formatError)
                                     {
                                       //this is where it is saved!!! 
@@ -295,6 +302,8 @@ public class ActionButtonController implements ActionListener{
                                       {
                                           
                                       parent.addChild(newList);
+                                      newList.setParent(parent);
+                                      
                                    
                                       } else 
                                       {
@@ -303,13 +312,12 @@ public class ActionButtonController implements ActionListener{
 
                                       } 
                                       
+                                      DataHandler.getAllEntries().add(newList);
                                       //this reloads the parent container!!!
                                       ContentLoader.loadContent("LISTVIEW:"+Filters.returnRelative(subCommands[1], false)+":"+subCommands[2], null);    
                                     }
-                
-                //JOptionPane.showMessageDialog(null, DataHandler.getIDCounter().getCounter());
+
                 DataHandler.saveCounter();
-               //JOptionPane.showMessageDialog(null, DataHandler.getIDCounter().getCounter());
         
                        
             break;
@@ -371,7 +379,7 @@ public class ActionButtonController implements ActionListener{
                       SubTask[] convertToArray = new SubTask[returnable.size()]; 
                       convertToArray = returnable.toArray(convertToArray);
                       ListView.reFresh(convertToArray);
-                      ActionBar.SearchResultsBar(subCommands[1],new ActionButtonController(),Integer.parseInt(subCommands[2]));
+                      ActionBar.SearchResultsBar(subCommands[1],new ActionButtonController(),convertToArray[0].getID());
                       //here, you have to give the user to clear the search and see
                       //the full list again.
                    } else 
@@ -391,36 +399,15 @@ public class ActionButtonController implements ActionListener{
             break;
             case "DELETE":
                 
-                int parentID = Integer.parseInt(subCommands[2]);
-               if(parentID<1)
+               int instanceID = Integer.parseInt(subCommands[2]);
+               if(instanceID<1)
                {
                JOptionPane.showMessageDialog(null, "The request could not be completed. Wrong id parameter:"+ subCommands[2]);
                return;
                }
-               DataHandler.getEntry(subCommands[1], parentID).setDeleted(true);
-
-//                if(subCommands[1].equals("TASKLIST"))
-//                        {
-//                          
-//                        if(!DataHandler.deleteTaskList(subCommands[2]))JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+command);
-//                        } 
-//                else if (subCommands[1].equals("TASK")) 
-//                        {
-//                           
-//                            ArrayList<SubTask> handle=DataHandler.getTasktByID(Integer.parseInt(subCommands[2]));
-//                            System.out.println(handle);
-//                            TaskList p = (TaskList) handle.get(1);
-//                            parentID = p.getID();
-//                            p.removeChild(handle.get(0));
-//                        } 
-//                else 
-//                        {
-//                            ArrayList<SubTask> handle=DataHandler.getSubTasktByID(Integer.parseInt(subCommands[2]));
-//                            Task p = (Task) handle.get(1);
-//                            parentID = p.getID();
-//                            p.removeChild(handle.get(0));
-//                        }
-                        ContentLoader.loadContent("LISTVIEW:"+Filters.returnRelative(subCommands[1], false)+":"+parentID, 0);
+               SubTask deletable = DataHandler.getEntryFromAllEntriesByID(instanceID);
+                       deletable.setDeleted(true); 
+                       ContentLoader.loadContent("LISTVIEW:"+Filters.returnRelative(subCommands[1], false)+":"+deletable.getParent().getID(), 0);
                         
             break;    
             case "CANCEL":
@@ -432,36 +419,23 @@ public class ActionButtonController implements ActionListener{
                   JOptionPane.showMessageDialog(null, "Wrong parameter @ subCommands[1]:"+subCommands[1]);
                   break;
                 }
-                         ArrayList<SubTask> nav = new ArrayList<>();
                         String source = Filters.returnRelative(subCommands[1], true);
                         int id = Integer.parseInt(subCommands[2]);
                         
-                        if(source.equals("TASK"))
+                        parentID = 0;
+                        
+                        if(source.equals("TASK") || source.equals("SUBTASK"))
                         {
-                            nav = DataHandler.getTasktByID(id);
-                            if(nav.size()>0)
-                            {
-                                id = nav.get(1).getID();
-                            }
+                            SubTask child = DataHandler.getEntryFromAllEntriesByID(id);
+                            parentID = child.getParent().getID();
+                          
                         }
-                         if(source.equals("SUBTASK"))
-                        {
-                            nav = DataHandler.getSubTasktByID(id);
-                             if(nav.size()>0)
-                            {
-                                id = nav.get(1).getID();
-                            } else {
-                                 JOptionPane.showMessageDialog(null, "Can't find Subtask's parent...");
-                             }
-                        }
-//                       DataHandler.getEntry(); 
-                
-                
-                
-                ContentLoader.loadContent("LISTVIEW:"+subCommands[1]+":"+id, null);
+                ContentLoader.loadContent("LISTVIEW:"+subCommands[1]+":"+parentID, null);
                 
            break;
         
         }
     }
+    
+    
 }
