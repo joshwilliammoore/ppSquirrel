@@ -27,11 +27,13 @@ import java.util.Collections;
 
 
 import com.maven.model.SubTask;
+import java.util.HashSet;
+import java.util.List;
 
 public class AddForm extends HorizontalBar{
   
    private static AddForm instance=null;
-   private static ArrayList<User> users;
+   private static HashSet<User> users;
    
    
     //This is something I haven't finished yet. Has to be parameterized!!!
@@ -95,9 +97,10 @@ public class AddForm extends HorizontalBar{
 
       
         String[] arrayUsers = new String[users.size()];
-        for(int i =0; i<users.size(); i++)
+        List<User> temp = new ArrayList<User>(users);
+        for(int i =0; i<temp.size(); i++)
         {
-        arrayUsers[i]=users.get(i).getUserName();
+        arrayUsers[i]=temp.get(i).getUserName();
         }
         FormCombo assigneeDropdown = new FormCombo(arrayUsers);
                     assigneeDropdown.setLabel("staff");
@@ -132,11 +135,11 @@ public class AddForm extends HorizontalBar{
         
     }
 
-    public static ArrayList<User> getUsers() {
+    public static HashSet<User> getUsers() {
         return users;
     }
 
-    public static void setUsers(ArrayList<User> users) {
+    public static void setUsers(HashSet<User> users) {
         AddForm.users = users;
     }
     
