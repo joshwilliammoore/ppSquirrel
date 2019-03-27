@@ -7,16 +7,17 @@ package com.maven.Controller;
 
 import com.maven.model.User;
 import java.util.ArrayList;
+import java.util.HashSet;
 /**
  *
  * @author Regory Gregory
  */
 public class UsersForTesting {
-    private static ArrayList<User> users;
+    private static HashSet<User> users;
     
     public static void init()
     {
-        users = new ArrayList<User>();
+        users = new HashSet<User>();
         User tim = new User();
         tim.setName("Tim");
         tim.setSurname("Howard");
@@ -68,11 +69,11 @@ public class UsersForTesting {
         
     }
 
-    public static ArrayList<User> getUsers() {
+    public static HashSet<User> getUsers() {
         return users;
     }
 
-    public static void setUsers(ArrayList<User> users) {
+    public static void setUsers(HashSet<User> users) {
         UsersForTesting.users = users;
     }
      
