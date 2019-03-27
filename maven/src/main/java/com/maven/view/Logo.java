@@ -20,6 +20,8 @@ public class Logo extends JLabel{
           
                   ImageIcon ia= new ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\com\\maven\\resources\\logo_png_100.png");
                   this.setIcon(ia); 
+                  this.setHorizontalAlignment(JLabel.CENTER);
+                  this.setIconTextGap(20);
                   this.setText(SquirrelConstants.getAppName());
                   this.setHorizontalTextPosition(JLabel.CENTER);
                   this.setVerticalTextPosition(JLabel.BOTTOM);

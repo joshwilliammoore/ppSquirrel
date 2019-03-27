@@ -7,7 +7,7 @@ package com.maven.view;
 
 import javax.swing.*;
 import java.awt.*;
-
+import com.maven.model.SquirrelConstants;
 /**
  *
  * @author joshw
@@ -23,25 +23,80 @@ public class LoginPage extends JFrame
     
     public LoginPage(){
         super();
+        Logo sLogo = Logo.getInstance();
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        gbc.fill=GridBagConstraints.BOTH;
+        gbc.ipadx=0;
+        gbc.ipady=20;
+        gbc.gridx =0;
+        gbc.gridy =0;
+        gbc.gridwidth=2;
+        gbc.gridheight=1;
+        //gbc.insets=new Insets(0, 0, 0, 0);
+
+        panel.add(sLogo, gbc);
+        gbc.insets=new Insets(0, 0, 0, 0);
+        gbc.gridwidth=1;
+        gbc.gridx =0;
+
+        gbc.gridy =1;
+
+        
         label1 = new JLabel();
         label1.setText("Username:");
+        label1.setForeground(SquirrelConstants.getColorLight());
+        
+        panel.add(label1, gbc);
         text1 = new JTextField(15);
         
+        gbc.gridx=1;
+        gbc.gridwidth=1;
+
+        panel.add(text1, gbc);
+        
+        
+        
+        
         label2 = new JLabel();
+        
         label2.setText("Password:");
-        text2 = new JTextField(15);
+        label2.setForeground(SquirrelConstants.getColorLight());
+
+        gbc.gridx=0;
+        gbc.gridy=2;
+        gbc.gridwidth=1;
+
+        panel.add(label2, gbc);
+        
+        text2 = new JPasswordField(15);
+        gbc.gridx=1;
+        gbc.gridwidth=1;
+
+        panel.add(text2, gbc);
+        
+        
         //text2.setText("gggg");
         SUBMIT = new JButton("SUBMIT");
-        panel = new JPanel(new GridLayout(3,1));
-        panel.add(label1);
-        panel.add(text1);
-        panel.add(label2);
-        panel.add(text2);
-        panel.add(SUBMIT);
-        add(panel,BorderLayout.CENTER);
+        
+        gbc.gridx=0;
+        gbc.gridy=3;
+        gbc.gridwidth=2;
+        
+  
+       
+        panel.add(SUBMIT, gbc);
+        this.add(panel);
+        //add(panel,BorderLayout.CENTER);
         setTitle("Login Page");
         
-        setSize(700,100);
+        setSize(300,700);
+        panel.setBackground(SquirrelConstants.getColorPrimary());
+        panel.setForeground(SquirrelConstants.getColorLight());
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
         this.setLocationRelativeTo(null);
         
     }
