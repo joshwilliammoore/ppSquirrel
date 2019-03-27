@@ -33,7 +33,7 @@ public class LoginPage extends JFrame
         gbc.ipady=20;
         gbc.gridx =0;
         gbc.gridy =0;
-        gbc.gridwidth=2;
+        gbc.gridwidth=1;
         gbc.gridheight=1;
         //gbc.insets=new Insets(0, 0, 0, 0);
 
@@ -52,38 +52,33 @@ public class LoginPage extends JFrame
         panel.add(label1, gbc);
         text1 = new JTextField(15);
         
-        gbc.gridx=1;
+        gbc.gridy=2;
         gbc.gridwidth=1;
 
         panel.add(text1, gbc);
         
-        
-        
-        
+
         label2 = new JLabel();
         
         label2.setText("Password:");
         label2.setForeground(SquirrelConstants.getColorLight());
 
-        gbc.gridx=0;
-        gbc.gridy=2;
+        gbc.gridy=3;
         gbc.gridwidth=1;
 
         panel.add(label2, gbc);
         
         text2 = new JPasswordField(15);
-        gbc.gridx=1;
-        gbc.gridwidth=1;
+        gbc.gridy=4;
 
         panel.add(text2, gbc);
         
         
         //text2.setText("gggg");
         SUBMIT = new JButton("SUBMIT");
-        
+        gbc.insets = new Insets(20,0,0,0);
         gbc.gridx=0;
-        gbc.gridy=3;
-        gbc.gridwidth=2;
+        gbc.gridy=5;
         
   
        
