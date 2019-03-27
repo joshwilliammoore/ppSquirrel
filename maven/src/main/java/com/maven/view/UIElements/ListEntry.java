@@ -10,6 +10,7 @@ import com.maven.model.TaskList;
 import com.maven.model.Task;
 import com.maven.model.User;
 import com.maven.model.SquirrelConstants;
+import com.maven.Controller.DataHandler;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -67,13 +68,18 @@ public class ListEntry extends HorizontalBar{
         this.setLayout(new GridLayout(0,1));
         ActionAreaButton view = new ListEntryButton("view");
                         view.setActionCommand("VIEW:"+type+":"+tal.getID());
-        ActionAreaButton edit = new ListEntryButton("edit");
+                        this.add(view);
+        if(DataHandler.getLoggedIn().getUserLevel() != 0)
+        {
+            ActionAreaButton edit = new ListEntryButton("edit");
                      edit.setActionCommand("EDIT:"+type+":"+tal.getID());
-        ActionAreaButton delete = new ListEntryButton("delete");
+                     this.add(edit);
+        }
+        if(DataHandler.getLoggedIn().getUserLevel() == 2){
+            ActionAreaButton delete = new ListEntryButton("delete");
                      delete.setActionCommand("DELETE:"+type+":"+tal.getID());
-        this.add(view);             
-        this.add(edit);
-        this.add(delete);
+                     this.add(delete);
+        }
         
 
         }

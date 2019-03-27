@@ -38,7 +38,6 @@ public class Main {
     public static void main(String[] args) {
 
         Init.init();
-        DataHandler.temp();
         //ActionListner al = new Actiojn
         LoginPage loginP = LoginPage.getInstance();
         

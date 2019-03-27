@@ -42,6 +42,9 @@ public class LoginPage extends JFrame
         add(panel,BorderLayout.CENTER);
         setTitle("Login Page");
         
+        setSize(700,100);
+        this.setLocationRelativeTo(null);
+        
     }
     public static LoginPage getInstance()
     {

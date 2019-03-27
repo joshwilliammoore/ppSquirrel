@@ -26,7 +26,6 @@ public class User implements Serializable{
     {
     this.setSurname(this.getName());
     this.setUserName(this.getName());
-    this.setPassword(this.getName());
     this.setEmail(this.getName()+"@unknown.com");
     }
     public User(String name, String password, int userLevel){

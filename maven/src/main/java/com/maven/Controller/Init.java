@@ -23,8 +23,9 @@ import com.maven.view.UIElements.ListView;
 public class Init {
     public static void init()
     {
-                UsersForTesting.init();
-                DataHandler.setUsers(UsersForTesting.getUsers());
+                DataHandler.temp();
+
+                //DataHandler.setUsers(UsersForTesting.getUsers());
                 DataHandler.loadTasklists();
                 ActionArea.getInstance();
                 ListView.getInstance();

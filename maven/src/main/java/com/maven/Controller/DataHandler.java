@@ -47,16 +47,8 @@ public class DataHandler<T extends SubTask> {
     private static ArrayList<SubTask> children;
     private static Idcounter IDCounter = new Idcounter();
     private static HashSet<User> users = new HashSet<User>();
-    private static ArrayList<SubTask> allEntries;
+    private static HashSet<SubTask> allEntries;
     private static User loggedIn;
-    
-   public User getLoggedIn(){
-       return loggedIn;
-   }
-   
-   public void setLoggedIn(User l){
-       this.loggedIn = l;
-   }
     
     //This is just a quick fix, the algorhytm's efficiency is horrific. However, it is only done onnce when the program is started.
     public static void temp(){
@@ -188,7 +180,7 @@ public class DataHandler<T extends SubTask> {
             /*******************************************************************
             ****************** Loading the task lists from files*****************
             *******************************************************************/
-            allEntries = new ArrayList<>();
+            allEntries = new HashSet<>();
             children = new ArrayList<SubTask>();
             
             File saveDir = new File(dirPath);
@@ -783,17 +775,18 @@ public class DataHandler<T extends SubTask> {
         DataHandler.dirPath = dirPath;
     }
 
-    public static ArrayList<SubTask> getAllEntries() {
+    public static HashSet<SubTask> getAllEntries() {
         return allEntries;
     }
 
-    public static void setAllEntries(ArrayList<SubTask> allEntries) {
+    public static void setAllEntries(HashSet<SubTask> allEntries) {
         DataHandler.allEntries = allEntries;
     }
     
     //Logins
     public static boolean checkLogin(String username, String password){
         for(User u: getUsers()){
+           // JOptionPane.showMessageDialog(null, u.getUserName()+u.getPassword());
             if(u.getUserName().equals(username) && u.getPassword().equals(password)){
                 loggedIn = u;
                 return true;
@@ -801,5 +794,13 @@ public class DataHandler<T extends SubTask> {
         }
         return false;
     }
+    
+       public static User getLoggedIn(){
+       return loggedIn;
+   }
+   
+   public static void setLoggedIn(User l){
+       loggedIn = l;
+   }
     
 }

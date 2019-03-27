@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import com.maven.Controller.ActionButtonController;
+import com.maven.Controller.DataHandler;
 
 import com.maven.view.UIElements.ActionBarButton;
 import com.maven.view.UIElements.FormCombo;
@@ -109,16 +110,18 @@ public class ActionBar extends HorizontalBar{
         instance.getGbc().gridx=6;
         instance.add(jb2, instance.getGbc());
         
-      
-        ActionBarButton jb = new ActionBarButton("Add new "+Filters.returnRelative(source, true));
+        if(DataHandler.getLoggedIn().getUserLevel() > 0)
+        {
+            ActionBarButton jb = new ActionBarButton("Add new "+Filters.returnRelative(source, true));
 
                         jb.setActionCommand("NEW:"+Filters.returnRelative(source, true)+":"+parentID);
                         
                         jb.addActionListener(listener);
                         jb.setBackground(SquirrelConstants.getColorDanger());
-       instance.getGbc().gridx = 9;
+            instance.getGbc().gridx = 9;
 
-        instance.add(jb, instance.getGbc());
+            instance.add(jb, instance.getGbc());
+        }
         }
      
    
