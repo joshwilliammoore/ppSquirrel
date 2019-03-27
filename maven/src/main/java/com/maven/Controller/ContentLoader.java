@@ -36,17 +36,21 @@ public class ContentLoader {
             {
                 
                 //the content loader has to be parameterised!!!
-                case "HOME":
-                    break;
+                
                 case "LISTVIEW":
+                    
                     if(subCommands[1].equals("EXIT"))
                     {
                      DataHandler.updateTaskLists();
                      System.exit(0);
                     }
                    
-                    //logical error here, mate!!!!
-                    if(subCommands[1].equals("TASKLISTS"))
+                    if(subCommands[1].equals("HOME"))
+                    {
+                        String displayName = DataHandler.getLoggedIn().getName();
+                        
+                        MessageBar.getInstance().customMessage("Welcome "+displayName.substring(0,1).toUpperCase()+displayName.substring(1));
+                    } else  if(subCommands[1].equals("TASKLISTS"))
                     {
                        // MessageBar.getInstance().setSize(new Dimension(MessageBar.getInstance().getWidth(), 300));
                         MessageBar.getInstance().customMessage(subCommands[1].substring(0,1)+subCommands[1].substring(1).toLowerCase());

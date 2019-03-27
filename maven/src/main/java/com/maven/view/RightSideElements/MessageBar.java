@@ -7,6 +7,7 @@ package com.maven.view.RightSideElements;
 
 
 
+import com.maven.Controller.DataHandler;
 import com.maven.view.RightSideElements.HorizontalBar;
 import com.maven.model.SubTask;
 import com.maven.model.Task;
@@ -45,7 +46,7 @@ public class MessageBar extends HorizontalBar{
     {
     if(instance == null) {
         instance = new MessageBar();
-        instance.customMessage("Welcome to SquirrelTasker!");
+        instance.customMessage("Welcome to SquirrelTasker ");
     }
     
     return instance;
@@ -58,6 +59,7 @@ public class MessageBar extends HorizontalBar{
             this.setLayout(new FlowLayout());
             JLabel h1 = new Header(message);
             instance.add(h1);
+            instance.revalidate();
             instance.repaint();
 
     }
@@ -130,6 +132,7 @@ public class MessageBar extends HorizontalBar{
         instance.add(mainTitle, BorderLayout.NORTH);
         instance.add(grids, BorderLayout.CENTER);
         //instance.add(assignee);
+        instance.revalidate();
         instance.repaint();
 
         
