@@ -15,6 +15,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import javax.swing.JLabel;
 
 /**
@@ -23,7 +25,7 @@ import javax.swing.JLabel;
  */
 public class EditForm extends HorizontalBar{
     private static EditForm instance=null;
-    private static ArrayList<User> users;
+    private static HashSet<User> users;
     //This is something I haven't finished yet. Has to be parameterized!!!
    public static EditForm getInstance()
    {
@@ -88,9 +90,10 @@ public class EditForm extends HorizontalBar{
         instance.add(labelAssignee);
 
         String[] arrayUsers = new String[users.size()];
-        for(int i =0; i<users.size(); i++)
+        List<User> temp = new ArrayList<User>(users);
+        for(int i =0; i<temp.size(); i++)
         {
-        arrayUsers[i]=users.get(i).getUserName();
+        arrayUsers[i]=temp.get(i).getUserName();
         }
         FormCombo assigneeDropdown = new FormCombo(arrayUsers);
                     assigneeDropdown.setLabel("staff");
@@ -111,11 +114,11 @@ public class EditForm extends HorizontalBar{
          instance.repaint();
         
     }
-    public static ArrayList<User> getUsers() {
+    public static HashSet<User> getUsers() {
         return users;
     }
 
-    public static void setUsers(ArrayList<User> users) {
+    public static void setUsers(HashSet<User> users) {
         EditForm.users = users;
     }
 }
