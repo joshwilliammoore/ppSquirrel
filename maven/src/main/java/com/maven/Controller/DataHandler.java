@@ -50,7 +50,14 @@ public class DataHandler<T extends SubTask> {
     private static ArrayList<SubTask> allEntries;
     private static User loggedIn;
     
+   public User getLoggedIn(){
+       return loggedIn;
+   }
    
+   public void setLoggedIn(User l){
+       this.loggedIn = l;
+   }
+    
     //This is just a quick fix, the algorhytm's efficiency is horrific. However, it is only done onnce when the program is started.
     public static void temp(){
         UsersForTesting.init();
