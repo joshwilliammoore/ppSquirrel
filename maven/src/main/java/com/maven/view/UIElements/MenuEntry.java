@@ -6,10 +6,13 @@
 package com.maven.view.UIElements;
 
 
+import com.maven.Controller.ContentLoader;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import com.maven.model.SquirrelConstants;
 import com.maven.Controller.MenuController;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseAdapter;
 /**
  *
  * @author Regory Gregory
@@ -33,7 +36,14 @@ public class MenuEntry extends JLabel{
     this.setCommandLabel("LISTVIEW:"+title.toUpperCase()+":0");
 
     this.setText(title);
-     this.addMouseListener(new MenuController());
+     this.addMouseListener(new MouseAdapter(){
+      public void mousePressed(MouseEvent e){
+        MenuEntry parent = (MenuEntry) e.getSource();
+        String text = parent.getCommandLabel().toUpperCase();
+        ContentLoader.loadContent(text, null);
+    }
+     
+     });
     }
      private void setDefaults()
      {
