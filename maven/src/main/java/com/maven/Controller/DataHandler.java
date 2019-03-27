@@ -32,6 +32,8 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -44,11 +46,16 @@ public class DataHandler<T extends SubTask> {
     private static String dirPath = "."+s+SquirrelConstants.getSaveDir();
     private static ArrayList<SubTask> children;
     private static Idcounter IDCounter = new Idcounter();
-    private static ArrayList<User> users = new ArrayList<User>();
-    private static HashSet<SubTask> allEntries;
+    private static HashSet<User> users = new HashSet<User>();
+    private static ArrayList<SubTask> allEntries;
+    private static User loggedIn;
+    
    
     //This is just a quick fix, the algorhytm's efficiency is horrific. However, it is only done onnce when the program is started.
-    
+    public static void temp(){
+        UsersForTesting.init();
+        users= UsersForTesting.getUsers();
+    }
     public static void quickFixONotation()
    {
        for(SubTask tl : children)
@@ -174,7 +181,7 @@ public class DataHandler<T extends SubTask> {
             /*******************************************************************
             ****************** Loading the task lists from files*****************
             *******************************************************************/
-            allEntries = new HashSet<>();
+            allEntries = new ArrayList<>();
             children = new ArrayList<SubTask>();
             
             File saveDir = new File(dirPath);
@@ -252,8 +259,11 @@ public class DataHandler<T extends SubTask> {
                 webTaskList.setTitle("Tasklist fetched from JSON webservice");
                 webTaskList.setDescription("No further description.");
                 webTaskList.setStringDueDate("02/02/2050");
-                webTaskList.setUser(users.get(0));
-                webTaskList.setCreator(users.get(0));
+                
+                List<User> list = new ArrayList<User>(users);
+                
+                webTaskList.setUser(list.get(0));
+                webTaskList.setCreator(list.get(0));
                 
                 if(fetchedList.size()>0)
                 {
@@ -558,11 +568,11 @@ public class DataHandler<T extends SubTask> {
         DataHandler.children = children;
     }
     
-     public static ArrayList<User> getUsers() {
+     public static HashSet<User> getUsers() {
         return users;
     }
 
-    public static void setUsers(ArrayList<User> users) {
+    public static void setUsers(HashSet<User> users) {
         DataHandler.users = users;
     }
     
@@ -766,18 +776,19 @@ public class DataHandler<T extends SubTask> {
         DataHandler.dirPath = dirPath;
     }
 
-    public static HashSet<SubTask> getAllEntries() {
+    public static ArrayList<SubTask> getAllEntries() {
         return allEntries;
     }
 
-    public static void setAllEntries(HashSet<SubTask> allEntries) {
+    public static void setAllEntries(ArrayList<SubTask> allEntries) {
         DataHandler.allEntries = allEntries;
     }
     
     //Logins
-    public static boolean correctLogin(String userName, String password){
+    public static boolean checkLogin(String username, String password){
         for(User u: getUsers()){
-            if(u.getUserName()==userName && u.getPassword()==password){
+            if(u.getUserName().equals(username) && u.getPassword().equals(password)){
+                loggedIn = u;
                 return true;
             }
         }
