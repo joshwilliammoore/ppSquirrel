@@ -6,11 +6,8 @@
 package com.maven.view;
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Dimension;
-import javax.swing.JOptionPane;
 import com.maven.model.SquirrelConstants;
-import javax.swing.JOptionPane;
 /**
  *
  * @author Regory Gregory

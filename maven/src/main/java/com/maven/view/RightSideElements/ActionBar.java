@@ -4,12 +4,10 @@
  * and open the template in the editor.
  */
 package com.maven.view.RightSideElements;
-import javax.swing.JButton;
 import javax.swing.JTextField;
 import com.maven.model.SquirrelConstants;
 import java.awt.Dimension;
-import javax.swing.JOptionPane;
-import java.awt.Color;
+
 import java.awt.GridBagConstraints;
 import com.maven.Controller.ActionButtonController;
 import com.maven.Controller.DataHandler;

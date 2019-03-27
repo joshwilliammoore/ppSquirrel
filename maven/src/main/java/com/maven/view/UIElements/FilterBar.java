@@ -5,11 +5,7 @@
  */
 package com.maven.view.UIElements;
 import javax.swing.JPanel;
-import com.maven.view.RightSideElements.HorizontalBar;
-import com.maven.model.SubTask;
-import com.maven.model.Task;
-import com.maven.model.TaskList;
-import java.awt.GridBagConstraints;
+
 
 
 import java.awt.GridLayout;

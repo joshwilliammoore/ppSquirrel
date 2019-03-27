@@ -8,8 +8,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import java.awt.Component;
-import javax.swing.JComponent;
-import java.lang.reflect.Field;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -20,16 +18,10 @@ import com.maven.view.UIElements.GetUIContent;
 import com.maven.view.UIElements.AddForm;
 import com.maven.view.UIElements.EditForm;
 import com.maven.view.UIElements.ListView;
-import com.maven.view.UIElements.FilterBar;
-import com.maven.view.RightSideElements.HorizontalBar;
-
-
 import com.maven.model.TaskList;
 import com.maven.model.Task;
 import com.maven.model.SubTask;
-import com.maven.model.SquirrelConstants;
 import com.maven.model.User;
-import com.maven.Controller.FormatChecker;
 import com.maven.view.RightSideElements.ActionBar;
 
 

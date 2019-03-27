@@ -4,19 +4,11 @@
  * and open the template in the editor.
  */
 package com.maven.view;
-import com.maven.view.RightSideElements.HorizontalBar;
 import com.maven.view.RightSideElements.ActionArea;
-import com.maven.view.RightSideElements.TitleBar;
 import com.maven.view.RightSideElements.ActionBar;
 import com.maven.view.RightSideElements.MessageBar;
 
 import com.maven.model.SquirrelConstants;
-import javax.swing.JPanel;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import javax.swing.JOptionPane;
-import java.awt.FlowLayout;
 import java.awt.BorderLayout;
 /**
  *

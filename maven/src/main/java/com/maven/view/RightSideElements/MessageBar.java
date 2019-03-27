@@ -7,21 +7,17 @@ package com.maven.view.RightSideElements;
 
 
 
-import com.maven.Controller.DataHandler;
-import com.maven.view.RightSideElements.HorizontalBar;
+
 import com.maven.model.SubTask;
-import com.maven.model.Task;
-import com.maven.model.TaskList;
+
 import com.maven.model.SquirrelConstants;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import java.awt.BorderLayout;
-import java.text.SimpleDateFormat;
 
 /**
  *

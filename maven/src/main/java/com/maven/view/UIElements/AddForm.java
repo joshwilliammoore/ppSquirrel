@@ -6,24 +6,16 @@
 
 package com.maven.view.UIElements;
 
-import com.maven.model.TaskList;
 import com.maven.model.User;
 
 import com.maven.view.RightSideElements.HorizontalBar;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+
 import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.GridLayout;
-import javax.swing.ScrollPaneLayout;
 import javax.swing.JLabel;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
-import javax.swing.JComponent;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 
 import com.maven.model.SubTask;

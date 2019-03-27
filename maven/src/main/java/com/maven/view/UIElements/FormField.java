@@ -5,7 +5,6 @@
  */
 package com.maven.view.UIElements;
 import javax.swing.JTextField;
-import javax.swing.JOptionPane;
 /**
  *
  * @author Regory Gregory

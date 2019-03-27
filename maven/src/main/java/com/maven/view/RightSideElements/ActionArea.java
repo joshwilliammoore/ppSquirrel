@@ -5,8 +5,6 @@
  */
 package com.maven.view.RightSideElements;
 import com.maven.model.SquirrelConstants;
-import javax.swing.JPanel;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;

@@ -16,7 +16,6 @@ import java.awt.GridLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
-import java.util.Arrays;
 import javax.swing.JLabel;
 /**
  *

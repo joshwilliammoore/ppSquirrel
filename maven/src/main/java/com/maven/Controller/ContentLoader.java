@@ -6,13 +6,8 @@
 package com.maven.Controller;
 
 import java.util.ArrayList;
-import java.awt.Dimension;
-
 import com.maven.model.SubTask;
-import com.maven.model.Task;
-import com.maven.model.TaskList;
 import com.maven.model.HasChildren;
-
 import com.maven.view.RightSideElements.ActionArea;
 import com.maven.view.RightSideElements.ActionBar;
 import com.maven.view.RightSideElements.MessageBar;

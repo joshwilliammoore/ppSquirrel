@@ -4,18 +4,13 @@
  * and open the template in the editor.
  */
 package com.maven.view.RightSideElements;
-import com.maven.model.SquirrelConstants;
 import javax.swing.JPanel;
-import javax.swing.JComponent;
 
 
 import java.awt.Dimension;
-import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Component;
-
-import com.maven.view.ReFreshable;
 /**
  *
  * @author Regory Gregory

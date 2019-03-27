@@ -5,8 +5,6 @@
  */
 package com.maven.view;
 import com.maven.view.UIElements.Menu;
-import java.awt.GridBagConstraints;
-import javax.swing.JPanel;
 import com.maven.model.SquirrelConstants;
 
 /**
