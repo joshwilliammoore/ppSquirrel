@@ -5,7 +5,6 @@
  */
 package com.maven.view.UIElements;
 import com.maven.Controller.ContentLoader;
-import com.maven.Controller.MenuController;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 import com.maven.model.SquirrelConstants;
