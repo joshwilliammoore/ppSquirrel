@@ -27,17 +27,17 @@ import com.maven.view.RightSideElements.ActionBar;
 
 public class ActionButtonController implements ActionListener{
     
-    private static ActionButtonController instance = null;
+    //private static ActionButtonController instance = null;
     
     
-    public static ActionButtonController getInstance()
-    {
-        if(instance == null)
-        {
-            instance = new ActionButtonController();
-        }
-        return instance;
-    }
+//    public static ActionButtonController getInstance()
+//    {
+//        if(instance == null)
+//        {
+//            instance = new ActionButtonController();
+//        }
+//        return instance;
+//    }
     public  void actionPerformed(ActionEvent e)
     {
         

@@ -74,7 +74,9 @@ public class ListView {
         
         }
     
-    }   
+    } else { 
+     javax.swing.JOptionPane.showMessageDialog(null, "You have no tasks listed!");
+    }
     //instance.setColumnHeaderView(refreshColumnHeader(taskLists));
     instance.setViewportView(viewport);
     instance.setColumnHeaderView(columnHeader);
@@ -145,13 +147,14 @@ public class ListView {
             ActionAreaButton view = new ListEntryButton("view");
                             view.setActionCommand("VIEW:"+type+":"+tal.getID());
                             this.add(view);
-            if(DataHandler.getLoggedIn().getUserLevel() != 0)
+                            //javax.swing.JOptionPane.showMessageDialog(null, DataHandler.getLoggedIn().getUserLevel());
+            if(DataHandler.getLoggedIn().getUserLevel() <2)
             {
                 ActionAreaButton edit = new ListEntryButton("edit");
                          edit.setActionCommand("EDIT:"+type+":"+tal.getID());
                          this.add(edit);
             }
-            if(DataHandler.getLoggedIn().getUserLevel() == 2){
+            if(DataHandler.getLoggedIn().getUserLevel() == 0){
                 ActionAreaButton delete = new ListEntryButton("delete");
                          delete.setActionCommand("DELETE:"+type+":"+tal.getID());
                          this.add(delete);
@@ -161,7 +164,7 @@ public class ListView {
             }
         }  
 
-           private static class ListEntryButton extends ActionAreaButton
+           private  static class ListEntryButton extends ActionAreaButton
         {
             public ListEntryButton(String label)
             {

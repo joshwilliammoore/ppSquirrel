@@ -108,7 +108,7 @@ public class ActionBar extends HorizontalBar{
         instance.getGbc().gridx=6;
         instance.add(jb2, instance.getGbc());
         
-        if(DataHandler.getLoggedIn().getUserLevel() > 0)
+        if(DataHandler.getLoggedIn().getUserLevel() < 1)
         {
             ActionBarButton jb = new ActionBarButton("Add new "+Filters.returnRelative(source, true));
 
