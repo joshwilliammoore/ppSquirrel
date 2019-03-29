@@ -32,7 +32,7 @@ public class ActionButtonController implements ActionListener{
         
         String command = e.getActionCommand();
         String[] subCommands = command.split(":");
-        JOptionPane.showMessageDialog(null, command);
+       // JOptionPane.showMessageDialog(null, command);
         
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat formatWithTime = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -78,7 +78,7 @@ public class ActionButtonController implements ActionListener{
             case "UPDATE":
                 
                 SubTask updatable = DataHandler.getEntryFromAllEntriesByID(Integer.parseInt(subCommands[2]));
-                JOptionPane.showMessageDialog(null, updatable.getID());
+                //JOptionPane.showMessageDialog(null, updatable.getID());
                 EditForm dataForm = EditForm.getInstance();
                                         //element.reFresh(null, true, "TaskList");    
                                 Component[] elementsE = dataForm.getComponents();

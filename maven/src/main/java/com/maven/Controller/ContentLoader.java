@@ -62,7 +62,7 @@ public class ContentLoader {
                         ActionArea.reFresh(ListView.getInstance());
                     } else 
                     {
-                        javax.swing.JOptionPane.showMessageDialog(null, text);
+                        //javax.swing.JOptionPane.showMessageDialog(null, text);
 
                         SubTask t = DataHandler.getEntryFromAllEntriesByID(Integer.parseInt(subCommands[2]));
                         MessageBar.getInstance().detailedView(t);
