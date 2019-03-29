@@ -42,7 +42,7 @@ public class ContentLoader {
                     {
                         String displayName = DataHandler.getLoggedIn().getName();
                         SubTask[] userTasks = DataHandler.getCurrentUserTasks();
-                        javax.swing.JOptionPane.showMessageDialog(null, userTasks.length);
+                        //javax.swing.JOptionPane.showMessageDialog(null, userTasks.length);
                         String welcomeMessage = "<html>Welcome "+displayName.substring(0,1).toUpperCase()+displayName.substring(1)+"!<br>";
                         welcomeMessage+="See your assigned tasks below:</html>";
                         MessageBar.getInstance().customMessage(welcomeMessage);
