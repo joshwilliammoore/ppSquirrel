@@ -43,7 +43,9 @@ public class ContentLoader {
                         String displayName = DataHandler.getLoggedIn().getName();
                         SubTask[] userTasks = DataHandler.getCurrentUserTasks();
                         javax.swing.JOptionPane.showMessageDialog(null, userTasks.length);
-                        MessageBar.getInstance().customMessage("Welcome "+displayName.substring(0,1).toUpperCase()+displayName.substring(1));
+                        String welcomeMessage = "Welcome "+displayName.substring(0,1).toUpperCase()+displayName.substring(1)+"!<br>";
+                        welcomeMessage+="See your assigned tasks below:";
+                        MessageBar.getInstance().customMessage(welcomeMessage);
                         ListView.reFresh(userTasks);
                         ActionArea.reFresh(ListView.getInstance());
                         
@@ -64,7 +66,7 @@ public class ContentLoader {
                         {
                             ListView.reFresh(taskLists);
                         }
-                        ActionArea.reFresh(ListView.getInstance());
+                        ActionArea.getInstance().reFresh(ListView.getInstance());
                     } else 
                     {
                         //vjavax.swing.JOptionPane.showMessageDialog(null, text);
