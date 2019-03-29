@@ -14,6 +14,7 @@ import com.maven.view.RightSideElements.MessageBar;
 import com.maven.view.UIElements.ListView;
 import com.maven.view.UIElements.AddForm;
 import com.maven.view.UIElements.EditForm;
+import javax.swing.JOptionPane;
 
 
 public class ContentLoader {
@@ -46,6 +47,10 @@ public class ContentLoader {
                         String welcomeMessage = "<html>Welcome "+displayName.substring(0,1).toUpperCase()+displayName.substring(1)+"!<br>";
                         welcomeMessage+="See your assigned tasks below:</html>";
                         MessageBar.getInstance().customMessage(welcomeMessage);
+                        if(userTasks.length==0)
+                        {
+                        JOptionPane.showMessageDialog(null, "No tasks assigned for you.");
+                        }
                         ListView.reFresh(userTasks);
                         ActionArea.reFresh(ListView.getInstance());
                         
