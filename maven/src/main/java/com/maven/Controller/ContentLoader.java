@@ -41,8 +41,13 @@ public class ContentLoader {
                     if(subCommands[1].equals("HOME"))
                     {
                         String displayName = DataHandler.getLoggedIn().getName();
-                        
+                        SubTask[] userTasks = DataHandler.getCurrentUserTasks();
+                        javax.swing.JOptionPane.showMessageDialog(null, userTasks.length);
                         MessageBar.getInstance().customMessage("Welcome "+displayName.substring(0,1).toUpperCase()+displayName.substring(1));
+                        ListView.reFresh(userTasks);
+                        ActionArea.reFresh(ListView.getInstance());
+                        
+                        
                     } else  if(subCommands[1].equals("TASKLISTS"))
                     {
                        // MessageBar.getInstance().setSize(new Dimension(MessageBar.getInstance().getWidth(), 300));
@@ -62,7 +67,7 @@ public class ContentLoader {
                         ActionArea.reFresh(ListView.getInstance());
                     } else 
                     {
-                        //javax.swing.JOptionPane.showMessageDialog(null, text);
+                        //vjavax.swing.JOptionPane.showMessageDialog(null, text);
 
                         SubTask t = DataHandler.getEntryFromAllEntriesByID(Integer.parseInt(subCommands[2]));
                         MessageBar.getInstance().detailedView(t);

@@ -61,6 +61,7 @@ public class UsersForTesting {
         webSercvices.setUserName("WEBSERVICES_u_name");
         webSercvices.setEmail("WEBSERVICES@WEBSERVICES.com");
         webSercvices.setPassword("WEBSERVICES");
+        frank.setUserLevel(0);
         
         users.add(webSercvices);
         users.add(tim);

@@ -81,6 +81,24 @@ public class DataHandler<T extends SubTask> {
        }
    
    }
+    public static SubTask[] getCurrentUserTasks()
+    {
+        SubTask[] userTasks = null;
+        ArrayList<SubTask> temp = new ArrayList<>();
+        for(SubTask t : allEntries)
+        {
+            if(t instanceof Task && t.getUser().getUserName().equals(loggedIn.getUserName()))
+            {
+               temp.add(t);     
+            }
+        }
+        userTasks = new SubTask[temp.size()];
+        userTasks = temp.toArray(userTasks);
+    
+        return userTasks;
+      
+    
+    }
     public static boolean updateTaskLists()
     {
         boolean success = true;
