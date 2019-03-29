@@ -1,15 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *This class is a component part of a JSCrollPane used to show the list of
+Tasklists, tasks and subtasks.
+Clicking on one element sorts the tasklist according to the clicked button
  */
 package com.maven.view.UIElements;
+
 import javax.swing.JPanel;
-
-
-
 import java.awt.GridLayout;
-import javax.swing.JLabel;
 import com.maven.model.SquirrelConstants;
 /**
  *
