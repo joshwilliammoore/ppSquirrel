@@ -82,7 +82,7 @@ public class SquirrelConstants {
  * ************************* Menu configuration *******************************
  * ****************************************************************************/
     
-    private static final Font menuEntryFont = new Font("Arial", Font.PLAIN, 30);
+    private static final Font menuEntryFont = new Font("Arial", Font.PLAIN, 22);
     
     private static final String[] menuEntries= {"Home", "Tasklists", /*"Admin" ,*/"Exit"};
     
@@ -120,7 +120,7 @@ public class SquirrelConstants {
       
     
     
-    private static final Font logoFont = new Font("Arial", Font.PLAIN, 22);
+    private static final Font logoFont = new Font("Arial", Font.PLAIN, 24);
     private static final Font HeaderFont = new Font("Arial", Font.PLAIN, 40);
     private static final Font SubHeaderFont = new Font("Arial", Font.PLAIN, 22);
     private static final Font DetailEntryFont = new Font("Arial", Font.PLAIN, 18);

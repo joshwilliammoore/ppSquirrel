@@ -9,6 +9,7 @@ import com.maven.model.SquirrelConstants;
 import com.maven.model.SubTask;
 import com.maven.model.Task;
 import com.maven.model.TaskList;
+import com.maven.model.HasChildren;
 import com.maven.view.RightSideElements.HorizontalBar;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -62,7 +63,7 @@ public class ListView {
     getViewport().removeAll();
     ListView.setTaskLists(taskLists);
     //instance.removeAll();
-    if(ListView.getTaskLists() !=null)
+    if(ListView.getTaskLists() !=null || ListView.getTaskLists().length>0)
     {
         for(SubTask t : ListView.getTaskLists())
         {
@@ -74,8 +75,11 @@ public class ListView {
         
         }
     
-    } else { 
-     javax.swing.JOptionPane.showMessageDialog(null, "You have no tasks listed!");
+    } else {
+     
+         javax.swing.JOptionPane.showMessageDialog(null, "You have children listed!");
+            
+
     }
     //instance.setColumnHeaderView(refreshColumnHeader(taskLists));
     instance.setViewportView(viewport);
