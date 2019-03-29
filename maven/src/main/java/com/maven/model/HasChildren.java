@@ -1,8 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*******************************************************************************
+Interface for models that should have a children for type comparison 
+* This ensures method implementation purposes as well.
+
+ ******************************************************************************/ 
 package com.maven.model;
 
 import java.util.ArrayList;

@@ -1,3 +1,12 @@
+/*******************************************************************************
+The parent of Tasks and Tasklists
+* Rationale: easier model handling as every type can be specified as SubTask
+* regardless whether the model that is intended to be handled is an instance of
+* Task or Tasklist.
+* 
+* Every instance has a JSON correction fucntion which ensures compatibility
+* between the local version and the JSON web service model
+ ******************************************************************************/ 
 package com.maven.model;
 
 import static com.maven.model.SquirrelConstants.incrementSubtaskCounter;

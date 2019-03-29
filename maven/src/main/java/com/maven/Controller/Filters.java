@@ -1,8 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*******************************************************************************
+This class is responsible for search and filter functionalities
+* Filters are implemented as inner classes
+ ******************************************************************************/  
 package com.maven.Controller;
 
 import com.maven.model.SquirrelConstants;

@@ -1,8 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*******************************************************************************
+This class is responsible for handling data entailing:
+* Tasklist save
+* Tasklist load
+* Tasklist searches
+* Web Tasklist fetch
+* User listing
+* User logging in
+ ******************************************************************************/    
 package com.maven.Controller;
 
 import java.io.File;

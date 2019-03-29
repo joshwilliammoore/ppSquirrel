@@ -1,8 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*******************************************************************************
+This class is responsible for updating the UI.
+Apart from the login screen, everything is handled here.
+It uses the same action command parameters as the action button controller.
+ ******************************************************************************/    
 package com.maven.Controller;
 
 import java.util.ArrayList;
@@ -14,10 +14,8 @@ import com.maven.view.RightSideElements.MessageBar;
 import com.maven.view.UIElements.ListView;
 import com.maven.view.UIElements.AddForm;
 import com.maven.view.UIElements.EditForm;
-/**
- *
- * @author Regory Gregory
- */
+
+
 public class ContentLoader {
     
     public static void loadContent(String text, Object param)
