@@ -1,8 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*******************************************************************************
+The purpose of this class is to keep track of assigned IDs for Tasklists, tasks
+* and subtasks.
+* It also logs the webId which is the Id of the tasklist fetched from nooblab's
+* JSON file (nooblab.com/p2.json
+* Note: it is currently incremented at a humongous scale after every running of the program
+* due to the fact that the WEB json service fetches every time (comparing already saved entries)
+* and  Subtask and its descendants having incrementing the counter in their constructor 
+ ******************************************************************************/ 
 package com.maven.model;
 
 import java.io.Serializable;

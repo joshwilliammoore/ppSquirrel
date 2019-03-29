@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+This class contains the main window that contains the left and right side of the ui.
  */
 package com.maven.view;
 import javax.swing.JFrame;

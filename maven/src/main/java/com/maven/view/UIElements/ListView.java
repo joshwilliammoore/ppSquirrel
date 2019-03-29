@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ Class responsible for listing tasklists, tasks and subtasks
+Inner class: ListEntry
  */
 package com.maven.view.UIElements;
 
@@ -75,7 +74,9 @@ public class ListView {
         
         }
     
-    }   
+    } else { 
+     javax.swing.JOptionPane.showMessageDialog(null, "You have no tasks listed!");
+    }
     //instance.setColumnHeaderView(refreshColumnHeader(taskLists));
     instance.setViewportView(viewport);
     instance.setColumnHeaderView(columnHeader);
@@ -146,13 +147,14 @@ public class ListView {
             ActionAreaButton view = new ListEntryButton("view");
                             view.setActionCommand("VIEW:"+type+":"+tal.getID());
                             this.add(view);
-            if(DataHandler.getLoggedIn().getUserLevel() != 0)
+                            //javax.swing.JOptionPane.showMessageDialog(null, DataHandler.getLoggedIn().getUserLevel());
+            if(DataHandler.getLoggedIn().getUserLevel() <2)
             {
                 ActionAreaButton edit = new ListEntryButton("edit");
                          edit.setActionCommand("EDIT:"+type+":"+tal.getID());
                          this.add(edit);
             }
-            if(DataHandler.getLoggedIn().getUserLevel() == 2){
+            if(DataHandler.getLoggedIn().getUserLevel() == 0){
                 ActionAreaButton delete = new ListEntryButton("delete");
                          delete.setActionCommand("DELETE:"+type+":"+tal.getID());
                          this.add(delete);
@@ -162,7 +164,7 @@ public class ListView {
             }
         }  
 
-           private static class ListEntryButton extends ActionAreaButton
+           private  static class ListEntryButton extends ActionAreaButton
         {
             public ListEntryButton(String label)
             {

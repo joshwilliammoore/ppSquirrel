@@ -1,8 +1,9 @@
-/*
- 
-    Here we should add constants that we will use throughout the application, such as colours, element sizes, file references...etc.
-
- */
+/*******************************************************************************
+The idea behind this is to allow for an easily configurable UI.
+* Sizes, colours and UI entries can be configured from here.
+* However, sizes have been hard-coded at a number of locations so that feature does
+* not work properly.
+ ******************************************************************************/ 
 package com.maven.model;
 import java.awt.Color;
 import java.awt.Font;

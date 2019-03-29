@@ -1,8 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*******************************************************************************
+Custom exception for exceptions that don't fall into any JAVA specified category
+ ******************************************************************************/ 
 package com.maven.model;
 
 /**

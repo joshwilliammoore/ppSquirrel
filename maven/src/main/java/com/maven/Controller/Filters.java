@@ -1,8 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*******************************************************************************
+This class is responsible for search and filter functionalities
+* Filters are implemented as inner classes
+ ******************************************************************************/  
 package com.maven.Controller;
 
 import com.maven.model.SquirrelConstants;
@@ -138,11 +137,15 @@ public class Filters
     {
          public ArrayList<SubTask> search(SubTask[] source, Date date)
         {
-            JOptionPane.showMessageDialog(null, date.getTime());
+            
+            //JOptionPane.showMessageDialog(null, date.getTime());
+            
             ArrayList<SubTask> results = new ArrayList<>();
              for(SubTask st : source)
             {
-                if(st.getDueDate().getTime()==date.getTime())
+                long d1 = st.getDueDate().getTime()/(1000*60*60*24);
+                long d2 = date.getTime()/(1000*60*60*24);
+                if(d1==d2)
                 {
                     results.add(st);
                 }

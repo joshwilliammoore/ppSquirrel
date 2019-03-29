@@ -1,8 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*******************************************************************************
+This class is responsible for updating the UI.
+Apart from the login screen, everything is handled here.
+It uses the same action command parameters as the action button controller.
+ ******************************************************************************/    
 package com.maven.Controller;
 
 import java.util.ArrayList;
@@ -14,10 +14,8 @@ import com.maven.view.RightSideElements.MessageBar;
 import com.maven.view.UIElements.ListView;
 import com.maven.view.UIElements.AddForm;
 import com.maven.view.UIElements.EditForm;
-/**
- *
- * @author Regory Gregory
- */
+
+
 public class ContentLoader {
     
     public static void loadContent(String text, Object param)
@@ -43,8 +41,15 @@ public class ContentLoader {
                     if(subCommands[1].equals("HOME"))
                     {
                         String displayName = DataHandler.getLoggedIn().getName();
+                        SubTask[] userTasks = DataHandler.getCurrentUserTasks();
+                        javax.swing.JOptionPane.showMessageDialog(null, userTasks.length);
+                        String welcomeMessage = "Welcome "+displayName.substring(0,1).toUpperCase()+displayName.substring(1)+"!<br>";
+                        welcomeMessage+="See your assigned tasks below:";
+                        MessageBar.getInstance().customMessage(welcomeMessage);
+                        ListView.reFresh(userTasks);
+                        ActionArea.reFresh(ListView.getInstance());
                         
-                        MessageBar.getInstance().customMessage("Welcome "+displayName.substring(0,1).toUpperCase()+displayName.substring(1));
+                        
                     } else  if(subCommands[1].equals("TASKLISTS"))
                     {
                        // MessageBar.getInstance().setSize(new Dimension(MessageBar.getInstance().getWidth(), 300));
@@ -61,10 +66,10 @@ public class ContentLoader {
                         {
                             ListView.reFresh(taskLists);
                         }
-                        ActionArea.reFresh(ListView.getInstance());
+                        ActionArea.getInstance().reFresh(ListView.getInstance());
                     } else 
                     {
-                        javax.swing.JOptionPane.showMessageDialog(null, text);
+                        //vjavax.swing.JOptionPane.showMessageDialog(null, text);
 
                         SubTask t = DataHandler.getEntryFromAllEntriesByID(Integer.parseInt(subCommands[2]));
                         MessageBar.getInstance().detailedView(t);

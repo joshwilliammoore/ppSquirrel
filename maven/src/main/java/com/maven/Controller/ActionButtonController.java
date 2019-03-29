@@ -1,8 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*******************************************************************************
+ * *********This is the main class for handling user interactions
+ Every UI element associated with this controller sends an action command
+ Based on the action command, the action is decided
+ ******************************************************************************/    
 package com.maven.Controller;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -26,13 +26,25 @@ import com.maven.view.RightSideElements.ActionBar;
 
 
 public class ActionButtonController implements ActionListener{
+    
+    //private static ActionButtonController instance = null;
+    
+    
+//    public static ActionButtonController getInstance()
+//    {
+//        if(instance == null)
+//        {
+//            instance = new ActionButtonController();
+//        }
+//        return instance;
+//    }
     public  void actionPerformed(ActionEvent e)
     {
         
         
         String command = e.getActionCommand();
         String[] subCommands = command.split(":");
-        JOptionPane.showMessageDialog(null, command);
+       // JOptionPane.showMessageDialog(null, command);
         
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat formatWithTime = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -78,7 +90,7 @@ public class ActionButtonController implements ActionListener{
             case "UPDATE":
                 
                 SubTask updatable = DataHandler.getEntryFromAllEntriesByID(Integer.parseInt(subCommands[2]));
-                JOptionPane.showMessageDialog(null, updatable.getID());
+                //JOptionPane.showMessageDialog(null, updatable.getID());
                 EditForm dataForm = EditForm.getInstance();
                                         //element.reFresh(null, true, "TaskList");    
                                 Component[] elementsE = dataForm.getComponents();

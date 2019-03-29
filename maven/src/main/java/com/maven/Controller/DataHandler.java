@@ -1,8 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*******************************************************************************
+This class is responsible for handling data entailing:
+* Tasklist save
+* Tasklist load
+* Tasklist searches
+* Web Tasklist fetch
+* User listing
+* User logging in
+ ******************************************************************************/    
 package com.maven.Controller;
 
 import java.io.File;
@@ -77,6 +81,24 @@ public class DataHandler<T extends SubTask> {
        }
    
    }
+    public static SubTask[] getCurrentUserTasks()
+    {
+        SubTask[] userTasks = null;
+        ArrayList<SubTask> temp = new ArrayList<>();
+        for(SubTask t : allEntries)
+        {
+            if(t instanceof Task && t.getUser().getUserName().equals(loggedIn.getUserName()))
+            {
+               temp.add(t);     
+            }
+        }
+        userTasks = new SubTask[temp.size()];
+        userTasks = temp.toArray(userTasks);
+    
+        return userTasks;
+      
+    
+    }
     public static boolean updateTaskLists()
     {
         boolean success = true;

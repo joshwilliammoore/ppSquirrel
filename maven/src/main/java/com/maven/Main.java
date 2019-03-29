@@ -5,6 +5,7 @@
  */
 package com.maven;
 
+import com.maven.Controller.ContentLoader;
 import com.maven.Controller.DataHandler;
 import javax.swing.*;
 import com.maven.view.MainContainer;
@@ -19,9 +20,15 @@ import java.awt.event.ActionListener;
  */
 public class Main {
     public static void main(String[] args) {
-
+/*******************************************************************************
+ * ********************Initialising Tasklists and Singleton classes*************
+ ******************************************************************************/
         Init.init();
         //ActionListner al = new Actiojn
+        
+/*******************************************************************************
+ * *********Initiating Login page instance ************************************
+ ******************************************************************************/        
         LoginPage loginP = LoginPage.getInstance();
         
         loginP.SUBMIT.addActionListener(new ActionListener(){
@@ -30,8 +37,15 @@ public class Main {
         String userName = loginP.getText1().getText();
         String password = loginP.getText2().getText();
 
+/*******************************************************************************
+ * *********Upon successful login the user logs in *****************************
+ ******************************************************************************/      
+        
+        
         if(DataHandler.checkLogin(userName, password)){
           MainContainer mainWindow = MainContainer.getInstance();
+          ContentLoader.loadContent("LISTVIEW:HOME:0", null);
+
           mainWindow.setVisible(true); 
           LoginPage login = LoginPage.getInstance();
           login.setVisible(false);

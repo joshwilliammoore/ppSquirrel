@@ -1,8 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*******************************************************************************
+This class is responsible for checking user input fields as in:
+* Format checking for dates
+* Empty field checking
+ ******************************************************************************/ 
 package com.maven.Controller;
 
 import java.util.Date;

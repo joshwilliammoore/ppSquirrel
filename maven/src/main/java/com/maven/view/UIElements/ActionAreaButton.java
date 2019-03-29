@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+This package is intended to contain UI elements that could be used throughout the application
+Where only one component of the UI uses an element, it has been moved to an inner class
+such as ListEntry and MenuEntry
  */
 package com.maven.view.UIElements;
 import com.maven.Controller.ActionButtonController;
