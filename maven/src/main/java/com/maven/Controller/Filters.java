@@ -137,11 +137,15 @@ public class Filters
     {
          public ArrayList<SubTask> search(SubTask[] source, Date date)
         {
-            JOptionPane.showMessageDialog(null, date.getTime());
+            
+            //JOptionPane.showMessageDialog(null, date.getTime());
+            
             ArrayList<SubTask> results = new ArrayList<>();
              for(SubTask st : source)
             {
-                if(st.getDueDate().getTime()==date.getTime())
+                long d1 = st.getDueDate().getTime()/(1000*60*60*24);
+                long d2 = date.getTime()/(1000*60*60*24);
+                if(d1==d2)
                 {
                     results.add(st);
                 }
