@@ -1,9 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+This class contains the left side panel of the logged in user's user interface
+Contains the menu and logos
  */
 package com.maven.view;
+import com.maven.view.UIElements.Logo;
 import com.maven.view.UIElements.Menu;
 import com.maven.model.SquirrelConstants;
 

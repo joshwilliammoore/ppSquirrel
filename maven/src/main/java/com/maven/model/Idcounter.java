@@ -2,7 +2,10 @@
 The purpose of this class is to keep track of assigned IDs for Tasklists, tasks
 * and subtasks.
 * It also logs the webId which is the Id of the tasklist fetched from nooblab's
-* json file (nooblab.com/p2.json
+* JSON file (nooblab.com/p2.json
+* Note: it is currently incremented at a humongous scale after every running of the program
+* due to the fact that the WEB json service fetches every time (comparing already saved entries)
+* and  Subtask and its descendants having incrementing the counter in their constructor 
  ******************************************************************************/ 
 package com.maven.model;
 

@@ -5,6 +5,7 @@
  */
 package com.maven.view;
 
+import com.maven.view.UIElements.Logo;
 import javax.swing.*;
 import java.awt.*;
 import com.maven.model.SquirrelConstants;

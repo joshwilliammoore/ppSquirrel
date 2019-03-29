@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+General panel that was inteded to be the parent of all UI panels
+However, during the development several of the children have been updated
+and specilised
  */
 package com.maven.view;
 import javax.swing.JPanel;

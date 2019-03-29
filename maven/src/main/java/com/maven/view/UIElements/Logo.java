@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.maven.view;
+package com.maven.view.UIElements;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import com.maven.model.SquirrelConstants;
